@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ULTIMATE Liquid Glass Identity Tool ⚡️</title>
+    <title>IQOS PRÁCE 💼</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
         /* --- 1. LUXURY LIQUID GLASS A GLOBÁLNÍ STYLY --- */
         :root {
-            --bg-color: #212529; 
+            --bg-color: #0b1a2e; /* Tmavě modrá/černá */
             --glass-color: rgba(255, 255, 255, 0.08); 
             --glass-border: rgba(255, 255, 255, 0.3); 
-            --primary-color: #00bcd4; 
+            --primary-color: #00bcd4; /* Světle tyrkysová */
             --secondary-color: #f8f9fa; 
             --success-color: #2ecc71;
             --danger-color: #e74c3c;
@@ -24,9 +24,10 @@
             --radius: 20px;
         }
 
+        /* POZADÍ S LIQUID EFEKTEM (Požadavek 6) */
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, var(--bg-color), #343a40);
+            background-color: var(--bg-color);
             color: var(--text-color-light);
             margin: 0;
             padding: 0;
@@ -34,16 +35,28 @@
             display: flex;
             flex-direction: column; 
             align-items: center;
-            /* Zákaz horizontálního posuvu (Požadavek 5) */
             overflow-x: hidden; 
+            
+            /* Liquid Gradient & Animation */
+            background-image: linear-gradient(135deg, #0f1c2e, #182848, #00122e);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .container {
             max-width: 800px; 
             width: 100%;
             padding: 20px;
-            padding-bottom: 80px; 
+            padding-bottom: 80px; /* Rezervace místa pro fixní lištu */
             flex-grow: 1;
+            box-sizing: border-box; /* Zajištění "konce stránky" */
+            min-height: calc(100vh - 70px); 
         }
         
         .glass-card {
@@ -58,115 +71,23 @@
             margin-bottom: 25px;
         }
 
-        /* --- TLAČÍTKA A FORMULÁŘE --- */
-        button, .btn-full {
-            display: block;
+        /* --- HLAVIČKA --- (Požadavek 4) */
+        header {
             width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 12px;
-            margin-top: 15px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            
-            background: rgba(255, 255, 255, 0.1); 
-            color: var(--secondary-color);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Styl pro hlavní tlačítko generování */
-        button:not(.btn-secondary):not(.btn-danger):not(.btn-warning) {
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 20px rgba(0, 188, 212, 0.8), 0 0 5px rgba(0, 188, 212, 1);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        
-        /* Ostatní styly tlačítek */
-        .btn-success { background: var(--success-color); color: var(--bg-color); }
-        .btn-danger { background: var(--danger-color); color: var(--text-color-light); }
-        .btn-warning { background: var(--warning-color); color: var(--bg-color); }
-        .btn-secondary { background: rgba(255, 255, 255, 0.1); color: var(--text-color-light); }
-        
-        button:hover {
-             transform: translateY(-2px);
+            text-align: center;
+            margin-bottom: 20px;
         }
 
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-top: 8px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-            border: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-color-light);
-            border-radius: 8px;
-        }
-        
-        /* --- KARTA VÝSLEDKU (Požadavek 1) --- */
-        .identity-card {
-            margin-top: 15px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--primary-color);
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 188, 212, 0.3);
-        }
-
-        .identity-line {
-            white-space: pre-wrap; 
-            word-wrap: break-word; 
-            font-size: 1.1em; 
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-        
-        .identity-number {
-            font-weight: bold;
-            font-size: 1.2em;
+        h1 {
+            font-size: 2.5em;
             color: var(--secondary-color);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-            margin-bottom: 10px;
-        }
-        
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .button-group button {
-            width: auto;
-            padding: 8px 15px;
-            font-size: 0.9em;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
             margin: 0;
         }
         
-        /* --- DETAILY PROFILU (Vyhledávání a Historie) --- */
-        .profile-detail {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid var(--primary-color);
-            margin-top: 10px;
-        }
-        .profile-detail p {
-            margin: 5px 0;
-            font-size: 0.95em;
-        }
-        .profile-detail strong {
-            color: var(--primary-color);
-            display: inline-block;
-            min-width: 120px;
-        }
-
-        /* --- MOBILNÍ NAVIGACE --- */
+        /* --- MOBILNÍ NAVIGACE (Požadavek 1 - Fixní lišta) --- */
         .navigation {
-            position: fixed;
+            position: fixed; /* Fixní pozice */
             bottom: 0;
             left: 0;
             right: 0;
@@ -175,54 +96,36 @@
             justify-content: space-around;
             align-items: center;
             
-            background: rgba(33, 37, 41, 0.8); 
-            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+            background: rgba(33, 37, 41, 0.85); /* Tmavý podklad s průhledností */
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 100;
         }
+        
+        /* Ostatní styly jsou zachovány z předchozí verze */
+        .identity-number {
+             font-weight: bold;
+             font-size: 1.2em;
+             color: var(--primary-color); /* Změna barvy pro lepší viditelnost */
+             text-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
+             margin-bottom: 10px;
+        }
 
-        .nav-button {
+        .identity-card {
+            /* Zajištění, že se nové karty přidávají nahoru (Požadavek 2) */
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: var(--text-color-dark);
-            font-size: 0.8em;
-            width: 25%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-            background: transparent;
-            border: none;
-            border-radius: 0;
-        }
-
-        .nav-button.active {
-            color: var(--primary-color);
-            text-shadow: 0 0 5px rgba(0, 188, 212, 0.6);
-            border-bottom: 3px solid var(--primary-color);
-        }
-        
-        .nav-button i {
-            font-size: 1.5em;
-            margin-bottom: 3px;
-        }
-        
-        .content-section {
-            display: none;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
+            opacity: 1;
+            transition: all 0.5s ease-in-out;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-cubes"></i> Identity Generator</h1>
+            <h1><i class="fas fa-briefcase"></i> IQOS PRÁCE</h1>
         </header>
 
         <div class="main-content">
@@ -230,7 +133,7 @@
             <div id="generator-section" class="content-section">
                 
                 <div class="glass-card">
-                    <h2><i class="fas fa-bolt"></i> Generovat Rychle</h2>
+                    <h2><i class="fas fa-bolt"></i> Rychlá Generace (Lidé)</h2>
                     
                     <label for="gender-select" style="font-size: 0.9em; display: block; margin-bottom: 10px;">Preferované Pohlaví:</label>
                     <select id="gender-select" style="margin-bottom: 10px;">
@@ -238,20 +141,24 @@
                         <option value="Male">Muž</option>
                         <option value="Female">Žena</option>
                     </select>
+                    
+                    <label for="custom-phone" style="font-size: 0.9em; display: block; margin-bottom: 10px;">Volitelné Tel. Číslo (9 číslic):</label>
+                    <input type="tel" id="custom-phone" placeholder="777222333 (pro 1 osobu)">
 
                     <label for="generation-count">Počet (1-50):</label>
                     <input type="number" id="generation-count" min="1" max="50" value="1">
                     
-                    <button class="btn-full btn-success" onclick="generateIdentities(false)"><i class="fas fa-magic"></i> Spustit Generaci</button>
+                    <button class="btn-full btn-success" onclick="generatePeople(false)"><i class="fas fa-magic"></i> Spustit Generaci</button>
+                    <p style="color: var(--text-color-dark); font-size: 0.8em; margin-top: 10px;">*Pokud zadáte Tel. číslo, vygeneruje se POUZE 1 osoba, bez ohledu na počet.</p>
                 </div>
                 
                 <div class="glass-card">
-                    <h2><i class="fas fa-scroll"></i> Výsledek Generování</h2>
+                    <h2><i class="fas fa-users"></i> Výsledek Generování (Lidé)</h2>
                     
-                    <button id="bulkCopyBtn" class="btn-full btn-danger" onclick="bulkCopyAllVisible()" style="margin-bottom: 15px;"><i class="fas fa-copy"></i> Hromadně Kopírovat</button>
+                    <button id="bulkCopyBtn" class="btn-full btn-secondary" onclick="bulkCopyAllVisible()" style="margin-bottom: 15px;"><i class="fas fa-copy"></i> Hromadně Kopírovat Vše</button>
                     
-                    <div id="output">
-                        <p style="text-align: center; color: var(--text-color-dark);">Vygenerované identity se zobrazí zde.</p>
+                    <div id="output" style="display: flex; flex-direction: column-reverse;">
+                        <p style="text-align: center; color: var(--text-color-dark);">Vygenerovaní lidé se zobrazí zde.</p>
                     </div>
                 </div>
             </div>
@@ -259,20 +166,20 @@
             <div id="bulk-section" class="content-section">
                  <div class="glass-card">
                     <h2><i class="fas fa-layer-group"></i> Hromadná Generace z Čísel</h2>
-                    <p style="color: var(--text-color-dark);">Zadejte seznam 9místných telefonních čísel (jedno na řádek). Ke každému se vygeneruje plná identita. Výsledky uvidíte v sekci **Výsledek Generování**.</p>
+                    <p style="color: var(--text-color-dark);">Zadejte seznam 9místných telefonních čísel (jedno na řádek). Ke každému se vygeneruje plná osoba. Výsledky uvidíte v sekci **Výsledek Generování**.</p>
                     <label for="bulk-phones">Seznam telefonních čísel:</label>
                     <textarea id="bulk-phones" rows="10" placeholder="731111111&#10;777222333&#10;..."></textarea>
-                    <button class="btn-full" onclick="bulkGenerateFromPhones()"><i class="fas fa-exchange-alt"></i> Hromadně Generovat Identity</button>
+                    <button class="btn-full" onclick="bulkGenerateFromPhones()"><i class="fas fa-exchange-alt"></i> Hromadně Generovat Lidi</button>
                 </div>
             </div>
 
             <div id="tools-section" class="content-section">
                  <div class="glass-card">
-                    <h2><i class="fas fa-search"></i> Vyhledávání Identity</h2>
+                    <h2><i class="fas fa-search"></i> Vyhledávání Profilu</h2>
                     
-                    <p style="color: var(--text-color-dark);">Vyhledejte identitu z historie podle jména nebo 9místného telefonního čísla.</p>
+                    <p style="color: var(--text-color-dark);">Vyhledejte osobu z historie podle jména nebo 9místného telefonního čísla.</p>
                     <input type="text" id="search-input" placeholder="Jméno nebo 777222333">
-                    <button class="btn-full btn-secondary" onclick="searchIdentity()"><i class="fas fa-search"></i> Vyhledat v Historii</button>
+                    <button class="btn-full btn-secondary" onclick="searchPerson()"><i class="fas fa-search"></i> Vyhledat v Historii</button>
                     
                     <div id="search-output" class="glass-card" style="margin-top: 15px; padding: 15px; background: rgba(0,0,0,0.1);">Zde se zobrazí nalezený profil.</div>
                 </div>
@@ -280,13 +187,13 @@
 
             <div id="history-section" class="content-section">
                  <div class="glass-card">
-                    <h2><i class="fas fa-database"></i> Historie a Statistiky</h2>
+                    <h2><i class="fas fa-database"></i> Historie Generovaných Lidí</h2>
                     
                     <div class="total-count" style="margin-bottom: 20px; font-size: 1.2em;">
                         <i class="fas fa-tachometer-alt" style="color: var(--primary-color);"></i> Celkem vygenerováno: <span id="total-generated" style="font-weight: bold; color: var(--secondary-color);">0</span>
                     </div>
 
-                    <h3 style="color: var(--secondary-color); font-size: 1.1em;"><i class="fas fa-list"></i> Seznam Identit</h3>
+                    <h3 style="color: var(--secondary-color); font-size: 1.1em;"><i class="fas fa-list"></i> Seznam Všech Lidí</h3>
                     
                     <div id="history-list" style="max-height: 400px; overflow-y: auto; padding: 10px; border: 1px solid var(--glass-border); border-radius: 10px;">
                         <p style="text-align: center; color: var(--text-color-dark);">Historie je prázdná.</p>
@@ -303,13 +210,13 @@
     
     <div class="navigation">
         <a href="#generator" class="nav-button" data-page="generator">
-            <i class="fas fa-magic"></i> Generátor
+            <i class="fas fa-magic"></i> Generace
         </a>
         <a href="#bulk" class="nav-button" data-page="bulk">
             <i class="fas fa-layer-group"></i> Hromadné
         </a>
         <a href="#tools" class="nav-button" data-page="tools">
-            <i class="fas fa-tools"></i> Nástroje
+            <i class="fas fa-search"></i> Hledání
         </a>
         <a href="#history" class="nav-button" data-page="history">
             <i class="fas fa-database"></i> Historie
@@ -320,15 +227,16 @@
 
     <script>
         // --- DATA PRO GENEROVÁNÍ (ROZŠÍŘENÁ DATABÁZE) ---
-        const firstNamesMale = ['Lukáš', 'Tomáš', 'Petr', 'Jan', 'Pavel', 'Martin', 'Ondřej', 'Jakub', 'Filip', 'Vojtěch', 'Adam', 'Marek', 'David', 'Karel', 'Jiří', 'Štěpán', 'Daniel', 'Matěj', 'Vít', 'Oldřich', 'František', 'Antonín', 'Miloslav', 'Vladimír', 'Josef', 'Václav', 'Michal', 'Patrik', 'Alex', 'Erik', 'Denis', 'Kryštof', 'Dominik', 'Hynek', 'Jaroslav'];
-        const firstNamesFemale = ['Anna', 'Tereza', 'Kateřina', 'Lucie', 'Adéla', 'Eliška', 'Veronika', 'Kristýna', 'Nikola', 'Karolína', 'Jana', 'Eva', 'Hana', 'Petra', 'Markéta', 'Klára', 'Zuzana', 'Michaela', 'Lenka', 'Monika', 'Iva', 'Denisa', 'Alena', 'Barbora', 'Helena', 'Natálie', 'Vendula', 'Sabina', 'Simona', 'Viktoria', 'Magdaléna', 'Ludmila', 'Šárka', 'Diana', 'Adriana'];
-        const lastNames = ['Nováček', 'Svoboda', 'Novák', 'Dvořák', 'Černý', 'Procházka', 'Kučera', 'Veselý', 'Fiala', 'Horák', 'Pospíšil', 'Malý', 'Hájek', 'Jelínek', 'Růžička', 'Beneš', 'Soukup', 'Krejčí', 'Kříž', 'Šťastný', 'Kovář', 'Konečný', 'Bartoš', 'Sedláček', 'Urban', 'Zeman', 'Kolář', 'Ševčík', 'Trnka', 'Pokorný', 'Pavelka', 'Tichý', 'Mrázek', 'Málek', 'Janda', 'Kasal', 'Liška', 'Polák', 'Holub', 'Rybář', 'Šimek', 'Vlček', 'Rejcha', 'Moravec', 'Bílek', 'Zahrádka', 'Křížek'];
+        const firstNamesMale = ['Lukáš', 'Tomáš', 'Petr', 'Jan', 'Pavel', 'Martin', 'Ondřej', 'Jakub', 'Filip', 'Vojtěch', 'Adam', 'Marek', 'David', 'Karel', 'Jiří', 'Štěpán', 'Daniel', 'Matěj', 'Vít', 'Oldřich', 'František', 'Antonín', 'Miloslav', 'Vladimír', 'Josef', 'Václav', 'Michal', 'Patrik', 'Alex', 'Erik', 'Denis', 'Kryštof', 'Dominik', 'Hynek', 'Jaroslav', 'Aleš', 'Bohumil', 'Čeněk', 'Dalibor', 'Emil', 'Gustav', 'Ignác', 'Jindřich', 'Libor', 'Norbert', 'Oskar', 'Radek', 'Stanislav', 'Vlastimil', 'Zdeněk'];
+        const firstNamesFemale = ['Anna', 'Tereza', 'Kateřina', 'Lucie', 'Adéla', 'Eliška', 'Veronika', 'Kristýna', 'Nikola', 'Karolína', 'Jana', 'Eva', 'Hana', 'Petra', 'Markéta', 'Klára', 'Zuzana', 'Michaela', 'Lenka', 'Monika', 'Iva', 'Denisa', 'Alena', 'Barbora', 'Helena', 'Natálie', 'Vendula', 'Sabina', 'Simona', 'Viktoria', 'Magdaléna', 'Ludmila', 'Šárka', 'Diana', 'Adriana', 'Beáta', 'Cyrila', 'Dagmar', 'Hedvika', 'Irena', 'Julie', 'Kamila', 'Laura', 'Nina', 'Olga', 'Renata', 'Silvie', 'Valerie', 'Xenie', 'Yvona', 'Žofie'];
+        const lastNames = ['Nováček', 'Svoboda', 'Novák', 'Dvořák', 'Černý', 'Procházka', 'Kučera', 'Veselý', 'Fiala', 'Horák', 'Pospíšil', 'Malý', 'Hájek', 'Jelínek', 'Růžička', 'Beneš', 'Soukup', 'Krejčí', 'Kříž', 'Šťastný', 'Kovář', 'Konečný', 'Bartoš', 'Sedláček', 'Urban', 'Zeman', 'Kolář', 'Ševčík', 'Trnka', 'Pokorný', 'Pavelka', 'Tichý', 'Mrázek', 'Málek', 'Janda', 'Kasal', 'Liška', 'Polák', 'Holub', 'Rybář', 'Šimek', 'Vlček', 'Rejcha', 'Moravec', 'Bílek', 'Zahrádka', 'Křížek', 'Kadlec', 'Musil', 'Šimánek', 'Valenta', 'Zoubek'];
         const emailDomains = ['icloud.com', 'gmail.com', 'seznam.cz', 'post.cz', 'email.cz', 'atlas.cz', 'volny.cz', 'centrum.cz', 'quick.cz', 'yahoo.com', 'outlook.com', 'tiscali.cz'];
-        const citiesData = { /* Pro RČ a vnitřní logiku */
-            'Praha': ['10000', '11000'], 'Brno': ['60200'], 'Ostrava': ['70200'], 'Plzeň': ['30100'], 'Liberec': ['46001'], 'Olomouc': ['77900'], 'Hradec Králové': ['50003'], 'České Budějovice': ['37001'], 'Karlovy Vary': ['36001'], 'Pardubice': ['53002'], 'Ústí nad Labem': ['40001'], 'Zlín': ['76001']
+        const citiesData = { /* Pro realistický výstup (Požadavek 5) */
+            'Praha': ['10000', '11000', '12000', '15000', '17000'], 'Brno': ['60200', '61200', '62500'], 'Ostrava': ['70200', '70800', '71000'], 'Plzeň': ['30100', '32300'], 'Liberec': ['46001', '46301'], 'Olomouc': ['77900', '78301'], 'Hradec Králové': ['50003', '50008'], 'České Budějovice': ['37001', '37004'], 'Karlovy Vary': ['36001', '36005'], 'Pardubice': ['53002', '53009'], 'Ústí nad Labem': ['40001', '40301'], 'Zlín': ['76001', '76302'], 'Jihlava': ['58601'], 'Mladá Boleslav': ['29301'], 'Tábor': ['39001'], 'Znojmo': ['66902'], 'Frýdek-Místek': ['73801'], 'Třinec': ['73961'], 'Most': ['43401'], 'Teplice': ['41501']
         };
         const allCities = Object.keys(citiesData);
-        const HISTORY_KEY = 'ultimateIdentityHistory';
+        const HISTORY_KEY = 'iqosPeopleHistory'; // Změna klíče
+        let currentIdCounter = 0;
 
         // --- HELPER FUNKCE ---
         const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -342,13 +250,14 @@
         function showNotification(message, type = 'success') {
             const container = document.getElementById('notification-container');
             const note = document.createElement('div');
-            // Styl notifikací (pro zjednodušení je CSS notifikací z předchozí verze skryto)
+            // Zjednodušený styl notifikace
             note.style.cssText = `
                 position: fixed; top: 20px; right: 20px; z-index: 1000; padding: 15px 20px;
                 background: ${type === 'success' ? '#2ecc71' : type === 'danger' ? '#e74c3c' : '#00bcd4'};
                 color: #fff; border-radius: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
                 transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
                 opacity: 0; transform: translateY(-50px);
+                max-width: 80%;
             `;
             
             note.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : type === 'danger' ? 'times-circle' : 'info-circle'}"></i> ${message}`;
@@ -363,10 +272,11 @@
             }, 3500); 
         }
 
-        // Generování data narození a RČ
+        // --- REALISTICKÉ GENERÁTOR RČ (Požadavek 5) ---
         function generateBirthData(isMale) {
             const currentYear = new Date().getFullYear();
-            const year = getRandomInt(1960, currentYear - 18); // 18-65 let
+            // Generovat věk 18-60
+            const year = getRandomInt(currentYear - 60, currentYear - 18); 
             const month = getRandomInt(1, 12);
             const day = getRandomInt(1, 28); 
             
@@ -379,17 +289,16 @@
             const mm = String(rcMonth).padStart(2, '0');
             const dd = String(day).padStart(2, '0');
             
-            const finalSuffix = String(getRandomInt(100, 9999)).padStart(4, '0');
-            const rcNumber = `${yy}${mm}${dd}${finalSuffix}`;
-
-            let suffix = rcNumber.substring(6);
+            // Random 4 číslice pro suffix (Požadavek 5)
+            const suffix = String(getRandomInt(1000, 9999)).padStart(4, '0');
             
-            // Kontrola dělitelnosti 11 (pro realistické, ale ne nutně validní)
-            // Pro zjednodušení v tomto demo neprovádíme složitou kontrolu modula 11.
-            
+            // RČ se už od 1954 generuje jako 10místné.
             const rodneCislo = `${yy}${mm}${dd}/${suffix}`; 
             
             return {
+                day: day,
+                month: month,
+                year: year,
                 formattedDate: `${String(day).padStart(2, '0')}.${String(month).padStart(2, '0')}.${year}`,
                 rodneCislo: rodneCislo
             };
@@ -412,9 +321,9 @@
             return `${base}@${domain}`;
         }
 
-        // --- HLAVNÍ LOGIKA TVORBY IDENTITY ---
+        // --- HLAVNÍ LOGIKA TVORBY OSOBY (Požadavek 3) ---
 
-        function createIdentityObject(customPhone = null, preferredGender = 'random') {
+        function createPersonObject(customPhone = null, preferredGender = 'random') {
             let isMale;
             if (preferredGender === 'Male') isMale = true;
             else if (preferredGender === 'Female') isMale = false;
@@ -426,7 +335,11 @@
             if (isMale) firstName = getRandomItem(firstNamesMale);
             else firstName = getRandomItem(firstNamesFemale);
             
-            const lastName = isMale ? getRandomItem(lastNames) : getRandomItem(lastNames) + 'ová';
+            // Ženské příjmení (Pokorná) - zjednodušená verze
+            let lastNameBase = getRandomItem(lastNames);
+            const lastName = isMale ? lastNameBase : (lastNameBase.endsWith('ý') ? lastNameBase.slice(0, -1) + 'á' : lastNameBase + 'ová');
+
+            // Náhodné místo bydliště (Požadavek 5)
             const city = getRandomItem(allCities);
             const postalCode = getRandomItem(citiesData[city]);
             
@@ -437,7 +350,7 @@
                 phoneBase = String(getRandomInt(700000000, 799999999));
             }
             
-            const identity = {
+            const person = {
                 // Základní údaje pro výstup (Požadavek 1 - zjednodušený)
                 id: Date.now() + Math.random(), // Unikátní ID pro historii
                 fullName: `${firstName} ${lastName}`,
@@ -453,99 +366,133 @@
                 timestamp: new Date().toLocaleString('cs-CZ')
             };
             
-            return identity;
+            return person;
         }
 
         // --- FORMÁTOVÁNÍ A VÝSTUP ---
         
         // Zjednodušený formát pro karty ve výsledcích (Požadavek 1)
-        function formatIdentity(identity) {
+        function formatPerson(person) {
+            // Zde musí být přesně tvůj požadovaný vzor
             return `
-${identity.fullName}
-${identity.birthDate}
-${identity.phoneNumber}
-${identity.email}
+${person.fullName}
+${person.birthDate}
+${person.phoneNumber}
+${person.email}
             `.trim();
         }
 
-        // Detailní zobrazení pro profil (Požadavek 2 a 6)
-        function formatProfile(identity) {
+        // Detailní zobrazení pro profil (Požadavek 5)
+        function formatProfile(person) {
             return `
                 <div class="profile-detail">
-                    <p><strong><i class="fas fa-user"></i> Jméno:</strong> ${identity.fullName}</p>
-                    <p><strong><i class="fas fa-calendar-alt"></i> Datum Narození:</strong> ${identity.birthDate}</p>
-                    <p><strong><i class="fas fa-phone"></i> Telefon:</strong> ${identity.phoneNumber}</p>
-                    <p><strong><i class="fas fa-at"></i> E-mail:</strong> ${identity.email}</p>
+                    <p><strong><i class="fas fa-user"></i> Jméno:</strong> ${person.fullName}</p>
+                    <p><strong><i class="fas fa-calendar-alt"></i> Datum Narození:</strong> ${person.birthDate}</p>
+                    <p><strong><i class="fas fa-phone"></i> Telefon:</strong> ${person.phoneNumber}</p>
+                    <p><strong><i class="fas fa-at"></i> E-mail:</strong> ${person.email}</p>
                     <hr style="border-color: rgba(255, 255, 255, 0.2); margin: 10px 0;">
-                    <p><strong><i class="fas fa-id-card"></i> Rodné Číslo:</strong> ${identity.rodneCislo}</p>
-                    <p><strong><i class="fas fa-venus-mars"></i> Pohlaví:</strong> ${identity.gender}</p>
-                    <p><strong><i class="fas fa-map-marker-alt"></i> Bydliště (město):</strong> ${identity.city}</p>
-                    <p><strong><i class="fas fa-calendar-check"></i> Vytvořeno:</strong> ${identity.timestamp}</p>
+                    <p><strong><i class="fas fa-id-card"></i> Rodné Číslo:</strong> ${person.rodneCislo}</p>
+                    <p><strong><i class="fas fa-venus-mars"></i> Pohlaví:</strong> ${person.gender}</p>
+                    <p><strong><i class="fas fa-map-marker-alt"></i> Bydliště:</strong> ${person.city} (${person.postalCode})</p>
+                    <p><strong><i class="fas fa-calendar-check"></i> Vytvořeno:</strong> ${person.timestamp}</p>
                 </div>
             `;
         }
 
-
-        function renderIdentityCard(identity, container) {
-            const formattedIdentity = formatIdentity(identity);
+        /**
+         * Zobrazí kartu osoby ve výsledcích
+         * @param {object} person Objekt osoby
+         * @param {HTMLElement} container Kontejner pro vložení
+         */
+        function renderPersonCard(person, container) {
+            const formattedPerson = formatPerson(person);
             const card = document.createElement('div');
-            card.className = 'identity-card'; 
-            card.setAttribute('data-id', identity.id); // Pro smazání
+            card.className = 'identity-card glass-card'; 
+            card.setAttribute('data-id', person.id); // Pro smazání
             
-            // Pořadové číslo (Požadavek 1 a 3)
-            const count = container.querySelectorAll('.identity-card').length + 1;
+            // Pořadové číslo (Požadavek 2: Neustále aktualizováno, nejnovější = #1)
+            const currentCount = container.querySelectorAll('.identity-card').length + 1;
+            
+            // Pořadové číslo je dynamické, protože se přidává na začátek
+            // Zde použijeme dynamické generování čísel pro aktuální zobrazení.
             
             card.innerHTML = `
-                <div class="identity-number">#${count}</div> 
-                <pre class="identity-line">${formattedIdentity}</pre>
+                <div class="identity-number">#${currentCount}</div> 
+                <pre class="identity-line">${formattedPerson}</pre>
                 <div class="button-group">
-                    <button class="copy-btn btn-success" onclick="copyIdentity('${identity.id}')"><i class="fas fa-copy"></i> Kopírovat</button>
-                    <button class="btn-warning" onclick="removeIdentityFromOutput('${identity.id}')"><i class="fas fa-times"></i> Smazat z výsledků</button>
+                    <button class="copy-btn btn-success" onclick="copyPerson('${person.id}')"><i class="fas fa-copy"></i> Kopírovat</button>
+                    <button class="btn-warning" onclick="removePersonFromOutput('${person.id}')"><i class="fas fa-times"></i> Smazat z výsledků</button>
                 </div>
             `;
             container.prepend(card); 
+            
+            // Přečíslování po přidání, aby nejnovější byl #1
+            renumberOutputCards(container);
         }
 
+        /**
+         * Přečísluje karty v kontejneru od #1 (nejnovější) po N (nejstarší)
+         * @param {HTMLElement} container 
+         */
+        function renumberOutputCards(container) {
+            const cards = container.querySelectorAll('.identity-card');
+            let count = cards.length;
+            cards.forEach(card => {
+                const numberDiv = card.querySelector('.identity-number');
+                if (numberDiv) {
+                    numberDiv.textContent = `#${count}`;
+                }
+                count--;
+            });
+        }
+        
         // --- FUNKCE GENERACE ---
 
-        function generateIdentities(isBulk = false, phoneList = []) {
+        function generatePeople(isBulk = false, phoneList = []) {
             const outputDiv = document.getElementById('output');
+            const gender = document.getElementById('gender-select').value;
+            const customPhoneInput = document.getElementById('custom-phone');
+            const customPhone = customPhoneInput.value.trim().replace(/\s/g, '');
+            const isSingle = customPhone.length > 0;
             
-            if (!isBulk) {
-                // Generování z hlavní sekce
+            let peopleToGenerate = [];
+
+            if (isBulk) {
+                // Hromadné generování z čísel
+                peopleToGenerate = phoneList.map(phone => createPersonObject(phone, gender));
+            } else if (isSingle) {
+                // Rychlé generování s custom číslem (Požadavek 2)
+                if (!/^\d{9}$/.test(customPhone)) {
+                     showNotification('Neplatné číslo. Zadejte prosím 9 číslic.', 'danger');
+                     return;
+                }
+                peopleToGenerate.push(createPersonObject(customPhone, gender));
+            } else {
+                // Rychlé generování podle počtu
                 const count = parseInt(document.getElementById('generation-count').value, 10);
-                const gender = document.getElementById('gender-select').value;
                 if (isNaN(count) || count <= 0 || count > 50) {
-                    showNotification('Zadejte platný počet (1-50 identit).', 'danger');
+                    showNotification('Zadejte platný počet (1-50 osob).', 'danger');
                     return;
                 }
-                
-                outputDiv.innerHTML = ''; // Vyčistit předchozí
-                let generatedCount = 0;
                 for (let i = 0; i < count; i++) {
-                    const identity = createIdentityObject(null, gender);
-                    renderIdentityCard(identity, outputDiv);
-                    saveToHistory(identity);
-                    generatedCount++;
+                    peopleToGenerate.push(createPersonObject(null, gender));
                 }
-                showNotification(`Úspěšně vygenerováno ${generatedCount} identit.`, 'success');
+            }
+            
+            if (!isBulk) {
+                 // Čištění jen pro Generátor, Bulk nechá předchozí výsledky
+                 outputDiv.innerHTML = '';
+            }
+            
+            peopleToGenerate.forEach(person => {
+                renderPersonCard(person, outputDiv);
+                saveToHistory(person); // Uloží do historie
+            });
+            
+            showNotification(`Úspěšně vygenerováno ${peopleToGenerate.length} osob.`, 'success');
 
-            } else {
-                // Generování z hromadné sekce
-                outputDiv.innerHTML = '';
-                let generatedCount = 0;
-                const gender = document.getElementById('gender-select').value;
-
-                phoneList.forEach(phone => {
-                    const identity = createIdentityObject(phone, gender);
-                    renderIdentityCard(identity, outputDiv);
-                    saveToHistory(identity);
-                    generatedCount++;
-                });
-
-                showNotification(`Hromadně vygenerováno ${generatedCount} identit z čísel.`, 'success');
-                // Přesun na sekci výsledků
-                updateNavigation('generator');
+            if (customPhoneInput && isSingle) {
+                customPhoneInput.value = ''; // Vyčištění pole po úspěšné generaci
             }
         }
         
@@ -559,13 +506,16 @@ ${identity.email}
                 return;
             }
             
-            generateIdentities(true, validPhones);
+            generatePeople(true, validPhones);
             textarea.value = '';
+            
+            // Přesun na sekci výsledků
+            updateNavigation('generator');
         }
         
-        // --- NÁSTROJE: VYHLEDÁVÁNÍ (Požadavek 2) ---
+        // --- NÁSTROJE: VYHLEDÁVÁNÍ PROFILU ---
 
-        function searchIdentity() {
+        function searchPerson() {
             const query = document.getElementById('search-input').value.trim().toLowerCase();
             const outputDiv = document.getElementById('search-output');
             outputDiv.innerHTML = '';
@@ -578,47 +528,48 @@ ${identity.email}
             const history = loadHistory();
             
             // Hledání podle jména nebo telefonu
-            const foundIdentity = history.find(identity => 
-                identity.fullName.toLowerCase().includes(query) || 
-                identity.phoneNumber.includes(query)
+            const foundPerson = history.find(person => 
+                person.fullName.toLowerCase().includes(query) || 
+                person.phoneNumber.includes(query)
             );
             
-            if (foundIdentity) {
-                outputDiv.innerHTML = formatProfile(foundIdentity);
-                showNotification(`Identita nalezena: ${foundIdentity.fullName}`, 'success');
+            if (foundPerson) {
+                // Zobrazí detailní profil (Požadavek 5 - včetně RČ a Města)
+                outputDiv.innerHTML = formatProfile(foundPerson);
+                showNotification(`Profil nalezen: ${foundPerson.fullName}`, 'success');
             } else {
-                outputDiv.innerHTML = `<p style="color: var(--danger-color);"><i class="fas fa-times-circle"></i> Identita nebyla nalezena.</p>`;
-                showNotification('Identita nenalezena.', 'danger');
+                outputDiv.innerHTML = `<p style="color: var(--danger-color);"><i class="fas fa-times-circle"></i> Osoba nebyla nalezena.</p>`;
+                showNotification('Osoba nenalezena.', 'danger');
             }
         }
 
-        // --- HISTORIE A SPRÁVA (Požadavek 1 a 6) ---
+        // --- HISTORIE A SPRÁVA ---
 
         function loadHistory() {
             const history = localStorage.getItem(HISTORY_KEY);
             return history ? JSON.parse(history) : [];
         }
 
-        function saveToHistory(identity) {
+        function saveToHistory(person) {
             const history = loadHistory();
-            history.push(identity);
+            history.push(person);
             localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
             
-            // Při uložení aktualizujeme pouze počítadlo, ne celou historii
             document.getElementById('total-generated').textContent = history.length;
         }
 
-        function removeIdentityFromOutput(id) {
-            // Požadavek 1: Smazání z aktuálních výsledků, ale zůstává v historii (což zajišťuje saveToHistory)
+        function removePersonFromOutput(id) {
+            // Smazání z aktuálních výsledků
             const card = document.querySelector(`.identity-card[data-id="${id}"]`);
             if (card) {
                 card.remove();
-                showNotification('Identita smazána z výsledků (uložena v Historii).', 'warning');
+                renumberOutputCards(document.getElementById('output')); // Přečísluje zbylé karty
+                showNotification('Osoba smazána z výsledků (zůstává v Historii).', 'warning');
             }
         }
         
         function clearHistory() {
-             if (confirm("Opravdu chcete vymazat CELOU historii generovaných identit?")) {
+             if (confirm("Opravdu chcete vymazat CELOU historii generovaných osob?")) {
                 localStorage.removeItem(HISTORY_KEY);
                 renderHistory();
                 showNotification('Celá historie byla úspěšně vymazána.', 'danger');
@@ -638,8 +589,9 @@ ${identity.email}
                 return;
             }
             
-            // Zobrazení všech identit (Požadavek 6)
-            history.forEach((identity, index) => {
+            // Zobrazení všech osob (Požadavek 6 z minula)
+            // Historie je seřazena od nejstarší, zobrazujeme od nejnovější
+            [...history].reverse().forEach((person, index) => {
                 const item = document.createElement('div');
                 item.style.cssText = `
                     padding: 10px; margin-bottom: 8px; border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
@@ -647,36 +599,37 @@ ${identity.email}
                 `;
                 item.innerHTML = `
                     <div style="font-size: 1em;">
-                        <strong>#${index + 1}:</strong> ${identity.fullName} 
-                        <span style="color: var(--text-color-dark); margin-left: 10px;">(${identity.phoneNumber})</span>
+                        <strong>#${history.length - index}:</strong> ${person.fullName} 
+                        <span style="color: var(--text-color-dark); margin-left: 10px;">(${person.phoneNumber})</span>
                     </div>
                     <button style="width: auto; padding: 5px 10px; font-size: 0.8em; margin: 0;" 
                             class="btn-secondary" 
-                            onclick="viewProfile('${identity.id}')">
+                            onclick="viewProfile('${person.id}')">
                         <i class="fas fa-eye"></i> Profil
                     </button>
                 `;
-                historyList.prepend(item); // Nejnovější nahoře
+                historyList.appendChild(item); // Nejnovější nahoře
             });
         }
         
         function viewProfile(id) {
             const history = loadHistory();
-            const identity = history.find(i => i.id == id);
+            const person = history.find(i => i.id == id);
             
-            if (identity) {
+            if (person) {
                 // Přepne do sekce Nástroje a zobrazí profil
                 updateNavigation('tools'); 
-                document.getElementById('search-input').value = identity.fullName;
-                document.getElementById('search-output').innerHTML = formatProfile(identity);
+                document.getElementById('search-input').value = person.fullName;
+                document.getElementById('search-output').innerHTML = formatProfile(person);
+                showNotification('Profil osoby zobrazen v sekci Hledání.', 'success');
             } else {
                 showNotification('Profil nebyl nalezen v historii.', 'danger');
             }
         }
 
-        // --- KOPÍROVÁNÍ (Požadavek 4) ---
+        // --- KOPÍROVÁNÍ ---
 
-        function copyIdentity(id) {
+        function copyPerson(id) {
             const card = document.querySelector(`.identity-card[data-id="${id}"]`);
             if (!card) return;
             
@@ -690,7 +643,7 @@ ${identity.email}
                     setTimeout(() => {
                         buttonElement.innerHTML = originalText;
                     }, 2000);
-                    showNotification('Identita zkopírována.', 'success');
+                    showNotification('Osoba zkopírována.', 'success');
                 })
                 .catch(err => {
                     showNotification('Kopírování se nezdařilo.', 'danger');
@@ -698,15 +651,17 @@ ${identity.email}
         }
         
         function bulkCopyAllVisible() {
-            const cards = document.querySelectorAll('#output .identity-line');
+            const cards = document.querySelectorAll('#output .identity-card');
             if (cards.length === 0) {
-                showNotification("Nejsou zde žádné identity ke zkopírování.", 'danger');
+                showNotification("Nejsou zde žádné osoby ke zkopírování.", 'danger');
                 return;
             }
             
             let allText = '';
             cards.forEach((card, index) => {
-                allText += '---[ Identita #'+(index+1)+' ]---\n' + card.textContent.trim();
+                const number = card.querySelector('.identity-number').textContent;
+                const text = card.querySelector('.identity-line').textContent.trim();
+                allText += `---[ Osoba ${number} ]---\n${text}`;
                 if (index < cards.length - 1) {
                     allText += '\n\n';
                 }
@@ -714,7 +669,7 @@ ${identity.email}
             
             navigator.clipboard.writeText(allText)
                 .then(() => {
-                    showNotification(`Hromadně zkopírováno ${cards.length} identit!`, 'success');
+                    showNotification(`Hromadně zkopírováno ${cards.length} osob!`, 'success');
                 })
                 .catch(err => {
                     showNotification('Hromadné kopírování se nezdařilo.', 'danger');
@@ -726,7 +681,6 @@ ${identity.email}
         function updateNavigation(targetPage = null) {
             let currentPage = targetPage;
             if (!currentPage) {
-                // Získej stránku z hashe URL
                 const hash = window.location.hash.substring(1); 
                 currentPage = hash || 'generator';
             }
@@ -748,25 +702,23 @@ ${identity.email}
                  document.querySelector(`.nav-button[data-page="generator"]`).classList.add('active');
             }
             
-            // Pro sekci historie znovu načte data
             if (currentPage === 'history') {
                 renderHistory();
             }
             
-            // Aktualizace URL hashe
             if (window.location.hash.substring(1) !== currentPage) {
                  window.history.pushState(null, null, '#' + currentPage);
             }
         }
         
-        // Inicializace aplikace
         document.addEventListener('DOMContentLoaded', () => {
-            // Nastaví úvodní zobrazení a zajistí aktualizaci při změně hashe
             updateNavigation();
             window.addEventListener('hashchange', () => updateNavigation());
             
-            // Při startu načte počet pro statistiky
             document.getElementById('total-generated').textContent = loadHistory().length;
+            
+            // Při startu přečísluje, pokud v outputu něco zbylo
+            renumberOutputCards(document.getElementById('output'));
         });
 
     </script>
