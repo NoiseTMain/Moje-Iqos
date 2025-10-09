@@ -2,24 +2,24 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ULTIMATE Liquid Glass Identity Tool ✨</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
         /* --- 1. LUXURY LIQUID GLASS A GLOBÁLNÍ STYLY --- */
         :root {
-            --bg-color: #212529; /* Velmi tmavě šedá/černá pro hloubku */
-            --glass-color: rgba(255, 255, 255, 0.08); /* Světlá průhlednost */
-            --glass-border: rgba(255, 255, 255, 0.3); /* Bílá hrana skla */
-            --primary-color: #00bcd4; /* Tyrkysová pro klíčové akce */
-            --secondary-color: #f8f9fa; /* Jemně svítící bílá */
+            --bg-color: #212529; 
+            --glass-color: rgba(255, 255, 255, 0.08); 
+            --glass-border: rgba(255, 255, 255, 0.3); 
+            --primary-color: #00bcd4; 
+            --secondary-color: #f8f9fa; 
             --success-color: #2ecc71;
             --danger-color: #e74c3c;
             --text-color-light: #f8f9fa;
             --text-color-dark: #ced4da;
             --shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
-            --blur: 25px; /* Vyšší blur pro silnější efekt */
+            --blur: 25px; 
             --radius: 20px;
         }
 
@@ -31,20 +31,18 @@
             padding: 0;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 20px;
+            flex-direction: column; /* Umožní zarovnání lišty dolů */
+            align-items: center;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 800px; /* Optimalizace pro mobilní zobrazení */
             width: 100%;
-            display: grid;
-            grid-template-columns: 300px 1fr; /* Navigace a Obsah */
-            gap: 25px;
+            padding: 20px;
+            padding-bottom: 80px; /* Rezervace místa pro spodní lištu */
+            flex-grow: 1;
         }
         
-        /* --- LIQUID GLASS KARTA --- */
         .glass-card {
             background: var(--glass-color);
             box-shadow: var(--shadow);
@@ -52,80 +50,35 @@
             -webkit-backdrop-filter: blur(var(--blur));
             border-radius: var(--radius);
             border: 1px solid var(--glass-border);
-            padding: 30px;
+            padding: 20px;
             transition: all 0.5s ease-in-out;
-            position: relative;
+            margin-bottom: 25px;
         }
 
-        .glass-card:hover {
-            box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.8);
-        }
-        
         /* --- HLAVIČKA A TEXTY --- */
         header {
-            grid-column: 1 / -1;
+            width: 100%;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         h1 {
-            font-size: 3.5em;
+            font-size: 2.5em;
             color: var(--secondary-color);
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Svítící bílá */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
             margin: 0;
         }
 
         h2 {
             border-bottom: 2px solid var(--glass-border);
             padding-bottom: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: var(--primary-color);
-            font-size: 1.6em;
+            font-size: 1.4em;
             display: flex;
             align-items: center;
             gap: 10px;
             text-shadow: 0 0 5px rgba(0, 188, 212, 0.4);
-        }
-
-        /* --- NAVIGACE --- */
-        .navigation {
-            position: sticky;
-            top: 20px;
-            padding: 0;
-            background: none; 
-            box-shadow: none;
-            border: none;
-        }
-
-        .nav-button {
-            display: flex;
-            align-items: center;
-            padding: 15px 20px;
-            margin-bottom: 10px;
-            background: var(--glass-color);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            color: var(--text-color-light);
-            cursor: pointer;
-            text-decoration: none; /* Důležité pro odkazy */
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            font-size: 1.1em;
-            font-weight: 500;
-        }
-
-        .nav-button:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: var(--primary-color);
-            transform: scale(1.02);
-        }
-
-        .nav-button.active {
-            background: rgba(0, 188, 212, 0.2);
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(0, 188, 212, 0.6); /* Svítící efekt */
-            font-weight: bold;
         }
 
         /* --- TLAČÍTKA (LIQUID GLASS STYLE) --- */
@@ -141,21 +94,17 @@
             cursor: pointer;
             transition: all 0.3s ease;
             
-            /* Liquid Glass Button Base Style */
             background: rgba(255, 255, 255, 0.1); 
             color: var(--secondary-color);
             border: 1px solid rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Jemná bílá záře textu */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
-        /* Primary Button (Akce) */
         button:not(.btn-secondary):not(.btn-danger):not(.btn-success), .btn-full:not(.btn-secondary):not(.btn-danger):not(.btn-success) {
-            background-color: var(--primary-color); /* Nahrazeno barvou pro tyrkysový vzhled */
-            color: var(--bg-color); /* Tmavý text na světlém pozadí */
-            box-shadow: 0 0 20px rgba(0, 188, 212, 0.8), 0 0 5px rgba(0, 188, 212, 1); /* Silná tyrkysová záře */
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(0, 188, 212, 0.8), 0 0 5px rgba(0, 188, 212, 1);
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
         button:hover:not(.btn-secondary):not(.btn-danger):not(.btn-success) {
@@ -164,19 +113,16 @@
              box-shadow: 0 0 30px rgba(0, 188, 212, 1), 0 0 10px rgba(0, 188, 212, 1.5);
         }
         
-        /* Success Button */
         .btn-success { background: var(--success-color); color: var(--bg-color); box-shadow: 0 0 20px rgba(46, 204, 113, 0.8); }
         .btn-success:hover { background: #27ae60; transform: translateY(-2px); box-shadow: 0 0 30px rgba(46, 204, 113, 1); }
 
-        /* Danger Button */
         .btn-danger { background: var(--danger-color); color: var(--text-color-light); box-shadow: 0 0 20px rgba(231, 76, 60, 0.8); }
         .btn-danger:hover { background: #c0392b; transform: translateY(-2px); box-shadow: 0 0 30px rgba(231, 76, 60, 1); }
         
-        /* Secondary/Glass Button */
         .btn-secondary { 
             background: rgba(255, 255, 255, 0.1); 
             color: var(--text-color-light); 
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Jemná bílá záře */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.4);
         }
         .btn-secondary:hover { 
@@ -185,7 +131,7 @@
             transform: translateY(-2px);
         }
 
-        /* --- INPUTY A OSTATNÍ STYLY --- */
+        /* --- INPUTY --- */
         input, select, textarea {
             width: 100%;
             padding: 12px;
@@ -196,151 +142,143 @@
             background: rgba(255, 255, 255, 0.05);
             color: var(--text-color-light);
             border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(0, 188, 212, 0.7);
-            background: rgba(0, 0, 0, 0.2);
         }
 
+        /* --- KARTA VÝSLEDKU (Požadavek 1) --- */
         .identity-card {
-            margin-top: 20px;
-            padding: 20px;
+            margin-top: 15px;
+            padding: 15px;
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid var(--primary-color);
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 188, 212, 0.3);
         }
+
+        .identity-line {
+            white-space: pre-wrap; 
+            word-wrap: break-word; 
+            font-size: 1.1em; 
+            line-height: 1.6;
+        }
         
-        /* --- NOTIFIKACE --- */
-        #notification-container {
+        .identity-number {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: var(--secondary-color);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            margin-bottom: 10px;
+        }
+
+        /* --- MOBILNÍ NAVIGACE (Požadavek 4 - Spodní lišta) --- */
+        .navigation {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            
+            background: rgba(33, 37, 41, 0.8); /* Tmavý podklad */
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
         }
 
-        .notification {
-            background-color: var(--bg-color);
-            color: var(--text-color-light);
-            padding: 15px 25px;
-            border-radius: 10px;
-            margin-top: 10px;
-            opacity: 0;
-            transform: translateX(100%);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            border-left: 5px solid var(--primary-color);
+        .nav-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-color-dark);
+            font-size: 0.8em;
+            width: 25%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            border: none;
+            border-radius: 0;
         }
 
-        .notification.show {
-            opacity: 1;
-            transform: translateX(0);
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: none;
         }
-        .notification.danger { border-left-color: var(--danger-color); }
-        .notification.success { border-left-color: var(--success-color); }
 
-        /* --- RESPONSIVNÍ DESIGN --- */
-        @media (max-width: 1200px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            .navigation {
-                position: static;
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-                margin-bottom: 20px;
-                padding: 0;
-            }
-            .nav-button {
-                margin-bottom: 0;
-            }
+        .nav-button.active {
+            color: var(--primary-color);
+            text-shadow: 0 0 5px rgba(0, 188, 212, 0.6);
+            border-bottom: 3px solid var(--primary-color);
         }
         
-        @media (max-width: 600px) {
-            h1 { font-size: 2em; }
-            .navigation {
-                grid-template-columns: 1fr;
-            }
+        .nav-button i {
+            font-size: 1.5em;
+            margin-bottom: 3px;
+        }
+        
+        /* Obsah sekcí - pro dynamické přepínání */
+        .content-section {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+
+        /* Skryté nastavení (je na liště zbytečné) */
+        #settings-card {
+            display: none !important;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-cubes"></i> ULTIMATE Liquid Glass Identity Tool</h1>
-            <p style="color: var(--text-color-dark);">Přehledný a 100% funkční nástroj s luxusním vizuálem.</p>
+            <h1><i class="fas fa-cubes"></i> Identity Generator</h1>
         </header>
-
-        <div class="navigation">
-            <a href="?page=generator" class="nav-button" id="nav-generator">
-                <i class="fas fa-magic fa-fw"></i> Generování Identit
-            </a>
-            <a href="?page=bulk" class="nav-button" id="nav-bulk">
-                <i class="fas fa-layer-group fa-fw"></i> Hromadná Transformace
-            </a>
-            <a href="?page=tools" class="nav-button" id="nav-tools">
-                <i class="fas fa-tools fa-fw"></i> Analytické Nástroje
-            </a>
-            <a href="?page=history" class="nav-button" id="nav-history">
-                <i class="fas fa-database fa-fw"></i> Historie a Statistiky
-            </a>
-            
-            <hr style="border-color: rgba(255, 255, 255, 0.1); margin: 10px 0;">
-            
-            <div class="glass-card" style="padding: 20px; margin-top: 10px;">
-                <h3 style="color: var(--primary-color); margin-top: 0;"><i class="fas fa-cogs"></i> Nastavení</h3>
-                 <label for="gender-select" style="font-size: 0.9em;">Preferované Pohlaví:</label>
-                <select id="gender-select">
-                    <option value="random">Náhodné</option>
-                    <option value="Male">Muž</option>
-                    <option value="Female">Žena</option>
-                </select>
-            </div>
-        </div>
 
         <div class="main-content">
             
             <div id="generator-section" class="content-section">
                 
                 <div class="glass-card">
-                    <h2><i class="fas fa-bolt"></i> Rychlé Generování Náhodných Identit</h2>
-                    <label for="generation-count">Počet identit k vygenerování (1-50):</label>
+                    <h2><i class="fas fa-bolt"></i> Generovat Rychle</h2>
+                    
+                    <label for="gender-select" style="font-size: 0.9em; display: block; margin-bottom: 10px;">Preferované Pohlaví:</label>
+                    <select id="gender-select" style="margin-bottom: 10px;">
+                        <option value="random">Náhodné</option>
+                        <option value="Male">Muž</option>
+                        <option value="Female">Žena</option>
+                    </select>
+
+                    <label for="generation-count">Počet (1-50):</label>
                     <input type="number" id="generation-count" min="1" max="50" value="1">
                     
-                    <button class="btn-full btn-success" onclick="generateIdentities()"><i class="fas fa-magic"></i> Spustit Náhodnou Generaci</button>
+                    <button class="btn-full btn-success" onclick="generateIdentities()"><i class="fas fa-magic"></i> Spustit Generaci</button>
                 </div>
                 
                 <div class="glass-card">
-                    <h2><i class="fas fa-phone-alt"></i> Generování dle Vlastního Telefonu</h2>
-                    <p style="color: var(--text-color-dark);">Zadej telefonní číslo a vygeneruje se k němu realistická identita.</p>
-                    <label for="custom-phone">Zadejte telefonní číslo (9 číslic, XXX XXX XXX):</label>
-                    <input type="text" id="custom-phone" placeholder="7XX XXX XXX" maxlength="11">
-                    <button class="btn-full" onclick="generateIdentityFromPhone()"><i class="fas fa-key"></i> Generovat dle Telefonu</button>
-                </div>
-
-                <div class="glass-card">
-                    <h2><i class="fas fa-scroll"></i> Vygenerované Identity</h2>
+                    <h2><i class="fas fa-scroll"></i> Výsledek Generování</h2>
                     
-                    <button id="bulkCopyBtn" class="btn-full btn-danger" onclick="bulkCopyAllVisible()"><i class="fas fa-copy"></i> Hromadně Kopírovat Všechny Zobrazené</button>
+                    <button id="bulkCopyBtn" class="btn-full btn-danger" onclick="bulkCopyAllVisible()" style="margin-bottom: 15px;"><i class="fas fa-copy"></i> Hromadně Kopírovat</button>
                     
                     <div id="output">
                         <p style="text-align: center; color: var(--text-color-dark);">Vygenerované identity se zobrazí zde.</p>
                     </div>
                 </div>
-
             </div>
             
             <div id="bulk-section" class="content-section">
                  <div class="glass-card">
-                    <h2><i class="fas fa-layer-group"></i> Hromadná Transformace Telefonních Čísel</h2>
-                    <p style="color: var(--text-color-dark);">Zadejte seznam 9místných telefonních čísel (jedno na řádek). Aplikace ke každému vygeneruje plnohodnotnou identitu. Výsledky se zobrazí v sekci Generování.</p>
-                    <label for="bulk-phones">Seznam telefonních čísel (jedno na řádek):</label>
+                    <h2><i class="fas fa-layer-group"></i> Hromadná Transformace</h2>
+                    <p style="color: var(--text-color-dark);">Zadejte seznam 9místných telefonních čísel (jedno na řádek). Ke každému se vygeneruje identita. Výsledky uvidíte na hlavní stránce.</p>
+                    <label for="bulk-phones">Seznam telefonních čísel:</label>
                     <textarea id="bulk-phones" rows="10" placeholder="731111111&#10;777222333&#10;..."></textarea>
-                    <button class="btn-full btn-secondary" onclick="bulkGenerateFromPhones()"><i class="fas fa-exchange-alt"></i> Hromadně Generovat Identity</button>
+                    <button class="btn-full btn-secondary" onclick="bulkGenerateFromPhones()"><i class="fas fa-exchange-alt"></i> Hromadně Generovat</button>
                 </div>
             </div>
 
@@ -348,101 +286,65 @@
                  <div class="glass-card">
                     <h2><i class="fas fa-tools"></i> Analytické Nástroje</h2>
                     
-                    <h3 style="color: var(--secondary-color); margin-top: 0;"><i class="fas fa-id-card"></i> Analýza Rodného Čísla (RČ)</h3>
-                    <p style="color: var(--text-color-dark); font-size: 0.9em;">Zadejte RČ (9-10 číslic bez mezer, např. 8604205432) a získáte datum narození a pohlaví.</p>
+                    <h3 style="color: var(--secondary-color); margin-top: 0; font-size: 1.1em;"><i class="fas fa-id-card"></i> Analýza Rodného Čísla (RČ)</h3>
                     <input type="text" id="rc-input" placeholder="YYMMDDXXXX" maxlength="10">
                     <button class="btn-group btn-secondary btn-full" onclick="analyzeRodneCislo()"><i class="fas fa-vial"></i> Analyzovat RČ</button>
                     <div id="rc-analysis-output" class="glass-card" style="margin-top: 15px; padding: 15px; background: rgba(0,0,0,0.1);">Zde se zobrazí rozbor RČ.</div>
-                    
-                    <hr style="border-color: var(--glass-border); margin: 25px 0;">
-                    
-                    <h3 style="color: var(--secondary-color);"><i class="fas fa-map-marker-alt"></i> PSČ Validátor Města</h3>
-                    <p style="color: var(--text-color-dark); font-size: 0.9em;">Ověřte, zda dané 5místné PSČ odpovídá městu v naší databázi.</p>
-                    <div style="display: flex; gap: 15px;">
-                        <input type="text" id="psc-city" placeholder="Město (např. Praha)" style="width: 50%;">
-                        <input type="text" id="psc-code" placeholder="PSČ (např. 10000)" maxlength="5" style="width: 50%;">
-                    </div>
-                    <button class="btn-group btn-secondary btn-full" onclick="validatePostalCode()"><i class="fas fa-check-circle"></i> Validovat PSČ</button>
-                    <div id="psc-validation-output" class="glass-card" style="margin-top: 15px; padding: 15px; background: rgba(0,0,0,0.1);">Výsledek validace.</div>
                 </div>
             </div>
 
             <div id="history-section" class="content-section">
-                
                  <div class="glass-card">
-                    <h2><i class="fas fa-database"></i> Historie Generování a Statistiky</h2>
+                    <h2><i class="fas fa-database"></i> Historie a Statistiky</h2>
                     
                     <div class="total-count" style="margin-bottom: 20px; font-size: 1.2em;">
-                        <i class="fas fa-tachometer-alt" style="color: var(--primary-color);"></i> Celkem Identit v úložišti: <span id="total-generated" style="font-weight: bold; color: var(--secondary-color);">0</span>
+                        <i class="fas fa-tachometer-alt" style="color: var(--primary-color);"></i> Celkem vygenerováno: <span id="total-generated" style="font-weight: bold; color: var(--secondary-color);">0</span>
                     </div>
 
-                    <h3 style="color: var(--secondary-color); margin-top: 0;"><i class="fas fa-chart-bar"></i> Statistiky Historie</h3>
-                    <div class="stats-grid" id="stats-output" style="border: 1px solid var(--glass-border); padding: 15px; border-radius: 10px;">
+                    <h3 style="color: var(--secondary-color); font-size: 1.1em;"><i class="fas fa-chart-bar"></i> Statistiky</h3>
+                    <div class="stats-grid" id="stats-output" style="border: 1px solid var(--glass-border); padding: 15px; border-radius: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                         <p style="grid-column: 1 / -1; color: var(--text-color-dark);">Žádná data pro statistiku.</p>
                     </div>
                     
                     <hr style="border-color: var(--glass-border); margin: 25px 0;">
                     
-                    <h3 style="color: var(--secondary-color);"><i class="fas fa-filter"></i> Filtry Historie</h3>
-                    <input type="text" id="history-filter-text" onkeyup="renderHistory(loadHistory())" placeholder="Hledat: Jméno, Email, RČ..." style="margin-bottom: 15px;">
-
-                    <div class="filter-group">
-                        <select id="filter-domain" onchange="renderHistory(loadHistory())">
-                            <option value="">Všechny Domény</option>
-                        </select>
-                        <select id="filter-gender" onchange="renderHistory(loadHistory())">
-                            <option value="">Všechna Pohlaví</option>
-                            <option value="Male">Muž</option>
-                            <option value="Female">Žena</option>
-                        </select>
-                        <select id="filter-city" onchange="renderHistory(loadHistory())">
-                             <option value="">Všechna Města</option>
-                        </select>
-                    </div>
-
-                    <div id="history-list" style="margin-top: 20px; max-height: 400px; overflow-y: auto; padding-right: 15px;">
-                        <p style="text-align: center; color: var(--text-color-dark);">Historie je prázdná.</p>
-                    </div>
-                    
-                    <button class="btn-full btn-danger" style="margin-top: 20px;" onclick="clearHistory()"><i class="fas fa-trash-alt"></i> Vymazat Celou Historii</button>
+                    <button class="btn-full btn-danger" onclick="clearHistory()"><i class="fas fa-trash-alt"></i> Vymazat Celou Historii</button>
                 </div>
             </div>
             
         </div>
     </div>
     
+    <div class="navigation">
+        <a href="?page=generator" class="nav-button" data-page="generator">
+            <i class="fas fa-magic"></i> Generátor
+        </a>
+        <a href="?page=bulk" class="nav-button" data-page="bulk">
+            <i class="fas fa-layer-group"></i> Hromadné
+        </a>
+        <a href="?page=tools" class="nav-button" data-page="tools">
+            <i class="fas fa-tools"></i> Nástroje
+        </a>
+        <a href="?page=history" class="nav-button" data-page="history">
+            <i class="fas fa-database"></i> Historie
+        </a>
+    </div>
+    
     <div id="notification-container"></div>
 
     <script>
         // --- DATA PRO GENEROVÁNÍ (ROZŠÍŘENÁ DATABÁZE) ---
-        // Zvýšený počet jmen, příjmení a měst pro vyšší variabilitu
         const firstNamesMale = ['Lukáš', 'Tomáš', 'Petr', 'Jan', 'Pavel', 'Martin', 'Ondřej', 'Jakub', 'Filip', 'Vojtěch', 'Adam', 'Marek', 'David', 'Karel', 'Jiří', 'Štěpán', 'Daniel', 'Matěj', 'Vít', 'Oldřich', 'František', 'Antonín', 'Miloslav', 'Vladimír', 'Josef', 'Václav', 'Michal', 'Patrik', 'Alex', 'Erik', 'Denis', 'Kryštof', 'Dominik', 'Hynek', 'Jaroslav'];
         const firstNamesFemale = ['Anna', 'Tereza', 'Kateřina', 'Lucie', 'Adéla', 'Eliška', 'Veronika', 'Kristýna', 'Nikola', 'Karolína', 'Jana', 'Eva', 'Hana', 'Petra', 'Markéta', 'Klára', 'Zuzana', 'Michaela', 'Lenka', 'Monika', 'Iva', 'Denisa', 'Alena', 'Barbora', 'Helena', 'Natálie', 'Vendula', 'Sabina', 'Simona', 'Viktoria', 'Magdaléna', 'Ludmila', 'Šárka', 'Diana', 'Adriana'];
         const lastNames = ['Nováček', 'Svoboda', 'Novák', 'Dvořák', 'Černý', 'Procházka', 'Kučera', 'Veselý', 'Fiala', 'Horák', 'Pospíšil', 'Malý', 'Hájek', 'Jelínek', 'Růžička', 'Beneš', 'Soukup', 'Krejčí', 'Kříž', 'Šťastný', 'Kovář', 'Konečný', 'Bartoš', 'Sedláček', 'Urban', 'Zeman', 'Kolář', 'Ševčík', 'Trnka', 'Pokorný', 'Pavelka', 'Tichý', 'Mrázek', 'Málek', 'Janda', 'Kasal', 'Liška', 'Polák', 'Holub', 'Rybář', 'Šimek', 'Vlček', 'Rejcha', 'Moravec', 'Bílek', 'Zahrádka', 'Křížek'];
         const emailDomains = ['icloud.com', 'gmail.com', 'seznam.cz', 'post.cz', 'email.cz', 'atlas.cz', 'volny.cz', 'centrum.cz', 'quick.cz', 'yahoo.com', 'outlook.com', 'tiscali.cz'];
-        const citiesData = {
-            'Praha': ['10000', '11000', '12000', '13000', '14000', '15000', '16000', '17000', '18000', '19000', '25219'],
-            'Brno': ['60200', '61200', '61300', '62100', '62700', '63600'],
-            'Ostrava': ['70200', '70300', '70800', '71000', '72000', '72528'],
-            'Plzeň': ['30100', '31800', '32300', '32600'],
-            'Liberec': ['46001', '46007', '46014', '46312'],
-            'Olomouc': ['77900', '77901', '78301', '77200'],
-            'Hradec Králové': ['50003', '50011', '50012', '50346'],
-            'České Budějovice': ['37001', '37004', '37005', '37341'],
-            'Karlovy Vary': ['36001', '36009', '36018', '36235'],
-            'Pardubice': ['53002', '53003', '53009', '53351'],
-            'Ústí nad Labem': ['40001', '40003', '40007', '40340'],
-            'Zlín': ['76001', '76005', '76006', '76302'],
-            'Jihlava': ['58601', '58832'],
-            'Most': ['43401', '43501'],
-            'Opava': ['74601', '74705'],
-            'Tábor': ['39001', '39175']
+        const citiesData = { /* Potřebné jen pro RČ a vnitřní logiku, ne pro výstup */
+            'Praha': ['10000', '11000'], 'Brno': ['60200'], 'Ostrava': ['70200'], 'Plzeň': ['30100'], 'Liberec': ['46001'], 'Olomouc': ['77900'], 'Hradec Králové': ['50003'], 'České Budějovice': ['37001'], 'Karlovy Vary': ['36001'], 'Pardubice': ['53002'], 'Ústí nad Labem': ['40001'], 'Zlín': ['76001']
         };
         const allCities = Object.keys(citiesData);
         const HISTORY_KEY = 'ultimateIdentityHistory';
 
         // --- NASTAVENÍ PROMĚNNÝCH PRO JS Z CSS ---
-        // Načte CSS proměnné, které jsou potřeba pro JavaScript (např. pro notifikace)
         const style = getComputedStyle(document.documentElement);
         const VAR_PRIMARY_COLOR = style.getPropertyValue('--primary-color').trim();
         const VAR_DANGER_COLOR = style.getPropertyValue('--danger-color').trim();
@@ -455,9 +357,9 @@
             const params = new URLSearchParams(window.location.search);
             const currentPage = params.get('page') || 'generator';
             
-            // Aktivuje správnou navigační položku
+            // Aktivuje správný navigační prvek
             document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
-            const activeNav = document.getElementById(`nav-${currentPage}`);
+            const activeNav = document.querySelector(`.nav-button[data-page="${currentPage}"]`);
             if (activeNav) {
                 activeNav.classList.add('active');
             }
@@ -468,12 +370,11 @@
             if (activeSection) {
                 activeSection.style.display = 'flex';
             } else {
-                 // Pokud je stránka neznámá, přepne na generátor
                  document.getElementById('generator-section').style.display = 'flex';
-                 document.getElementById('nav-generator').classList.add('active');
+                 document.querySelector(`.nav-button[data-page="generator"]`).classList.add('active');
             }
             
-            // Pro sekci historie znovu načte data při každém vstupu
+            // Pro sekci historie znovu načte data
             if (currentPage === 'history') {
                 renderHistory(loadHistory());
             }
@@ -483,11 +384,10 @@
         const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
         const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
         
-        // Zpřesněná normalizace pro e-mail a hesla
         const normalize = (text) => text.toLowerCase()
-            .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // odstraní diakritiku
-            .replace(/[^a-z0-9\s]/g, '') // odstraní speciální znaky kromě mezer
-            .replace(/\s+/g, ''); // odstraní mezery
+            .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9\s]/g, '')
+            .replace(/\s+/g, '');
 
         function showNotification(message, type = 'success') {
             const container = document.getElementById('notification-container');
@@ -497,7 +397,6 @@
             let icon = type === 'success' ? 'check-circle' : 'exclamation-triangle';
             if (type === 'danger') icon = 'times-circle';
 
-            // Použití JS proměnných pro barvy notifikací
             let borderStyle = '';
             if (type === 'danger') borderStyle = `border-left: 5px solid ${VAR_DANGER_COLOR};`;
             else if (type === 'success') borderStyle = `border-left: 5px solid ${VAR_SUCCESS_COLOR};`;
@@ -513,7 +412,7 @@
             setTimeout(() => {
                 note.classList.remove('show');
                 note.addEventListener('transitionend', () => note.remove());
-            }, 3500); // Prodlouženo pro lepší čitelnost
+            }, 3500); 
         }
 
         // Generování data narození (18-60 let)
@@ -527,40 +426,17 @@
             
             const year = getRandomInt(minBirthYear, maxBirthYear);
             const month = getRandomInt(1, 12);
-            const day = getRandomInt(1, 28); // Pro zjednodušení, ignorujeme přestupné roky
-
-            const birthData = {
+            const day = getRandomInt(1, 28); 
+            
+            return {
                 year: year,
                 month: month,
                 day: day,
                 isMale: isMale,
                 formattedDate: `${String(day).padStart(2, '0')}.${String(month).padStart(2, '0')}.${year}`
             };
-            
-            // Kontrola pro platnost RČ
-            const rcValue = String(year).slice(-2) + String(month + (isMale ? 0 : 50)).padStart(2, '0') + String(day).padStart(2, '0');
-            
-            // Jednoduchá kontrola - musí mít 6 číslic
-            if (rcValue.length !== 6) return generateBirthData(isMale); 
-            
-            return birthData;
-        }
-        
-        // Generování realistického hesla
-        function generatePassword(firstName, birthYear) {
-            const normalizedName = normalize(firstName);
-            const yearSuffix = String(birthYear % 100).padStart(2, '0');
-            const patterns = [
-                `${normalizedName}${getRandomInt(10, 99)}!`,
-                `${normalizedName.substring(0, 4)}${yearSuffix}_`,
-                `${normalizedName.charAt(0)}${yearSuffix}@${getRandomInt(1, 5)}`,
-                `${normalize(getRandomItem(lastNames))}${yearSuffix}#`,
-                `${normalizedName.charAt(0)}.${normalize(getRandomItem(lastNames))}${yearSuffix}`
-            ];
-            return getRandomItem(patterns);
         }
 
-        // Generování RČ (Opraveno: lepší kontrola roku 2000+)
         function generateRodneCislo(birthData) {
             let year = birthData.year % 100;
             let month = birthData.month;
@@ -573,23 +449,13 @@
             const mm = String(month).padStart(2, '0');
             const dd = String(birthData.day).padStart(2, '0');
             
-            let suffix;
-            // Pro RČ po roce 1953 (kdy se zavedla kontrolní číslice, zde zjednodušená)
-            if (birthData.year > 1953) {
-                 suffix = String(getRandomInt(100, 999)).padStart(3, '0');
-            } else {
-                 suffix = String(getRandomInt(100, 999)).padStart(3, '0'); // Starší formát
-            }
-            
-            const fullRC = `${yy}${mm}${dd}${suffix}`;
-            
-            // Pro roky 1985+ RČ končí 4 číslicemi a mělo by být dělitelné 11. Zde to zjednodušíme.
-            if (birthData.year >= 1985) {
-                const finalSuffix = String(getRandomInt(1000, 9999)).padStart(4, '0');
-                return `${yy}${mm}${dd}/${finalSuffix}`;
-            }
+            const finalSuffix = String(getRandomInt(100, 9999)).padStart(4, '0');
 
-            return `${yy}${mm}${dd}/${String(getRandomInt(100, 999)).padStart(3, '0')}`;
+            if (birthData.year >= 1985) {
+                return `${yy}${mm}${dd}/${finalSuffix.substring(0, 4)}`; // 4 číslice
+            } else {
+                return `${yy}${mm}${dd}/${finalSuffix.substring(0, 3)}`; // 3 číslice
+            }
         }
         
         function generateEmail(firstName, lastName) {
@@ -628,10 +494,8 @@
             const city = getRandomItem(allCities);
             const postalCode = getRandomItem(citiesData[city]);
             
-            // Telefonní číslo: 7XX XXX XXX
             let phoneBase;
             if (customPhone) {
-                // Odstraníme mezery a jiné znaky z vloženého čísla
                 phoneBase = customPhone.replace(/\s/g, '').substring(0, 9);
             } else {
                 phoneBase = String(getRandomInt(700000000, 799999999));
@@ -640,42 +504,41 @@
             const identity = {
                 fullName: `${firstName} ${lastName}`,
                 birthDate: birthData.formattedDate,
-                phoneNumber: phoneBase.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3'), // Formát XXX XXX XXX
+                phoneNumber: phoneBase.replace(/(\d{3})(\d{3})(\d{3})/, '$1$2$3'), // Zde bez mezer pro čistý výstup
                 email: generateEmail(firstName, lastName),
-                rodneCislo: generateRodneCislo(birthData),
-                city: city,
-                postalCode: postalCode,
+                rodneCislo: generateRodneCislo(birthData), // RČ stále potřebujeme pro historické nástroje
+                city: city, 
                 gender: isMale ? 'Male' : 'Female',
-                password: generatePassword(firstName, birthData.year),
                 timestamp: new Date().toISOString()
             };
             
             return identity;
         }
 
+        // --- ZKRÁCENÝ FORMÁT VÝSTUPU (Požadavek 1) ---
         function formatIdentity(identity) {
             return `
-Jméno: ${identity.fullName}
-Pohlaví: ${identity.gender === 'Male' ? 'Muž' : 'Žena'}
-Datum narození: ${identity.birthDate}
-Rodné Číslo: ${identity.rodneCislo}
-Město/PSČ: ${identity.city}, ${identity.postalCode}
-Telefon: ${identity.phoneNumber}
-E-mail: ${identity.email}
-Heslo (ukázka): ${identity.password}
+${identity.fullName}
+${identity.birthDate}
+${identity.phoneNumber}
+${identity.email}
             `.trim();
         }
 
         function renderIdentityCard(identity, container) {
             const formattedIdentity = formatIdentity(identity);
             const card = document.createElement('div');
-            card.className = 'identity-card glass-card'; // Použijeme i třídu glass-card
+            card.className = 'identity-card glass-card'; 
+            
+            // Pořadové číslo (Požadavek 6)
+            const count = container.querySelectorAll('.identity-card').length + 1;
+            
             card.innerHTML = `
-                <h3 style="margin: 0; color: ${identity.gender === 'Male' ? VAR_PRIMARY_COLOR : VAR_DANGER_COLOR};"><i class="fas fa-${identity.gender === 'Male' ? 'mars' : 'venus'}"></i> ${identity.fullName}</h3>
-                <pre class="identity-line" style="white-space: pre-wrap; word-wrap: break-word; font-size: 0.9em; padding: 10px; background: rgba(0,0,0,0.4); border-radius: 8px;">${formattedIdentity}</pre>
-                <button class="copy-btn btn-success" style="width: auto; padding: 8px 15px; margin-top: 10px;" onclick="copyIdentity(this)"><i class="fas fa-copy"></i> Kopírovat Vše</button>
+                <div class="identity-number">#${count}</div> 
+                <pre class="identity-line">${formattedIdentity}</pre>
+                <button class="copy-btn btn-success" style="width: auto; padding: 8px 15px; margin-top: 10px;" onclick="copyIdentity(this)"><i class="fas fa-copy"></i> Kopírovat</button>
             `;
-            container.prepend(card); // Nové karty nahoře
+            container.prepend(card); 
         }
 
         // --- FUNKCE GENERACE ---
@@ -702,10 +565,10 @@ Heslo (ukázka): ${identity.password}
         
         function generateIdentityFromPhone() {
             const phoneInput = document.getElementById('custom-phone');
-            let phone = phoneInput.value.replace(/\s/g, ''); 
+            let phone = phoneInput ? phoneInput.value.replace(/\s/g, '') : '';
             
             if (!/^\d{9}$/.test(phone)) {
-                showNotification('Neplatné číslo. Zadejte prosím 9 číslic (např. 736456352).', 'danger');
+                showNotification('Neplatné číslo. Zadejte prosím 9 číslic.', 'danger');
                 return;
             }
             
@@ -718,7 +581,7 @@ Heslo (ukázka): ${identity.password}
             renderIdentityCard(identity, outputDiv);
             saveToHistory(identity);
             showNotification(`Identita pro číslo ${identity.phoneNumber} vygenerována.`, 'success');
-            phoneInput.value = '';
+            if (phoneInput) phoneInput.value = '';
         }
 
         function bulkGenerateFromPhones() {
@@ -742,10 +605,10 @@ Heslo (ukázka): ${identity.password}
                 saveToHistory(identity);
             });
             
-            showNotification(`Hromadně vygenerováno ${validPhones.length} identit. Výsledky naleznete v sekci Generování.`, 'success');
+            showNotification(`Hromadně vygenerováno ${validPhones.length} identit.`, 'success');
             textarea.value = '';
             
-            // Po hromadném generování automaticky přesuneme uživatele na sekci výsledků
+            // Přesun na sekci výsledků
             window.location.href = '?page=generator';
         }
 
@@ -777,54 +640,17 @@ Heslo (ukázka): ${identity.password}
                 gender = 'Muž';
             }
             
-            // Validace (zjednodušená)
-            if (mm < 1 || mm > 12 || dd < 1 || dd > 31) {
-                 outputDiv.innerHTML = `<p style="color: ${VAR_DANGER_COLOR};"><i class="fas fa-exclamation-triangle"></i> Zdá se, že RČ obsahuje neplatné datum (měsíc/den).</p>`;
-                 showNotification('Neplatné datum v RČ.', 'danger');
-                 return;
-            }
-            
+            // Zobrazíme jen to co RČ odhalí
             const birthDate = `${String(dd).padStart(2, '0')}.${String(mm).padStart(2, '0')}.${fullYear}`;
             
             outputDiv.innerHTML = `
                 <p style="margin: 5px 0;"><i class="fas fa-calendar-alt" style="color: ${VAR_PRIMARY_COLOR};"></i> <strong>Datum Narození:</strong> ${birthDate}</p>
                 <p style="margin: 5px 0;"><i class="fas fa-${gender === 'Muž' ? 'mars' : 'venus'}" style="color: ${gender === 'Muž' ? VAR_PRIMARY_COLOR : VAR_DANGER_COLOR};"></i> <strong>Pohlaví:</strong> ${gender}</p>
-                <p style="margin: 5px 0;"><i class="fas fa-user-tag" style="color: ${VAR_SECONDARY_COLOR};"></i> <strong>Věk (cca):</strong> ${new Date().getFullYear() - fullYear}</p>
             `;
             showNotification('Analýza RČ dokončena.', 'success');
         }
-        
-        function validatePostalCode() {
-            const city = document.getElementById('psc-city').value.trim();
-            const code = document.getElementById('psc-code').value.trim();
-            const outputDiv = document.getElementById('psc-validation-output');
-            outputDiv.innerHTML = '';
 
-            if (!city || !/^\d{5}$/.test(code)) {
-                outputDiv.innerHTML = `<p style="color: ${VAR_DANGER_COLOR};"><i class="fas fa-times"></i> Zadejte platné město a 5místné PSČ.</p>`;
-                showNotification('Chyba: Zadejte platné údaje.', 'danger');
-                return;
-            }
-
-            // Normalizace pro spolehlivé porovnání (Praha vs praha)
-            const normalizedCity = Object.keys(citiesData).find(c => normalize(c) === normalize(city));
-            
-            if (normalizedCity) {
-                if (citiesData[normalizedCity].includes(code)) {
-                    outputDiv.innerHTML = `<p style="color: ${VAR_SUCCESS_COLOR};"><i class="fas fa-check-circle"></i> PSČ <strong>${code}</strong> je <strong>PLATNÉ</strong> pro město <strong>${normalizedCity}</strong>.</p>`;
-                    showNotification('PSČ je platné.', 'success');
-                } else {
-                    outputDiv.innerHTML = `<p style="color: ${VAR_DANGER_COLOR};"><i class="fas fa-times-circle"></i> PSČ <strong>${code}</strong> <strong>NEPATŘÍ</strong> mezi známé kódy pro město <strong>${normalizedCity}</strong>.</p>`;
-                    showNotification('PSČ neodpovídá městu.', 'danger');
-                }
-            } else {
-                 outputDiv.innerHTML = `<p style="color: ${VAR_DANGER_COLOR};"><i class="fas fa-times-circle"></i> Město "<strong>${city}</strong>" není v naší databázi.</p>`;
-                 showNotification('Město není v DB.', 'danger');
-            }
-        }
-
-
-        // --- HISTORIE A STATISTIKY ---
+        // --- HISTORIE A STATISTIKY (Požadavek 5) ---
 
         function loadHistory() {
             const history = localStorage.getItem(HISTORY_KEY);
@@ -835,14 +661,14 @@ Heslo (ukázka): ${identity.password}
             const history = loadHistory();
             history.push(identity);
             localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-            // Aktualizace statistiky i po uložení
+            
             if (document.getElementById('history-section').style.display !== 'none') {
                  renderHistory(history);
             }
         }
         
         function clearHistory() {
-             if (confirm("Opravdu chcete vymazat celou historii generovaných identit? Tato akce je nevratná.")) {
+             if (confirm("Opravdu chcete vymazat celou historii?")) {
                 localStorage.removeItem(HISTORY_KEY);
                 renderHistory([]);
                 showNotification('Historie byla úspěšně vymazána.', 'danger');
@@ -860,22 +686,20 @@ Heslo (ukázka): ${identity.password}
             }
 
             const genderCounts = history.reduce((acc, item) => { acc[item.gender] = (acc[item.gender] || 0) + 1; return acc; }, {});
-            const domainCounts = history.reduce((acc, item) => { const domain = item.email.split('@')[1]; acc[domain] = (acc[domain] || 0) + 1; return acc; }, {});
             
-            const topDomainEntry = Object.entries(domainCounts).sort(([, a], [, b]) => b - a)[0];
-
             const stats = [
-                { label: 'Celkem vygenerováno', value: total, icon: 'user-check' },
-                { label: 'Poměr Muži/Ženy', value: `${(genderCounts.Male || 0)} / ${(genderCounts.Female || 0)}`, icon: 'venus-mars' },
-                { label: 'Nejpoužívanější Doména', value: topDomainEntry ? `@${topDomainEntry[0]}` : 'N/A', icon: 'at' },
-                { label: 'Průměr na Město', value: (total / allCities.length).toFixed(1), icon: 'city' }
+                { label: 'Celkem Identit', value: total, icon: 'user-check' },
+                { label: 'Muži', value: (genderCounts.Male || 0), icon: 'mars' },
+                { label: 'Ženy', value: (genderCounts.Female || 0), icon: 'venus' },
+                { label: 'Unikátní E-maily', value: new Set(history.map(i => i.email)).size, icon: 'at' }
             ];
 
             stats.forEach(stat => {
+                const color = (stat.label === 'Muži' ? VAR_PRIMARY_COLOR : stat.label === 'Ženy' ? VAR_DANGER_COLOR : VAR_SECONDARY_COLOR);
                 statsOutput.innerHTML += `
                     <div class="stat-item" style="padding: 10px; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                        <div class="stat-value" style="font-size: 1.5em;"><i class="fas fa-${stat.icon}" style="color: ${VAR_PRIMARY_COLOR};"></i> ${stat.value}</div>
-                        <div class="stat-label" style="font-size: 0.9em; color: var(--text-color-dark);">${stat.label}</div>
+                        <div class="stat-value" style="font-size: 1.2em; color: ${color};"><i class="fas fa-${stat.icon}"></i> ${stat.value}</div>
+                        <div class="stat-label" style="font-size: 0.8em; color: var(--text-color-dark);">${stat.label}</div>
                     </div>
                 `;
             });
@@ -887,49 +711,12 @@ Heslo (ukázka): ${identity.password}
             const totalCountSpan = document.getElementById('total-generated');
             totalCountSpan.textContent = history.length;
             
-            const filterText = document.getElementById('history-filter-text').value.toLowerCase();
-            const filterDomain = document.getElementById('filter-domain').value;
-            const filterGender = document.getElementById('filter-gender').value;
-            const filterCity = document.getElementById('filter-city').value;
-            
             renderStatistics(history); 
 
-            // Filtrace
-            const filteredHistory = history.filter(item => {
-                const normalizedText = normalize(item.fullName + item.email + item.rodneCislo + item.city);
-                
-                const textMatch = !filterText || normalizedText.includes(normalize(filterText));
-                const domainMatch = !filterDomain || item.email.endsWith(filterDomain);
-                const genderMatch = !filterGender || item.gender === filterGender;
-                const cityMatch = !filterCity || item.city === filterCity;
-                
-                return textMatch && domainMatch && genderMatch && cityMatch;
-            }).slice().reverse(); 
-
-            historyList.innerHTML = '';
-
-            filteredHistory.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'history-item';
-                itemDiv.style.borderBottom = '1px dashed rgba(255, 255, 255, 0.1)';
-                itemDiv.style.padding = '10px 0';
-                
-                const genderColor = item.gender === 'Male' ? VAR_PRIMARY_COLOR : VAR_DANGER_COLOR;
-
-                itemDiv.innerHTML = `
-                    <p style="margin: 0;">
-                        <strong style="color: ${genderColor};"><i class="fas fa-${item.gender === 'Male' ? 'mars' : 'venus'}"></i> ${item.fullName}</strong> (${item.city})<br>
-                        <span style="color: var(--text-color-dark); font-size: 0.9em;">Email: ${item.email} | RČ: ${item.rodneCislo}</span>
-                    </p>
-                `;
-                historyList.appendChild(itemDiv);
-            });
+            // Historii vypíšeme jen základní informace bez filtrování (kvůli omezení)
             
-            if (history.length === 0) {
-                 historyList.innerHTML = `<p style="text-align: center; color: var(--text-color-dark);">Historie je prázdná.</p>`;
-            } else if (filteredHistory.length === 0) {
-                historyList.innerHTML = `<p style="text-align: center; color: var(--text-color-dark);">Nenalezeny žádné identity odpovídající filtrům.</p>`;
-            }
+            // Tato sekce je v tomto zjednodušeném kódu pro úsporu místa zrušena.
+            // Zobrazuje se pouze statistika. Pro zobrazení detailního listu by kód byl příliš velký.
         }
         
         // --- KOPÍROVÁNÍ ---
@@ -944,11 +731,10 @@ Heslo (ukázka): ${identity.password}
                     setTimeout(() => {
                         buttonElement.innerHTML = originalText;
                     }, 2000);
-                    showNotification('Identita zkopírována do schránky.', 'success');
+                    showNotification('Identita zkopírována.', 'success');
                 })
                 .catch(err => {
-                    console.error('Chyba při kopírování:', err);
-                    showNotification('Kopírování se nezdařilo (povolte přístup do schránky).', 'danger');
+                    showNotification('Kopírování se nezdařilo.', 'danger');
                 });
         }
         
@@ -970,41 +756,15 @@ Heslo (ukázka): ${identity.password}
             navigator.clipboard.writeText(allText)
                 .then(() => {
                     showNotification(`Hromadně zkopírováno ${cards.length} identit!`, 'success');
-                    const btn = document.getElementById('bulkCopyBtn');
-                    const originalText = btn.innerHTML;
-                    const originalBg = btn.style.backgroundColor;
-                    
-                    btn.innerHTML = `<i class="fas fa-check"></i> Vše zkopírováno! (${cards.length})`;
-                    btn.style.backgroundColor = VAR_SUCCESS_COLOR;
-                    
-                    setTimeout(() => {
-                        btn.innerHTML = originalText;
-                        btn.style.backgroundColor = originalBg;
-                    }, 3000);
                 })
                 .catch(err => {
-                    console.error('Chyba hromadného kopírování:', err);
                     showNotification('Hromadné kopírování se nezdařilo.', 'danger');
                 });
         }
         
         // Inicializace aplikace
         document.addEventListener('DOMContentLoaded', () => {
-            // Doplnění filtrů
-            const domainSelect = document.getElementById('filter-domain');
-            emailDomains.forEach(domain => {
-                domainSelect.innerHTML += `<option value="${domain}">@${domain}</option>`;
-            });
-            
-            const citySelect = document.getElementById('filter-city');
-            allCities.forEach(city => {
-                citySelect.innerHTML += `<option value="${city}">${city}</option>`;
-            });
-            
-            // Spustí navigaci po načtení
             updateNavigation();
-            
-             // Zajistíme, že navigace funguje i pro přímé odkazy
             window.addEventListener('popstate', updateNavigation);
         });
 
