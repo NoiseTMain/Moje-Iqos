@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>IQOS PRÁCE 💼</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- GLOBAL & LIQUID GLASS VARIABLES --- */
@@ -19,8 +20,8 @@
             --glass-shadow: 0 15px 50px rgba(0, 0, 0, 0.7); /* Výraznější stín */
             --glass-highlight: rgba(255, 255, 255, 0.15); /* Jemný lesk */
 
-            --primary-accent: #8e44ad; /* Původní tyrkys nahrazen jemnou fialovou (lze změnit) */
-            --secondary-accent: #bdc3c7; /* Stříbrná pro méně důležité prvky */
+            --primary-accent: #8e44ad; /* Jemná fialová */
+            --secondary-accent: #bdc3c7; /* Stříbrná */
             --text-color-primary: #ecf0f1; /* Světlá šedá pro hlavní text */
             --text-color-secondary: #bdc3c7; /* Tmavší stříbrná */
             
@@ -34,7 +35,7 @@
 
         /* --- BASIC STYLES & FONT --- */
         body {
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-family: 'Segoe UI', 'Roboto', sans-serif; /* Sekundární font pro text */
             margin: 0;
             padding: 0;
             background-color: var(--bg-dark);
@@ -44,17 +45,17 @@
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
-            position: relative; /* Pro pozadí hvězd */
+            position: relative;
         }
 
-        /* --- STARFIELD BACKGROUND (Požadavek 6) --- */
+        /* --- STARFIELD BACKGROUND --- */
         .stars {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Pod vším obsahem */
+            z-index: -1;
             overflow: hidden;
             background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-medium) 100%);
         }
@@ -82,7 +83,7 @@
             flex-grow: 1;
             box-sizing: border-box;
             position: relative;
-            z-index: 10; /* Nad hvězdami */
+            z-index: 10;
         }
 
         .glass-card {
@@ -109,12 +110,14 @@
         }
 
         h1 {
+            /* --- POŽADAVEK 1 FIX: NOVÝ MODERNÍ FONT --- */
+            font-family: 'Rajdhani', sans-serif; /* Moderní technický font */
             font-size: 3.2em;
             color: var(--text-color-primary);
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px var(--primary-accent);
             margin: 0;
-            letter-spacing: 1px;
-            font-weight: 300;
+            letter-spacing: 2px; /* Mírně větší mezery */
+            font-weight: 700; /* Výrazný */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -147,8 +150,8 @@
             gap: 10px;
         }
         h3 i { color: var(--primary-accent); }
-
-        /* --- INPUTS, SELECTS, TEXTAREAS --- */
+        
+        /* --- INPUTS, BUTTONS atd. (Zůstávají stejné) --- */
         input, select, textarea {
             width: 100%;
             padding: 14px;
@@ -156,7 +159,7 @@
             margin-bottom: 20px;
             box-sizing: border-box;
             border: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.03); /* Velmi jemný podklad */
+            background: rgba(255, 255, 255, 0.03);
             color: var(--text-color-primary);
             border-radius: var(--radius-small);
             font-size: 1em;
@@ -175,9 +178,8 @@
             display: block;
         }
 
-        /* --- BUTTONS --- */
         button, .btn-full {
-            display: flex; /* Pro ikony a text */
+            display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
@@ -191,7 +193,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             
-            background: rgba(255, 255, 255, 0.08); 
+            background: rgba(255, 255, 255, 0.08);
             color: var(--text-color-primary);
             border: 1px solid var(--glass-border);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
@@ -205,15 +207,9 @@
             background: rgba(255, 255, 255, 0.12);
         }
         
-        /* Specific button colors */
         .btn-success { background-color: var(--success-color); border-color: var(--success-color); color: white; }
-        .btn-success:hover { background-color: #229954; border-color: #229954; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 15px var(--success-color); }
-
         .btn-danger { background-color: var(--danger-color); border-color: var(--danger-color); color: white; }
-        .btn-danger:hover { background-color: #a93226; border-color: #a93226; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 15px var(--danger-color); }
-        
         .btn-warning { background-color: var(--warning-color); border-color: var(--warning-color); color: white; }
-        .btn-warning:hover { background-color: #b94500; border-color: #b94500; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 15px var(--warning-color); }
 
         .btn-secondary { background: var(--glass-bg); border-color: var(--glass-border); color: var(--text-color-secondary); }
         .btn-secondary:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--primary-accent); color: var(--text-color-primary); }
@@ -236,7 +232,7 @@
         .identity-card {
             margin-top: 20px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.02); /* Ještě jemnější podklad */
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-small);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
@@ -268,8 +264,7 @@
             color: var(--text-color-primary);
             margin-bottom: 15px;
         }
-
-        /* --- PROFILE DETAIL (Vyhledávání a Historie) --- */
+        
         .profile-detail {
             background: rgba(255, 255, 255, 0.03);
             padding: 20px;
@@ -287,7 +282,7 @@
         .profile-detail strong {
             color: var(--text-color-primary);
             display: inline-block;
-            min-width: 140px; /* Zarovnání */
+            min-width: 140px; 
         }
         .profile-detail i {
             color: var(--primary-accent);
@@ -301,16 +296,18 @@
 
         /* --- NAVIGATION (FIXED BOTTOM) --- */
         .navigation {
-            position: fixed;
+            /* --- POŽADAVEK 2 FIX: ZAJIŠTĚNÍ FIXNÍ LIŠTY --- */
+            position: fixed; 
             bottom: 0;
-            left: 0;
+            left: 0; 
             right: 0;
-            height: 75px; /* Větší výška */
+            width: 100%; /* Zajišťuje, že lišta vyplní 100% šířky a nebude "ujíždět" */
+            height: 75px; 
             display: flex;
             justify-content: space-around;
             align-items: center;
             
-            background: rgba(18, 18, 18, 0.9); /* Velmi tmavé pozadí s průhledností */
+            background: rgba(18, 18, 18, 0.9); 
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -348,19 +345,18 @@
         }
         
         .nav-button i {
-            font-size: 1.8em; /* Větší ikony */
+            font-size: 1.8em; 
             margin-bottom: 5px;
         }
         
-        /* --- CONTENT SECTIONS --- */
+        /* --- UTILITY & NOTIFICATIONS --- */
         .content-section {
             display: none;
             flex-direction: column;
-            gap: 25px; /* Větší mezery mezi kartami */
+            gap: 25px;
             width: 100%;
         }
 
-        /* --- UTILITY & NOTIFICATIONS --- */
         .total-count {
             font-size: 1.3em;
             color: var(--text-color-primary);
@@ -392,8 +388,6 @@
         #history-list > div:hover {
             background: rgba(255, 255, 255, 0.03);
         }
-        #history-list > div strong { color: var(--primary-accent); }
-        #history-list > div span { color: var(--text-color-secondary); }
 
         #notification-container {
             position: fixed;
@@ -427,17 +421,15 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .notification i {
-            font-size: 1.2em;
-        }
         .notification.success i { color: var(--success-color); }
         .notification.danger i { color: var(--danger-color); }
         .notification.warning i { color: var(--warning-color); }
         .notification.info i { color: var(--primary-accent); }
 
+
         /* Media queries for smaller screens */
         @media (max-width: 600px) {
-            h1 { font-size: 2.2em; gap: 10px; }
+            h1 { font-size: 2.2em; gap: 10px; letter-spacing: 1px; }
             h2 { font-size: 1.5em; gap: 8px; }
             .glass-card { padding: 18px; margin-bottom: 20px; }
             .button-group { flex-direction: column; gap: 10px; }
@@ -457,7 +449,8 @@
     </style>
 </head>
 <body>
-    <div class="stars"></div> <div class="container">
+    <div class="stars"></div> 
+    <div class="container">
         <header>
             <h1><i class="fas fa-briefcase"></i> IQOS PRÁCE</h1>
         </header>
@@ -567,7 +560,7 @@
         const firstNamesFemale = ['Anna', 'Tereza', 'Kateřina', 'Lucie', 'Adéla', 'Eliška', 'Veronika', 'Kristýna', 'Nikola', 'Karolína', 'Jana', 'Eva', 'Hana', 'Petra', 'Markéta', 'Klára', 'Zuzana', 'Michaela', 'Lenka', 'Monika', 'Iva', 'Denisa', 'Alena', 'Barbora', 'Helena', 'Natálie', 'Vendula', 'Sabina', 'Simona', 'Viktoria', 'Magdaléna', 'Ludmila', 'Šárka', 'Diana', 'Adriana', 'Beáta', 'Cyrila', 'Dagmar', 'Hedvika', 'Irena', 'Julie', 'Kamila', 'Laura', 'Nina', 'Olga', 'Renata', 'Silvie', 'Valerie', 'Xenie', 'Yvona', 'Žofie'];
         const lastNames = ['Nováček', 'Svoboda', 'Novák', 'Dvořák', 'Černý', 'Procházka', 'Kučera', 'Veselý', 'Fiala', 'Horák', 'Pospíšil', 'Malý', 'Hájek', 'Jelínek', 'Růžička', 'Beneš', 'Soukup', 'Krejčí', 'Kříž', 'Šťastný', 'Kovář', 'Konečný', 'Bartoš', 'Sedláček', 'Urban', 'Zeman', 'Kolář', 'Ševčík', 'Trnka', 'Pokorný', 'Pavelka', 'Tichý', 'Mrázek', 'Málek', 'Janda', 'Kasal', 'Liška', 'Polák', 'Holub', 'Rybář', 'Šimek', 'Vlček', 'Rejcha', 'Moravec', 'Bílek', 'Zahrádka', 'Křížek', 'Kadlec', 'Musil', 'Šimánek', 'Valenta', 'Zoubek'];
         const emailDomains = ['icloud.com', 'gmail.com', 'seznam.cz', 'post.cz', 'email.cz', 'atlas.cz', 'volny.cz', 'centrum.cz', 'quick.cz', 'yahoo.com', 'outlook.com', 'tiscali.cz'];
-        const citiesData = { /* Pro realistický výstup */
+        const citiesData = { 
             'Praha': ['10000', '11000', '12000', '15000', '17000', '18000', '19000', '25000'], 'Brno': ['60200', '61200', '62500', '63900'], 'Ostrava': ['70200', '70800', '71000', '72000'], 'Plzeň': ['30100', '32300', '31200'], 'Liberec': ['46001', '46301', '46010'], 'Olomouc': ['77900', '78301', '77200'], 'Hradec Králové': ['50003', '50008', '50011'], 'České Budějovice': ['37001', '37004', '37007'], 'Karlovy Vary': ['36001', '36005', '36009'], 'Pardubice': ['53002', '53009', '53301'], 'Ústí nad Labem': ['40001', '40301', '40010'], 'Zlín': ['76001', '76302', '76005'], 'Jihlava': ['58601', '58851'], 'Mladá Boleslav': ['29301', '29306'], 'Tábor': ['39001', '39101'], 'Znojmo': ['66902', '67161'], 'Frýdek-Místek': ['73801', '73942'], 'Třinec': ['73961', '73995'], 'Most': ['43401', '43502'], 'Teplice': ['41501', '41701'], 'Chomutov': ['43001', '43111'], 'Kladno': ['27201', '27351'], 'Opava': ['74601', '74705'], 'Karviná': ['73301', '73506'], 'Jablonec nad Nisou': ['46601', '46802'], 'Prostějov': ['79601', '79802'], 'Přerov': ['75002', '75116'], 'Děčín': ['40502', '40711'], 'Kroměříž': ['76701', '76811'], 'Valašské Meziříčí': ['75701', '75704']
         };
         const allCities = Object.keys(citiesData);
@@ -604,27 +597,22 @@
             }, 4000); 
         }
 
-        // --- REALISTICKÉ GENERÁTOR RČ (Požadavek 5) ---
         function generateBirthData(isMale) {
             const currentYear = new Date().getFullYear();
-            const year = getRandomInt(currentYear - 65, currentYear - 18); // Věk 18-65
+            const year = getRandomInt(currentYear - 65, currentYear - 18); 
             const month = getRandomInt(1, 12);
-            const day = getRandomInt(1, 28); // Pro zjednodušení, všechny měsíce mají 28 dní
+            const day = getRandomInt(1, 28); 
             
             let rcMonth = month;
             if (!isMale) {
                 rcMonth += 50;
             }
-            // Pro osoby narozené po roce 2003 (nebo 2004) se přidává k měsíci 20
-            // Pro zjednodušení a zachování formátu YYMMDD/XXXX pro RČ, nebudu zde implementovat
-            // složitou logiku pro všechny možné varianty RČ přes 2003, ale zaměřím se na obecný princip.
-            // Nicméně v moderním RČ (po 1985) je již modulo 11. Zde generujeme pro demo účely.
 
             const yy = String(year % 100).padStart(2, '0');
             const mm = String(rcMonth).padStart(2, '0');
             const dd = String(day).padStart(2, '0');
             
-            const suffix = String(getRandomInt(1000, 9999)).padStart(4, '0'); // Náhodné 4 číslice (Požadavek 5)
+            const suffix = String(getRandomInt(1000, 9999)).padStart(4, '0');
             
             const rodneCislo = `${yy}${mm}${dd}/${suffix}`; 
             
@@ -654,8 +642,6 @@
             return `${base}@${domain}`;
         }
 
-        // --- HLAVNÍ LOGIKA TVORBY OSOBY (Požadavek 3) ---
-
         function createPersonObject(customPhone = null, preferredGender = 'random') {
             let isMale;
             if (preferredGender === 'Male') isMale = true;
@@ -671,7 +657,6 @@
             let lastNameBase = getRandomItem(lastNames);
             const lastName = isMale ? lastNameBase : (lastNameBase.endsWith('ý') ? lastNameBase.slice(0, -1) + 'á' : lastNameBase + 'ová');
 
-            // Náhodné místo bydliště (Požadavek 5)
             const city = getRandomItem(allCities);
             const postalCode = getRandomItem(citiesData[city]);
             
@@ -726,11 +711,6 @@ ${person.email}
             `;
         }
 
-        /**
-         * Zobrazí kartu osoby ve výsledcích
-         * @param {object} person Objekt osoby
-         * @param {HTMLElement} container Kontejner pro vložení
-         */
         function renderPersonCard(person, container) {
             const formattedPerson = formatPerson(person);
             const card = document.createElement('div');
@@ -750,10 +730,6 @@ ${person.email}
             renumberOutputCards(container);
         }
 
-        /**
-         * Přečísluje karty v kontejneru od #1 (nejnovější) po N (nejstarší)
-         * @param {HTMLElement} container 
-         */
         function renumberOutputCards(container) {
             const cards = container.querySelectorAll('.identity-card');
             let count = cards.length;
@@ -796,7 +772,7 @@ ${person.email}
                 }
             }
             
-            if (!isBulk && !isSingle) { // Pouze pro hromadné generování a individuální číslo
+            if (!isBulk && !isSingle) { 
                  outputDiv.innerHTML = '';
             }
             
@@ -897,7 +873,6 @@ ${person.email}
             
             historyList.innerHTML = history.length === 0 ? `<p style="text-align: center; color: var(--text-color-secondary);">Historie je prázdná.</p>` : '';
 
-            // Zobrazení od nejnovější po nejstarší
             [...history].reverse().forEach((person, index) => {
                 const item = document.createElement('div');
                 item.innerHTML = `
@@ -1017,7 +992,7 @@ ${person.email}
         // --- STARFIELD INICIALIZACE ---
         function createStars() {
             const starsContainer = document.querySelector('.stars');
-            const numStars = 100; // Počet hvězd
+            const numStars = 100; 
 
             for (let i = 0; i < numStars; i++) {
                 const star = document.createElement('div');
@@ -1025,14 +1000,14 @@ ${person.email}
                 star.style.width = star.style.height = `${getRandomInt(1, 3)}px`;
                 star.style.top = `${getRandomInt(0, 100)}%`;
                 star.style.left = `${getRandomInt(0, 100)}%`;
-                star.style.animationDelay = `${getRandomInt(0, 5000) / 1000}s`; // Náhodný delay pro twinkling
-                star.style.animationDuration = `${getRandomInt(5, 10)}s`; // Náhodná délka twinkling
+                star.style.animationDelay = `${getRandomInt(0, 5000) / 1000}s`; 
+                star.style.animationDuration = `${getRandomInt(5, 10)}s`; 
                 starsContainer.appendChild(star);
             }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            createStars(); // Vytvoří hvězdy
+            createStars(); 
             updateNavigation();
             window.addEventListener('hashchange', () => updateNavigation());
             
