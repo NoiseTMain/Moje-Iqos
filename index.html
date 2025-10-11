@@ -175,13 +175,13 @@
             100% { opacity: 0; transform: translate(0, 0) rotate(0deg); }
         }
         
-        /* --- H2 ZMĚNA: FONT Z BODY, STEJNÝ FONT-WEIGHT JAKO TLAČÍTKA, VĚTŠÍ FONT-SIZE --- */
+        /* --- H2 ÚPRAVA: MALÉ KAPITÁLKY A JEMNĚJŠÍ LETTER-SPACING --- */
         h2 {
-            font-family: inherit; /* Použít font z body */
-            font-size: 2.0em; /* Zvětšeno z 1.8em */
-            font-weight: 500; /* Změněno z 700 na 500, odpovídá tlačítkům */
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
+            font-family: inherit; 
+            font-size: 2.0em; 
+            font-weight: 500; 
+            font-variant: small-caps; /* PŘIDÁNO: Malé kapitálky pro elegantnější vzhled */
+            letter-spacing: 0.8px; /* ZMĚNĚNO: Zjemnění letter-spacing */
             
             color: var(--primary-accent);
             text-shadow: 0 0 10px rgba(142, 68, 173, 0.3); 
@@ -197,13 +197,14 @@
             font-size: 1.4em; 
         }
 
-        /* --- H3 ZMĚNA: FONT Z BODY, STEJNÝ FONT-WEIGHT JAKO TLAČÍTKA, VĚTŠÍ FONT-SIZE --- */
+        /* --- H3 ÚPRAVA: MALÉ KAPITÁLKY A JEMNĚJŠÍ LETTER-SPACING --- */
         h3 {
-            font-family: inherit; /* Použít font z body */
+            font-family: inherit; 
             color: var(--text-color-primary);
-            font-size: 1.4em; /* Zvětšeno z 1.2em */
-            font-weight: 500; /* Změněno z 700 na 500, odpovídá tlačítkům */
-            letter-spacing: 1px;
+            font-size: 1.4em; 
+            font-weight: 500; 
+            font-variant: small-caps; /* PŘIDÁNO: Malé kapitálky pro elegantnější vzhled */
+            letter-spacing: 0.5px; /* ZMĚNĚNO: Zjemnění letter-spacing */
             margin-top: 0;
             margin-bottom: 15px;
             display: flex;
@@ -325,16 +326,46 @@
             align-self: flex-start;
         }
 
-        /* ZMĚNA PRO MENŠÍ TEXT */
+        /* ZMĚNA: LEPŠÍ ČITELNOST TEXTU V KARTĚ OSOBY */
         .identity-line {
             white-space: pre-wrap;
             word-wrap: break-word;
-            font-size: 0.95em; /* Zmenšeno z 1.1em */
-            line-height: 1.5; /* Zmenšeno z 1.7 */
+            font-family: 'Consolas', 'Courier New', monospace; /* FONT: Použití monospace fontu pro kódový/data vzhled */
+            font-size: 1.05em; /* ZMĚNA: Mírně zvětšeno */
+            line-height: 1.6; /* ZMĚNA: Větší řádkování pro vzdušnost */
             color: var(--text-color-primary);
+            background: rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: var(--radius-small);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            margin-top: 0;
             margin-bottom: 15px;
+            overflow-x: auto;
         }
-        /* KONEC ZMĚNY PRO MENŠÍ TEXT */
+        
+        /* NOVÉ STYLY PRO TLAČÍTKA V KARTÁCH OSOB */
+        .copy-btn {
+             background-color: var(--primary-accent);
+             border-color: var(--primary-accent);
+             color: white;
+        }
+        .copy-btn:hover {
+            background-color: #a45ad8; 
+            border-color: #a45ad8;
+        }
+        .remove-btn {
+            background: var(--bg-medium);
+            border-color: var(--glass-border);
+            color: var(--text-color-secondary);
+        }
+        .remove-btn:hover {
+            background: var(--danger-color);
+            border-color: var(--danger-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 15px var(--danger-color);
+        }
+        /* KONEC ZMĚN PRO KARTU OSOBY */
         
         .profile-detail {
             background: rgba(255, 255, 255, 0.03);
@@ -521,10 +552,8 @@
         /* Media queries for smaller screens */
         @media (max-width: 600px) {
             h1 { font-size: 3.5em; } 
-            /* UPRAVENO: Font-size a font-weight */
-            h2 { font-size: 1.8em; gap: 6px; letter-spacing: 1px; padding-bottom: 8px; margin-bottom: 15px; font-weight: 500;} 
-            /* UPRAVENO: Font-size a font-weight */
-            h3 { font-size: 1.2em; font-weight: 500;} 
+            h2 { font-size: 1.8em; gap: 6px; letter-spacing: 0.5px; padding-bottom: 8px; margin-bottom: 15px; font-weight: 500;} 
+            h3 { font-size: 1.2em; font-weight: 500; letter-spacing: 0.3px;} 
             .glass-card { padding: 18px; margin-bottom: 20px; }
             .button-group { flex-direction: column; gap: 10px; }
             .button-group button { width: 100%; }
@@ -534,6 +563,7 @@
             .profile-detail strong { min-width: 100px; }
             .history-btn-group { flex-direction: column; gap: 5px; }
             .history-btn-group button { width: 100%; }
+            .identity-line { font-size: 0.95em; } /* Zmenšení na mobilu */
         }
 
         /* Animations */
@@ -806,14 +836,14 @@
             return person;
         }
 
-        // --- FORMÁTOVÁNÍ A VÝSTUP (Nezměněno) ---
+        // --- FORMÁTOVÁNÍ A VÝSTUP (Upraveno) ---
         
         function formatPerson(person) {
             return `
-${person.fullName}
-${person.birthDate}
-${person.phoneNumber}
-${person.email}
+Jméno: ${person.fullName}
+Datum Narození: ${person.birthDate}
+Telefon: ${person.phoneNumber}
+E-mail: ${person.email}
             `.trim();
         }
 
@@ -846,7 +876,7 @@ ${person.email}
                 <pre class="identity-line">${formattedPerson}</pre>
                 <div class="button-group">
                     <button class="copy-btn" onclick="copyPerson('${person.id}')"><i class="fas fa-copy"></i> Kopírovat</button>
-                    <button class="btn-warning" onclick="removePersonFromOutput('${person.id}')"><i class="fas fa-times"></i> Smazat z výsledků</button>
+                    <button class="remove-btn" onclick="removePersonFromOutput('${person.id}')"><i class="fas fa-times"></i> Smazat z výsledků</button>
                 </div>
             `;
             container.prepend(card); 
@@ -1001,6 +1031,7 @@ ${person.email}
             if (personIndex !== -1) {
                 const isCurrentlyRegistered = history[personIndex].isRegistered;
                 history[personIndex].isRegistered = !isCurrentlyRegistered;
+                history[personIndex].timestamp = new Date().toLocaleString('cs-CZ'); // Update timestamp on change
                 saveHistory(history);
                 
                 showNotification(`Osoba ${history[personIndex].fullName} byla ${!isCurrentlyRegistered ? 'zaregistrována' : 'odregistrována'}.`, 'info');
