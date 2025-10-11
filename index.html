@@ -175,11 +175,11 @@
             100% { opacity: 0; transform: translate(0, 0) rotate(0deg); }
         }
         
-        /* --- H2 ZMĚNA NA PODNADPIS - FONT Z BODY, BOLD --- */
+        /* --- H2 ZMĚNA: FONT Z BODY, STEJNÝ FONT-WEIGHT JAKO TLAČÍTKA, VĚTŠÍ FONT-SIZE --- */
         h2 {
             font-family: inherit; /* Použít font z body */
-            font-size: 1.8em; 
-            font-weight: 700; /* Změněno na BOLD */
+            font-size: 2.0em; /* Zvětšeno z 1.8em */
+            font-weight: 500; /* Změněno z 700 na 500, odpovídá tlačítkům */
             text-transform: uppercase; 
             letter-spacing: 1px; 
             
@@ -197,12 +197,12 @@
             font-size: 1.4em; 
         }
 
-        /* --- H3 ZMĚNA NA PODNADPIS - FONT Z BODY, BOLD --- */
+        /* --- H3 ZMĚNA: FONT Z BODY, STEJNÝ FONT-WEIGHT JAKO TLAČÍTKA, VĚTŠÍ FONT-SIZE --- */
         h3 {
             font-family: inherit; /* Použít font z body */
             color: var(--text-color-primary);
-            font-size: 1.2em; 
-            font-weight: 700; /* Změněno na BOLD (bylo 400) */
+            font-size: 1.4em; /* Zvětšeno z 1.2em */
+            font-weight: 500; /* Změněno z 700 na 500, odpovídá tlačítkům */
             letter-spacing: 1px;
             margin-top: 0;
             margin-bottom: 15px;
@@ -521,10 +521,10 @@
         /* Media queries for smaller screens */
         @media (max-width: 600px) {
             h1 { font-size: 3.5em; } 
-            /* Změněno: Používá font z body, BOLD */
-            h2 { font-size: 1.6em; gap: 6px; letter-spacing: 1px; padding-bottom: 8px; margin-bottom: 15px; font-weight: 700;} 
-            /* Změněno: Používá font z body, BOLD */
-            h3 { font-size: 1.1em; font-weight: 700;} 
+            /* UPRAVENO: Font-size a font-weight */
+            h2 { font-size: 1.8em; gap: 6px; letter-spacing: 1px; padding-bottom: 8px; margin-bottom: 15px; font-weight: 500;} 
+            /* UPRAVENO: Font-size a font-weight */
+            h3 { font-size: 1.2em; font-weight: 500;} 
             .glass-card { padding: 18px; margin-bottom: 20px; }
             .button-group { flex-direction: column; gap: 10px; }
             .button-group button { width: 100%; }
