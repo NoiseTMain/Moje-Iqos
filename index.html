@@ -11,7 +11,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;family=Monoton&family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     
     <style>
         /* --- GLOBAL & LIQUID GLASS VARIABLES --- */
@@ -120,32 +120,32 @@
             position: relative; 
             z-index: 10;
             
-            /* NOVÉ: ZÁKLAD PRO 3D TRANSFORMACE */
+            /* ZACHOVÁN PERSPECTIVE PRO LEVITUJÍCÍ BOXES */
             perspective: 1000px; 
         }
 
         h1 {
-            /* ZMĚNA: NASTAVENÍ FONTU CHETTA VISSTO (zde jako Italianno, pokud Chetta Vissto není dostupný) */
-            font-family: 'Chetta Vissto', 'Italianno', cursive; 
+            /* ZMĚNA 1: NASTAVENÍ FONTU NA LAMORIC ROWEN (Monoton pro demonstraci) */
+            font-family: 'Lamoric Rowen', 'Monoton', cursive; 
             font-size: 5.5em; 
             color: var(--text-color-primary);
             
-            /* ODSTRANĚN PŘÍMÝ text-shadow ZDE, APLIKUJE SE PŘES 3D EFEKT NÍŽE */
+            /* ODSTRANĚN PŘÍMÝ text-shadow APLIKUJE SE PŘES 3D EFEKT NÍŽE */
             text-shadow: none; 
             
             margin: 0;
             letter-spacing: 0px; 
             font-weight: 400; 
-            text-transform: lowercase; 
+            text-transform: uppercase; /* ZMĚNA: UPPERCASE VÍCE SEDÍ K TÉMATU */
             display: inline-block; 
             position: relative;
         }
         
-        /* NOVÉ: STYL PRO ROTUJÍCÍ 3D TEXT */
+        /* ZMĚNA 1: ÚPRAVA STYLU PRO TEXT (odstranění rotace) */
         #rotating-text {
             display: inline-block;
             transform-style: preserve-3d; /* Umožní dětem (textu) existovat ve 3D prostoru */
-            animation: spin3D 15s infinite linear; /* Aplikace rotace */
+            /* animation: spin3D 15s infinite linear;  ODSTRANĚNO */
             
             /* Simulace 3D hloubky a svícení */
             text-shadow: 
@@ -155,65 +155,83 @@
                 2px 2px 0 rgba(142, 68, 173, 0.7),
                 -2px -2px 0 rgba(142, 68, 173, 0.7),
                 0 0 40px rgba(142, 68, 173, 0.8); /* Silnější vnější záře */
+            
+            /* Mírná statická 3D transformace pro dojem */
+            transform: rotateX(10deg) rotateY(0deg) translateZ(0); 
         }
         
-        /* NOVÉ: KEYFRAMES PRO 3D ROTACI */
-        @keyframes spin3D {
-            0% { 
-                transform: rotateX(0deg) rotateY(0deg); 
-            }
-            50% { 
-                transform: rotateX(15deg) rotateY(180deg); 
-            }
-            100% { 
-                transform: rotateX(0deg) rotateY(360deg); 
-            }
-        }
-        /* KONEC NOVÝCH 3D STYLŮ */
+        /* Původní spin3D Keyframes smazány */
 
 
-        /* ANIMACE STŘEPŮ KOLEM H1 (Nezměněno) */
-        h1::before, h1::after {
-            content: '';
+        /* ZMĚNA 2: PŮVODNÍ STŘEPY (::before, ::after) ODSTRANĚNY, NAHRAZENY TEREA BOXES */
+        h1::before, h1::after { content: none; }
+        @keyframes levitate-shard { 0% { opacity: 0; } 100% { opacity: 0; } }
+
+        
+        /* NOVÉ STYLY PRO LEVITUJÍCÍ KRABIČKY TEREA */
+        .terea-box {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.4);
-            border: 1px solid var(--glass-highlight);
-            box-shadow: 0 0 5px var(--primary-accent);
-            border-radius: 3px;
+            width: 15px; /* Malá velikost */
+            height: 5px;
+            background: linear-gradient(90deg, #9b59b6, #e74c3c); /* Fialovo-červená gradient pro barvu TEREA */
+            border: 1px solid var(--primary-accent);
+            box-shadow: 0 0 8px var(--primary-accent); /* Jemné záření */
+            border-radius: 2px;
             opacity: 0;
-            z-index: -1;
-        }
-        /* Zbytek CSS pro střepy (před a po) je ponechán */
-        
-        h1::before {
-            top: -20px;
-            left: -10px;
-            transform: rotate(45deg);
-            animation: levitate-shard 6s infinite ease-in-out;
+            transform-style: preserve-3d;
+            z-index: 5;
+            animation: terea-levitate 10s infinite linear, fadeInOut 5s infinite;
         }
 
-        h1::after {
-            bottom: -10px;
-            right: -25px;
-            transform: rotate(-30deg);
-            animation: levitate-shard 7.5s infinite reverse ease-in-out;
-            width: 8px;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.2);
+        .terea-box:nth-child(2) {
+            background: linear-gradient(90deg, #3498db, #2ecc71); /* Modro-zelená */
+            width: 12px; 
+            height: 4px;
+            animation-delay: -3s;
+            animation-duration: 8s;
+            top: 15%;
+            left: 80%;
         }
 
-        @keyframes levitate-shard {
-            0% { opacity: 0; transform: translate(0, 0) rotate(0deg); }
-            20% { opacity: 1; transform: translate(10px, -5px) rotate(10deg); }
-            40% { opacity: 0.7; transform: translate(0px, 15px) rotate(-5deg); }
-            60% { opacity: 1; transform: translate(-15px, 0px) rotate(-15deg); }
-            80% { opacity: 0.5; transform: translate(5px, 5px) rotate(5deg); }
-            100% { opacity: 0; transform: translate(0, 0) rotate(0deg); }
+        .terea-box:nth-child(3) {
+            background: linear-gradient(90deg, #f1c40f, #e67e22); /* Žluto-oranžová */
+            width: 18px; 
+            height: 6px;
+            animation-delay: -7s;
+            animation-duration: 12s;
+            bottom: 5%;
+            left: 10%;
+        }
+
+        .terea-box:nth-child(4) {
+            background: linear-gradient(90deg, #ecf0f1, #bdc3c7); /* Stříbrná */
+            width: 10px; 
+            height: 3px;
+            animation-delay: -1s;
+            animation-duration: 9s;
+            top: 85%;
+            left: 60%;
         }
         
-        /* --- H2 ÚPRAVA: VŠECHNA PÍSMENA VELKÁ (Nezměněno) --- */
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes terea-levitate {
+            0% { transform: translate3d(0, 0, 0) rotateX(0deg); }
+            25% { transform: translate3d(-30px, -15px, 10px) rotateX(30deg); }
+            50% { transform: translate3d(0, 10px, -5px) rotateX(0deg); }
+            75% { transform: translate3d(25px, 5px, 15px) rotateX(-20deg); }
+            100% { transform: translate3d(0, 0, 0) rotateX(0deg); }
+        }
+        /* KONEC NOVÝCH TEREA STYLŮ */
+
+
+        /* --- ZBYTEK CSS KÓDU (Nezměněno) --- */
+        
         h2 {
             /* H2 ZMĚNĚN NA MONTSERRAT */
             font-family: 'Montserrat', sans-serif; 
@@ -256,7 +274,7 @@
             font-size: 1em; 
         }
         
-        /* --- ZBYTEK CSS KÓDU (Nezměněno) --- */
+        /* Zbytek CSS (input, button, navigation, media queries) je PONECHÁN BEZE ZMĚN */
         
         input, select, textarea {
              /* ZMĚNĚNO NA MONTSERRAT */
@@ -631,6 +649,13 @@
     <div class="stars"></div> 
     <div class="container">
         <header>
+            <div class="terea-box" style="top: 10%; left: 0%;"></div>
+            <div class="terea-box" style="top: 30%; right: -5%;"></div>
+            <div class="terea-box" style="bottom: 10%; left: -10%;"></div>
+            <div class="terea-box" style="bottom: 40%; right: 5%;"></div>
+            <div class="terea-box" style="top: -5%; left: 40%;"></div>
+            <div class="terea-box" style="bottom: -5%; right: 40%;"></div>
+            
             <h1><span id="rotating-text">IQOS PRÁCE</span></h1> 
         </header>
 
@@ -770,7 +795,8 @@
         const allCities = Object.keys(citiesData);
         const HISTORY_KEY = 'iqosPeopleHistory'; 
 
-        // --- HELPER FUNKCE (Nezměněno) ---
+        // Zbytek JS kódu (Helper funkce, logika generace, historie, navigace) je PONECHÁN BEZE ZMĚN
+        
         const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
         const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
         
