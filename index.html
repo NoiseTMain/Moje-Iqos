@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>IQOS PRÁCE 💼</title>
+    <title>iqos práce 💼</title>
     
     <link rel="icon" type="image/png" href="https://ctrlv.cz/fUMQ">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     
-    <link href="https://fonts.cdnfonts.com/css/pretty-dahlia" rel="stylesheet"> 
+    <link href="https://fonts.cdnfonts.com/css/hillside-script" rel="stylesheet"> 
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+    </style>
     
     <style>
         /* --- GLOBAL & LIQUID GLASS VARIABLES --- */
@@ -33,6 +37,9 @@
             --success-color: #27ae60;
             --danger-color: #c0392b;
             --warning-color: #d35400;
+
+            --registered-color: #f39c12; /* Oranžová pro registrované */
+            --register-btn-color: #2ecc71; /* Světle zelená pro tlačítko "Registrován" */
 
             --radius-large: 25px;
             --radius-small: 12px;
@@ -107,45 +114,73 @@
             box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8), 0 0 20px var(--primary-accent);
         }
 
-        /* --- HEADERS --- */
+        /* --- HEADERS (Skleněný vzhled) --- */
         header {
             width: 100%;
             text-align: center;
             margin-bottom: 40px;
+            position: relative; /* Pro animaci střepů */
+            z-index: 10;
         }
 
-        /* --- POŽADAVEK 1: Nadpis ve fontu Pretty Dahlia a animace --- */
         h1 {
-            font-family: 'Pretty Dahlia', sans-serif; 
-            font-size: 4.0em; /* Zvětšeno pro rukopisné písmo */
+            /* --- UPRAVENO: Pretty Dahlia (Italianno) a malá písmena --- */
+            font-family: 'Italianno', cursive; 
+            font-size: 5.5em; /* Větší pro lepší čitelnost skriptu */
             color: var(--text-color-primary);
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px var(--primary-accent);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px var(--primary-accent);
             margin: 0;
-            letter-spacing: 5px; /* Větší mezery pro lepší čitelnost */
+            letter-spacing: 0px; 
             font-weight: 400; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            /* Přidání pulzující animace */
-            animation: pulse-glow 3s infinite alternate ease-in-out;
+            text-transform: lowercase; /* Malá písmena */
+            display: inline-block; /* Pro animaci */
+            position: relative;
         }
-        /* POŽADAVEK 1: Odebrán font-awesome, protože nebyl požadován a narušoval estetiku rukopisu */
-        
-        @keyframes pulse-glow {
-            from {
-                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 25px var(--primary-accent);
-                transform: scale(1.0);
-            }
-            to {
-                text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 40px var(--primary-accent);
-                transform: scale(1.02);
-            }
-        }
-        /* ----------------------------------------------------------- */
 
+        /* ANIMACE STŘEPŮ KOLEM H1 */
+        h1::before, h1::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid var(--glass-highlight);
+            box-shadow: 0 0 5px var(--primary-accent);
+            border-radius: 3px;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        h1::before {
+            top: -20px;
+            left: -10px;
+            transform: rotate(45deg);
+            animation: levitate-shard 6s infinite ease-in-out;
+        }
+
+        h1::after {
+            bottom: -10px;
+            right: -25px;
+            transform: rotate(-30deg);
+            animation: levitate-shard 7.5s infinite reverse ease-in-out;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes levitate-shard {
+            0% { opacity: 0; transform: translate(0, 0) rotate(0deg); }
+            20% { opacity: 1; transform: translate(10px, -5px) rotate(10deg); }
+            40% { opacity: 0.7; transform: translate(0px, 15px) rotate(-5deg); }
+            60% { opacity: 1; transform: translate(-15px, 0px) rotate(-15deg); }
+            80% { opacity: 0.5; transform: translate(5px, 5px) rotate(5deg); }
+            100% { opacity: 0; transform: translate(0, 0) rotate(0deg); }
+        }
+        
+        /* Ostatní nadpisy zůstávají Hillside script */
         h2 {
-            font-size: 1.8em;
+            font-family: 'Hillside Script', cursive; 
+            font-size: 2.2em;
             color: var(--primary-accent);
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             border-bottom: 1px solid var(--glass-border);
@@ -216,7 +251,7 @@
             color: var(--text-color-primary);
             border: 1px solid var(--glass-border);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         }
 
         button:hover {
@@ -229,6 +264,9 @@
         .btn-success { background-color: var(--success-color); border-color: var(--success-color); color: white; }
         .btn-danger { background-color: var(--danger-color); border-color: var(--danger-color); color: white; }
         .btn-warning { background-color: var(--warning-color); border-color: var(--warning-color); color: white; }
+
+        .btn-register { background-color: var(--register-btn-color); border-color: var(--register-btn-color); color: white; }
+        .btn-register-remove { background-color: var(--registered-color); border-color: var(--registered-color); color: white; }
 
         .btn-secondary { background: var(--glass-bg); border-color: var(--glass-border); color: var(--text-color-secondary); }
         .btn-secondary:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--primary-accent); color: var(--text-color-primary); }
@@ -247,7 +285,7 @@
             min-width: 120px;
         }
 
-        /* --- IDENTITY/PERSON CARDS (Zůstávají stejné) --- */
+        /* --- IDENTITY/PERSON CARDS --- */
         .identity-card {
             margin-top: 20px;
             padding: 20px;
@@ -341,7 +379,7 @@
             text-decoration: none;
             color: var(--text-color-secondary);
             font-size: 0.85em;
-            width: 25%;
+            width: 20%; /* ZMĚNA: Přidána 5. sekce, takže 100% / 5 = 20% */
             height: 100%;
             padding: 0;
             margin: 0;
@@ -383,7 +421,7 @@
         }
         .total-count i { color: var(--primary-accent); }
 
-        #history-list {
+        #history-list, #registered-list { /* Změna: Selektor i pro nový seznam */
             max-height: 450px;
             overflow-y: auto;
             padding: 15px;
@@ -392,7 +430,7 @@
             background: rgba(255, 255, 255, 0.02);
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
         }
-        #history-list > div {
+        #history-list > div, #registered-list > div {
             padding: 12px;
             margin-bottom: 10px;
             border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
@@ -403,38 +441,31 @@
             border-radius: 8px;
             transition: background 0.2s ease;
         }
-        #history-list > div:hover {
+        #history-list > div:hover, #registered-list > div:hover {
             background: rgba(255, 255, 255, 0.03);
         }
+
+        .person-info {
+            font-size: 1em;
+        }
+
+        .person-info.registered {
+            /* Požadavek 2: Oranžové písmo pro registrované */
+            color: var(--registered-color); 
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(243, 156, 18, 0.5);
+        }
         
-        /* --- POŽADAVEK 2: Styl pro tlačítko "Registrováno" v historii --- */
-        .btn-registered {
+        .history-btn-group {
+            display: flex;
+            gap: 8px;
+        }
+        .history-btn-group button {
             width: auto; 
             padding: 5px 10px; 
             font-size: 0.8em; 
-            margin-left: 10px;
-            color: var(--success-color);
-            background: transparent;
-            border: 1px solid var(--success-color);
-            border-radius: var(--radius-small);
-            box-shadow: 0 0 8px rgba(39, 174, 96, 0.8); /* Svítící efekt */
-            animation: pulse-border 1.5s infinite alternate;
-            cursor: default; /* Není klikatelné */
-            text-shadow: none;
-            transition: none;
+            margin: 0;
         }
-        .btn-registered:hover {
-            transform: none;
-            box-shadow: 0 0 12px var(--success-color);
-            background: rgba(39, 174, 96, 0.1);
-            border-color: var(--success-color);
-        }
-
-        @keyframes pulse-border {
-            from { box-shadow: 0 0 5px rgba(39, 174, 96, 0.4); }
-            to { box-shadow: 0 0 15px rgba(39, 174, 96, 1); }
-        }
-        /* ----------------------------------------------------------------- */
 
         #notification-container {
             position: fixed;
@@ -476,8 +507,8 @@
 
         /* Media queries for smaller screens */
         @media (max-width: 600px) {
-            h1 { font-size: 3.0em; gap: 10px; letter-spacing: 3px; }
-            h2 { font-size: 1.5em; gap: 8px; }
+            h1 { font-size: 3.5em; } /* Přizpůsobení velikosti fontu */
+            h2 { font-size: 1.8em; gap: 8px; }
             .glass-card { padding: 18px; margin-bottom: 20px; }
             .button-group { flex-direction: column; gap: 10px; }
             .button-group button { width: 100%; }
@@ -485,6 +516,8 @@
             .navigation { height: 65px; }
             .container { padding-bottom: 75px; }
             .profile-detail strong { min-width: 100px; }
+            .history-btn-group { flex-direction: column; gap: 5px; }
+            .history-btn-group button { width: 100%; }
         }
 
         /* Animations */
@@ -499,7 +532,7 @@
     <div class="stars"></div> 
     <div class="container">
         <header>
-            <h1>IQOS PRÁCE</h1>
+            <h1>iqos práce</h1> 
         </header>
 
         <div class="main-content">
@@ -567,6 +600,8 @@
                     
                     <div class="total-count">
                         <i class="fas fa-tachometer-alt"></i> Celkem vygenerováno: <span id="total-generated" style="font-weight: bold;">0</span>
+                        <br>
+                        <i class="fas fa-check-circle" style="color: var(--register-btn-color);"></i> Registrovaných: <span id="total-registered" style="font-weight: bold; color: var(--registered-color);">0</span>
                     </div>
 
                     <h3><i class="fas fa-list"></i> Seznam Všech Lidí</h3>
@@ -578,6 +613,26 @@
                     <hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
                     
                     <button class="btn-full btn-danger" onclick="clearHistory()"><i class="fas fa-trash-alt"></i> Vymazat Celou Historii</button>
+                </div>
+            </div>
+
+            <div id="registered-section" class="content-section">
+                <div class="glass-card">
+                    <h2><i class="fas fa-user-check" style="color: var(--registered-color);"></i> Registrovaní Lidí</h2>
+                    
+                    <div class="total-count">
+                        <i class="fas fa-check-circle" style="color: var(--registered-color);"></i> Celkem registrovaných: <span id="reg-count-display" style="font-weight: bold; color: var(--registered-color);">0</span>
+                    </div>
+
+                    <h3><i class="fas fa-clipboard-list"></i> Registrovaný Seznam</h3>
+                    
+                    <div id="registered-list">
+                        <p style="text-align: center; color: var(--text-color-secondary);">Zatím nejsou žádní registrovaní lidé.</p>
+                    </div>
+
+                    <hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+                    
+                    <button class="btn-full btn-danger" onclick="clearAllRegistrations()"><i class="fas fa-undo-alt"></i> Zrušit Registraci Všem</button>
                 </div>
             </div>
             
@@ -597,12 +652,15 @@
         <a href="#history" class="nav-button" data-page="history">
             <i class="fas fa-database"></i> Historie
         </a>
+        <a href="#registered" class="nav-button" data-page="registered">
+            <i class="fas fa-user-check"></i> Registrovaní
+        </a>
     </div>
     
     <div id="notification-container"></div>
 
     <script>
-        // --- DATA PRO GENEROVÁNÍ ---
+        // --- DATA PRO GENEROVÁNÍ (Nezměněno) ---
         const firstNamesMale = ['Lukáš', 'Tomáš', 'Petr', 'Jan', 'Pavel', 'Martin', 'Ondřej', 'Jakub', 'Filip', 'Vojtěch', 'Adam', 'Marek', 'David', 'Karel', 'Jiří', 'Štěpán', 'Daniel', 'Matěj', 'Vít', 'Oldřich', 'František', 'Antonín', 'Miloslav', 'Vladimír', 'Josef', 'Václav', 'Michal', 'Patrik', 'Alex', 'Erik', 'Denis', 'Kryštof', 'Dominik', 'Hynek', 'Jaroslav', 'Aleš', 'Bohumil', 'Čeněk', 'Dalibor', 'Emil', 'Gustav', 'Ignác', 'Jindřich', 'Libor', 'Norbert', 'Oskar', 'Radek', 'Stanislav', 'Vlastimil', 'Zdeněk'];
         const firstNamesFemale = ['Anna', 'Tereza', 'Kateřina', 'Lucie', 'Adéla', 'Eliška', 'Veronika', 'Kristýna', 'Nikola', 'Karolína', 'Jana', 'Eva', 'Hana', 'Petra', 'Markéta', 'Klára', 'Zuzana', 'Michaela', 'Lenka', 'Monika', 'Iva', 'Denisa', 'Alena', 'Barbora', 'Helena', 'Natálie', 'Vendula', 'Sabina', 'Simona', 'Viktoria', 'Magdaléna', 'Ludmila', 'Šárka', 'Diana', 'Adriana', 'Beáta', 'Cyrila', 'Dagmar', 'Hedvika', 'Irena', 'Julie', 'Kamila', 'Laura', 'Nina', 'Olga', 'Renata', 'Silvie', 'Valerie', 'Xenie', 'Yvona', 'Žofie'];
         const lastNames = ['Nováček', 'Svoboda', 'Novák', 'Dvořák', 'Černý', 'Procházka', 'Kučera', 'Veselý', 'Fiala', 'Horák', 'Pospíšil', 'Malý', 'Hájek', 'Jelínek', 'Růžička', 'Beneš', 'Soukup', 'Krejčí', 'Kříž', 'Šťastný', 'Kovář', 'Konečný', 'Bartoš', 'Sedláček', 'Urban', 'Zeman', 'Kolář', 'Ševčík', 'Trnka', 'Pokorný', 'Pavelka', 'Tichý', 'Mrázek', 'Málek', 'Janda', 'Kasal', 'Liška', 'Polák', 'Holub', 'Rybář', 'Šimek', 'Vlček', 'Rejcha', 'Moravec', 'Bílek', 'Zahrádka', 'Křížek', 'Kadlec', 'Musil', 'Šimánek', 'Valenta', 'Zoubek'];
@@ -613,7 +671,7 @@
         const allCities = Object.keys(citiesData);
         const HISTORY_KEY = 'iqosPeopleHistory'; 
 
-        // --- HELPER FUNKCE ---
+        // --- HELPER FUNKCE (Nezměněno) ---
         const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
         const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
         
@@ -726,14 +784,13 @@
                 postalCode: postalCode,
                 gender: isMale ? 'Muž' : 'Žena',
                 timestamp: new Date().toLocaleString('cs-CZ'),
-                // Přidáno pole pro simulaci stavu registrace
-                isRegistered: Math.random() < 0.5 // Náhodně true/false
+                isRegistered: false // NOVÝ KLÍČ PRO REGISTRACI
             };
             
             return person;
         }
 
-        // --- FORMÁTOVÁNÍ A VÝSTUP ---
+        // --- FORMÁTOVÁNÍ A VÝSTUP (Nezměněno) ---
         
         function formatPerson(person) {
             return `
@@ -745,11 +802,6 @@ ${person.email}
         }
 
         function formatProfile(person) {
-            // Používá person.isRegistered pro zobrazení stavu
-             const registeredStatus = person.isRegistered ? 
-                 '<span style="color: var(--success-color); font-weight: bold;"><i class="fas fa-check-circle"></i> Ano</span>' : 
-                 '<span style="color: var(--danger-color); font-weight: bold;"><i class="fas fa-times-circle"></i> Ne</span>';
-
             return `
                 <div class="profile-detail">
                     <p><strong><i class="fas fa-user"></i> Jméno:</strong> ${person.fullName}</p>
@@ -760,8 +812,9 @@ ${person.email}
                     <p><strong><i class="fas fa-id-card"></i> Rodné Číslo:</strong> ${person.rodneCislo}</p>
                     <p><strong><i class="fas fa-venus-mars"></i> Pohlaví:</strong> ${person.gender}</p>
                     <p><strong><i class="fas fa-map-marker-alt"></i> Bydliště:</strong> ${person.city} (${person.postalCode})</p>
-                    <p><strong><i class="fas fa-registered"></i> Registrovaný:</strong> ${registeredStatus}</p>
                     <p><strong><i class="fas fa-calendar-check"></i> Vytvořeno:</strong> ${person.timestamp}</p>
+                    <hr>
+                    <p><strong><i class="fas ${person.isRegistered ? 'fa-check-circle' : 'fa-times-circle'}"></i> Registrovaný:</strong> ${person.isRegistered ? 'ANO' : 'NE'}</p>
                 </div>
             `;
         }
@@ -797,7 +850,7 @@ ${person.email}
             });
         }
         
-        // --- FUNKCE GENERACE (Zůstávají stejné) ---
+        // --- FUNKCE GENERACE (Nezměněno) ---
 
         function generatePeople(isBulk = false, phoneList = []) {
             const outputDiv = document.getElementById('output');
@@ -859,7 +912,7 @@ ${person.email}
             updateNavigation('generator');
         }
         
-        // --- NÁSTROJE: VYHLEDÁVÁNÍ PROFILU (Zůstávají stejné) ---
+        // --- NÁSTROJE: VYHLEDÁVÁNÍ PROFILU (Nezměněno) ---
 
         function searchPerson() {
             const query = document.getElementById('search-input').value.trim().toLowerCase();
@@ -888,17 +941,21 @@ ${person.email}
             }
         }
 
-        // --- HISTORIE A SPRÁVA ---
+        // --- HISTORIE A SPRÁVA (Změněno pro podporu registrace) ---
 
         function loadHistory() {
             const history = localStorage.getItem(HISTORY_KEY);
             return history ? JSON.parse(history) : [];
         }
 
+        function saveHistory(history) {
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+        }
+
         function saveToHistory(person) {
             const history = loadHistory();
             history.push(person);
-            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+            saveHistory(history);
             
             document.getElementById('total-generated').textContent = history.length;
         }
@@ -916,34 +973,76 @@ ${person.email}
              if (confirm("Opravdu chcete vymazat CELOU historii generovaných osob?")) {
                 localStorage.removeItem(HISTORY_KEY);
                 renderHistory();
+                renderRegisteredPeople();
                 showNotification('Celá historie byla úspěšně vymazána.', 'danger');
             }
         }
         
-        // --- ZMĚNA DLE POŽADAVKU 2: Přidání tlačítka "Registrováno" v historii ---
+        function toggleRegistration(id) {
+            let history = loadHistory();
+            const personIndex = history.findIndex(p => p.id == id);
+
+            if (personIndex !== -1) {
+                const isCurrentlyRegistered = history[personIndex].isRegistered;
+                history[personIndex].isRegistered = !isCurrentlyRegistered;
+                saveHistory(history);
+                
+                showNotification(`Osoba ${history[personIndex].fullName} byla ${!isCurrentlyRegistered ? 'zaregistrována' : 'odregistrována'}.`, 'info');
+                
+                // Přerenderování sekce historie a registrovaných, aby se změna projevila
+                renderHistory();
+                renderRegisteredPeople();
+
+                // Pokud jsme v sekci registrovaných a odregistrujeme, vrátíme se do historie
+                if (window.location.hash.substring(1) === 'registered' && isCurrentlyRegistered) {
+                    updateNavigation('history');
+                }
+            } else {
+                showNotification('Chyba: Osoba nebyla nalezena.', 'danger');
+            }
+        }
+
+        function clearAllRegistrations() {
+            if (confirm("Opravdu chcete zrušit registraci VŠEM lidem v historii?")) {
+                let history = loadHistory();
+                history = history.map(person => ({ ...person, isRegistered: false }));
+                saveHistory(history);
+                
+                showNotification('Registrace zrušena u VŠECH osob.', 'danger');
+                renderHistory();
+                renderRegisteredPeople();
+                updateNavigation('history');
+            }
+        }
+
+
         function renderHistory() {
             const history = loadHistory();
             const historyList = document.getElementById('history-list');
             const totalCountSpan = document.getElementById('total-generated');
+            const totalRegisteredSpan = document.getElementById('total-registered');
+
             totalCountSpan.textContent = history.length;
+            const registeredCount = history.filter(p => p.isRegistered).length;
+            totalRegisteredSpan.textContent = registeredCount;
             
             historyList.innerHTML = history.length === 0 ? `<p style="text-align: center; color: var(--text-color-secondary);">Historie je prázdná.</p>` : '';
 
             [...history].reverse().forEach((person, index) => {
                 const item = document.createElement('div');
-                
-                // Určení, zda je osoba registrovaná
-                const registeredButton = person.isRegistered ?
-                    `<button class="btn-registered" style="margin-right: 15px;"><i class="fas fa-check"></i> Registrováno</button>` :
-                    ''; // Nic, pokud není registrovaná, nebo jiné tlačítko, pokud chceš
-
                 item.innerHTML = `
-                    <div style="font-size: 1em; display: flex; align-items: center;">
+                    <div class="person-info ${person.isRegistered ? 'registered' : ''}">
                         <strong>#${history.length - index}:</strong> ${person.fullName} 
                         <span style="margin-left: 10px;">(${person.phoneNumber})</span>
+                        ${person.isRegistered ? '<i class="fas fa-check-circle" style="color: var(--registered-color); margin-left: 5px;"></i>' : ''}
                     </div>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        ${registeredButton} 
+                    <div class="history-btn-group">
+                        <button style="width: auto; padding: 5px 10px; font-size: 0.8em; margin: 0;" 
+                                class="${person.isRegistered ? 'btn-register-remove' : 'btn-register'}" 
+                                onclick="toggleRegistration('${person.id}')">
+                            <i class="fas ${person.isRegistered ? 'fa-user-times' : 'fa-user-check'}"></i> ${person.isRegistered ? 'Zrušit registraci' : 'Registrován'}
+                        </button>
+                        
                         <button style="width: auto; padding: 5px 10px; font-size: 0.8em; margin: 0;" 
                                 class="btn-secondary" 
                                 onclick="viewProfile('${person.id}')">
@@ -954,7 +1053,42 @@ ${person.email}
                 historyList.appendChild(item);
             });
         }
-        // -------------------------------------------------------------------------
+        
+        function renderRegisteredPeople() {
+            const history = loadHistory();
+            const registeredPeople = history.filter(p => p.isRegistered);
+            const registeredList = document.getElementById('registered-list');
+            const regCountDisplay = document.getElementById('reg-count-display');
+
+            regCountDisplay.textContent = registeredPeople.length;
+            
+            registeredList.innerHTML = registeredPeople.length === 0 ? `<p style="text-align: center; color: var(--text-color-secondary);">Zatím nejsou žádní registrovaní lidé.</p>` : '';
+
+            registeredPeople.forEach((person, index) => {
+                const item = document.createElement('div');
+                item.innerHTML = `
+                    <div class="person-info registered">
+                        <strong>#${index + 1}:</strong> ${person.fullName} 
+                        <span style="margin-left: 10px;">(${person.phoneNumber})</span>
+                        <i class="fas fa-check-circle" style="color: var(--registered-color); margin-left: 5px;"></i>
+                    </div>
+                    <div class="history-btn-group">
+                         <button style="width: auto; padding: 5px 10px; font-size: 0.8em; margin: 0;" 
+                                class="btn-register-remove" 
+                                onclick="toggleRegistration('${person.id}')">
+                            <i class="fas fa-user-times"></i> Zrušit registraci
+                        </button>
+                        
+                        <button style="width: auto; padding: 5px 10px; font-size: 0.8em; margin: 0;" 
+                                class="btn-secondary" 
+                                onclick="viewProfile('${person.id}')">
+                            <i class="fas fa-eye"></i> Profil
+                        </button>
+                    </div>
+                `;
+                registeredList.appendChild(item);
+            });
+        }
         
         function viewProfile(id) {
             const history = loadHistory();
@@ -970,7 +1104,7 @@ ${person.email}
             }
         }
 
-        // --- KOPÍROVÁNÍ (Zůstávají stejné) ---
+        // --- KOPÍROVÁNÍ (Nezměněno) ---
 
         function copyPerson(id) {
             const card = document.querySelector(`.identity-card[data-id="${id}"]`);
@@ -1019,7 +1153,7 @@ ${person.email}
                 });
         }
 
-        // --- NAVIGACE A INICIALIZACE (Zůstávají stejné) ---
+        // --- NAVIGACE A INICIALIZACE (Změněno pro novou sekci) ---
 
         function updateNavigation(targetPage = null) {
             let currentPage = targetPage;
@@ -1045,6 +1179,8 @@ ${person.email}
             
             if (currentPage === 'history') {
                 renderHistory();
+            } else if (currentPage === 'registered') { // NOVÁ PODMÍNKA
+                renderRegisteredPeople();
             } else if (currentPage === 'tools') {
                 document.getElementById('search-output').innerHTML = `<p style="text-align: center; color: var(--text-color-secondary);">Zde se zobrazí nalezený profil.</p>`;
                 document.getElementById('search-input').value = '';
@@ -1055,7 +1191,7 @@ ${person.email}
             }
         }
         
-        // --- STARFIELD INICIALIZACE (Zůstávají stejné) ---
+        // --- STARFIELD INICIALIZACE (Nezměněno) ---
         function createStars() {
             const starsContainer = document.querySelector('.stars');
             const numStars = 100; 
@@ -1085,4 +1221,3 @@ ${person.email}
     </script>
 </body>
 </html>
-
