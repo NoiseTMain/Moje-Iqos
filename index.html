@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="https://ctrlv.cz/fUMQ">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Maglisto:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Maglisto:wght@500;700&display=swap" rel="stylesheet"> 
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
@@ -175,44 +175,44 @@
             100% { opacity: 0; transform: translate(0, 0) rotate(0deg); }
         }
         
-        /* --- H2 ZMĚNA NA PODNADPIS --- */
+        /* --- H2 ZMĚNA NA PODNADPIS - FONT Z BODY, BOLD --- */
         h2 {
-            font-family: 'Maglisto', sans-serif; 
-            font-size: 1.8em; /* Zmenšeno z 2.2em */
-            font-weight: 700; 
+            font-family: inherit; /* Použít font z body */
+            font-size: 1.8em; 
+            font-weight: 700; /* Změněno na BOLD */
             text-transform: uppercase; 
-            letter-spacing: 1px; /* Zmenšeno z 2px */
+            letter-spacing: 1px; 
             
             color: var(--primary-accent);
             text-shadow: 0 0 10px rgba(142, 68, 173, 0.3); 
             border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 10px; /* Zmenšeno z 15px */
-            margin-bottom: 18px; /* Zmenšeno z 25px */
+            padding-bottom: 10px; 
+            margin-bottom: 18px; 
             display: flex;
             align-items: center;
-            gap: 8px; /* Zmenšeno z 12px */
+            gap: 8px; 
         }
         h2 i { 
             color: var(--text-color-primary); 
-            font-size: 1.4em; /* Zmenšení ikony */
+            font-size: 1.4em; 
         }
 
-        /* --- H3 ZMĚNA NA PODNADPIS --- */
+        /* --- H3 ZMĚNA NA PODNADPIS - FONT Z BODY, BOLD --- */
         h3 {
-            font-family: 'Maglisto', sans-serif; 
+            font-family: inherit; /* Použít font z body */
             color: var(--text-color-primary);
-            font-size: 1.2em; /* Zmenšeno z 1.5em */
-            font-weight: 400; /* Změněno z 500 */
+            font-size: 1.2em; 
+            font-weight: 700; /* Změněno na BOLD (bylo 400) */
             letter-spacing: 1px;
             margin-top: 0;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 6px; /* Zmenšeno z 10px */
+            gap: 6px; 
         }
         h3 i { 
             color: var(--primary-accent); 
-            font-size: 1em; /* Zmenšení ikony */
+            font-size: 1em; 
         }
         
         /* --- ZBYTEK CSS KÓDU ZŮSTÁVÁ BEZE ZMĚN --- */
@@ -521,8 +521,10 @@
         /* Media queries for smaller screens */
         @media (max-width: 600px) {
             h1 { font-size: 3.5em; } 
-            h2 { font-size: 1.6em; gap: 6px; letter-spacing: 1px; padding-bottom: 8px; margin-bottom: 15px;} /* Upraveno i zde */
-            h3 { font-size: 1.1em; } /* Upraveno i zde */
+            /* Změněno: Používá font z body, BOLD */
+            h2 { font-size: 1.6em; gap: 6px; letter-spacing: 1px; padding-bottom: 8px; margin-bottom: 15px; font-weight: 700;} 
+            /* Změněno: Používá font z body, BOLD */
+            h3 { font-size: 1.1em; font-weight: 700;} 
             .glass-card { padding: 18px; margin-bottom: 20px; }
             .button-group { flex-direction: column; gap: 10px; }
             .button-group button { width: 100%; }
