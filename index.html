@@ -175,41 +175,45 @@
             100% { opacity: 0; transform: translate(0, 0) rotate(0deg); }
         }
         
-        /* --- H2 ZMĚNA NA MODERNÍ FONT --- */
+        /* --- H2 ZMĚNA NA PODNADPIS --- */
         h2 {
-            /* ZMĚNA 2: Nahrazení fontu Rajdhani za Maglisto */
-            font-family: 'Maglisto', sans-serif; /* Moderní, čistý font */
-            font-size: 2.2em;
-            font-weight: 700; /* Tlustší pro výraznost */
-            text-transform: uppercase; /* Všechna velká písmena pro moderní vzhled */
-            letter-spacing: 2px;
+            font-family: 'Maglisto', sans-serif; 
+            font-size: 1.8em; /* Zmenšeno z 2.2em */
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; /* Zmenšeno z 2px */
             
             color: var(--primary-accent);
-            text-shadow: 0 0 10px rgba(142, 68, 173, 0.3); /* Jemnější stín */
+            text-shadow: 0 0 10px rgba(142, 68, 173, 0.3); 
             border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
+            padding-bottom: 10px; /* Zmenšeno z 15px */
+            margin-bottom: 18px; /* Zmenšeno z 25px */
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px; /* Zmenšeno z 12px */
         }
-        h2 i { color: var(--text-color-primary); }
+        h2 i { 
+            color: var(--text-color-primary); 
+            font-size: 1.4em; /* Zmenšení ikony */
+        }
 
-        /* --- H3 ZMĚNA NA MODERNÍ FONT --- */
+        /* --- H3 ZMĚNA NA PODNADPIS --- */
         h3 {
-            /* ZMĚNA 3: Nahrazení fontu Rajdhani za Maglisto */
-            font-family: 'Maglisto', sans-serif; /* Moderní, čistý font */
+            font-family: 'Maglisto', sans-serif; 
             color: var(--text-color-primary);
-            font-size: 1.5em; /* Trochu větší než 1.3em pro lepší čitelnost */
-            font-weight: 500;
+            font-size: 1.2em; /* Zmenšeno z 1.5em */
+            font-weight: 400; /* Změněno z 500 */
             letter-spacing: 1px;
             margin-top: 0;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px; /* Zmenšeno z 10px */
         }
-        h3 i { color: var(--primary-accent); }
+        h3 i { 
+            color: var(--primary-accent); 
+            font-size: 1em; /* Zmenšení ikony */
+        }
         
         /* --- ZBYTEK CSS KÓDU ZŮSTÁVÁ BEZE ZMĚN --- */
         /* --- INPUTS, BUTTONS, CARDS, NAVIGATION atd. --- */
@@ -515,8 +519,8 @@
         /* Media queries for smaller screens */
         @media (max-width: 600px) {
             h1 { font-size: 3.5em; } 
-            h2 { font-size: 1.8em; gap: 8px; letter-spacing: 1px; }
-            h3 { font-size: 1.3em; }
+            h2 { font-size: 1.6em; gap: 6px; letter-spacing: 1px; padding-bottom: 8px; margin-bottom: 15px;} /* Upraveno i zde */
+            h3 { font-size: 1.1em; } /* Upraveno i zde */
             .glass-card { padding: 18px; margin-bottom: 20px; }
             .button-group { flex-direction: column; gap: 10px; }
             .button-group button { width: 100%; }
