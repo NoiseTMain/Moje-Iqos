@@ -124,9 +124,9 @@
         }
 
         h1 {
-            /* --- UPRAVENO: Pretty Dahlia (Italianno) a malá písmena --- */
+            /* --- UPRAVENO: Pretty Dahlia (Italianno) a ZMENŠENÁ velikost --- */
             font-family: 'Italianno', cursive; 
-            font-size: 5.5em; /* Větší pro lepší čitelnost skriptu */
+            font-size: 4em; 
             color: var(--text-color-primary);
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px var(--primary-accent);
             margin: 0;
@@ -137,7 +137,7 @@
             position: relative;
         }
 
-        /* ANIMACE STŘEPŮ KOLEM H1 */
+        /* ANIMACE STŘEPŮ KOLEM H1 (Zůstává) */
         h1::before, h1::after {
             content: '';
             position: absolute;
@@ -152,15 +152,15 @@
         }
 
         h1::before {
-            top: -20px;
+            top: -15px;
             left: -10px;
             transform: rotate(45deg);
             animation: levitate-shard 6s infinite ease-in-out;
         }
 
         h1::after {
-            bottom: -10px;
-            right: -25px;
+            bottom: -5px;
+            right: -20px;
             transform: rotate(-30deg);
             animation: levitate-shard 7.5s infinite reverse ease-in-out;
             width: 8px;
@@ -177,10 +177,10 @@
             100% { opacity: 0; transform: translate(0, 0) rotate(0deg); }
         }
         
-        /* Ostatní nadpisy zůstávají Hillside script */
+        /* Ostatní nadpisy se vrací k Hillside script a původní velikosti */
         h2 {
             font-family: 'Hillside Script', cursive; 
-            font-size: 2.2em;
+            font-size: 1.8em; /* Vráceno na původní velikost 1.8em */
             color: var(--primary-accent);
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             border-bottom: 1px solid var(--glass-border);
@@ -379,7 +379,7 @@
             text-decoration: none;
             color: var(--text-color-secondary);
             font-size: 0.85em;
-            width: 20%; /* ZMĚNA: Přidána 5. sekce, takže 100% / 5 = 20% */
+            width: 20%; 
             height: 100%;
             padding: 0;
             margin: 0;
@@ -421,7 +421,7 @@
         }
         .total-count i { color: var(--primary-accent); }
 
-        #history-list, #registered-list { /* Změna: Selektor i pro nový seznam */
+        #history-list, #registered-list { 
             max-height: 450px;
             overflow-y: auto;
             padding: 15px;
@@ -507,8 +507,8 @@
 
         /* Media queries for smaller screens */
         @media (max-width: 600px) {
-            h1 { font-size: 3.5em; } /* Přizpůsobení velikosti fontu */
-            h2 { font-size: 1.8em; gap: 8px; }
+            h1 { font-size: 3.5em; } /* Menší pro mobily */
+            h2 { font-size: 1.5em; gap: 8px; }
             .glass-card { padding: 18px; margin-bottom: 20px; }
             .button-group { flex-direction: column; gap: 10px; }
             .button-group button { width: 100%; }
@@ -660,7 +660,7 @@
     <div id="notification-container"></div>
 
     <script>
-        // --- DATA PRO GENEROVÁNÍ (Nezměněno) ---
+        // --- DATA PRO GENEROVÁNÍ ---
         const firstNamesMale = ['Lukáš', 'Tomáš', 'Petr', 'Jan', 'Pavel', 'Martin', 'Ondřej', 'Jakub', 'Filip', 'Vojtěch', 'Adam', 'Marek', 'David', 'Karel', 'Jiří', 'Štěpán', 'Daniel', 'Matěj', 'Vít', 'Oldřich', 'František', 'Antonín', 'Miloslav', 'Vladimír', 'Josef', 'Václav', 'Michal', 'Patrik', 'Alex', 'Erik', 'Denis', 'Kryštof', 'Dominik', 'Hynek', 'Jaroslav', 'Aleš', 'Bohumil', 'Čeněk', 'Dalibor', 'Emil', 'Gustav', 'Ignác', 'Jindřich', 'Libor', 'Norbert', 'Oskar', 'Radek', 'Stanislav', 'Vlastimil', 'Zdeněk'];
         const firstNamesFemale = ['Anna', 'Tereza', 'Kateřina', 'Lucie', 'Adéla', 'Eliška', 'Veronika', 'Kristýna', 'Nikola', 'Karolína', 'Jana', 'Eva', 'Hana', 'Petra', 'Markéta', 'Klára', 'Zuzana', 'Michaela', 'Lenka', 'Monika', 'Iva', 'Denisa', 'Alena', 'Barbora', 'Helena', 'Natálie', 'Vendula', 'Sabina', 'Simona', 'Viktoria', 'Magdaléna', 'Ludmila', 'Šárka', 'Diana', 'Adriana', 'Beáta', 'Cyrila', 'Dagmar', 'Hedvika', 'Irena', 'Julie', 'Kamila', 'Laura', 'Nina', 'Olga', 'Renata', 'Silvie', 'Valerie', 'Xenie', 'Yvona', 'Žofie'];
         const lastNames = ['Nováček', 'Svoboda', 'Novák', 'Dvořák', 'Černý', 'Procházka', 'Kučera', 'Veselý', 'Fiala', 'Horák', 'Pospíšil', 'Malý', 'Hájek', 'Jelínek', 'Růžička', 'Beneš', 'Soukup', 'Krejčí', 'Kříž', 'Šťastný', 'Kovář', 'Konečný', 'Bartoš', 'Sedláček', 'Urban', 'Zeman', 'Kolář', 'Ševčík', 'Trnka', 'Pokorný', 'Pavelka', 'Tichý', 'Mrázek', 'Málek', 'Janda', 'Kasal', 'Liška', 'Polák', 'Holub', 'Rybář', 'Šimek', 'Vlček', 'Rejcha', 'Moravec', 'Bílek', 'Zahrádka', 'Křížek', 'Kadlec', 'Musil', 'Šimánek', 'Valenta', 'Zoubek'];
@@ -671,7 +671,7 @@
         const allCities = Object.keys(citiesData);
         const HISTORY_KEY = 'iqosPeopleHistory'; 
 
-        // --- HELPER FUNKCE (Nezměněno) ---
+        // --- HELPER FUNKCE ---
         const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
         const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
         
@@ -790,7 +790,7 @@
             return person;
         }
 
-        // --- FORMÁTOVÁNÍ A VÝSTUP (Nezměněno) ---
+        // --- FORMÁTOVÁNÍ A VÝSTUP ---
         
         function formatPerson(person) {
             return `
@@ -850,7 +850,7 @@ ${person.email}
             });
         }
         
-        // --- FUNKCE GENERACE (Nezměněno) ---
+        // --- FUNKCE GENERACE ---
 
         function generatePeople(isBulk = false, phoneList = []) {
             const outputDiv = document.getElementById('output');
@@ -912,7 +912,7 @@ ${person.email}
             updateNavigation('generator');
         }
         
-        // --- NÁSTROJE: VYHLEDÁVÁNÍ PROFILU (Nezměněno) ---
+        // --- NÁSTROJE: VYHLEDÁVÁNÍ PROFILU ---
 
         function searchPerson() {
             const query = document.getElementById('search-input').value.trim().toLowerCase();
@@ -941,7 +941,7 @@ ${person.email}
             }
         }
 
-        // --- HISTORIE A SPRÁVA (Změněno pro podporu registrace) ---
+        // --- HISTORIE A SPRÁVA (S funkcí registrace) ---
 
         function loadHistory() {
             const history = localStorage.getItem(HISTORY_KEY);
@@ -989,13 +989,13 @@ ${person.email}
                 
                 showNotification(`Osoba ${history[personIndex].fullName} byla ${!isCurrentlyRegistered ? 'zaregistrována' : 'odregistrována'}.`, 'info');
                 
-                // Přerenderování sekce historie a registrovaných, aby se změna projevila
+                // Přerenderování sekce historie a registrovaných
                 renderHistory();
                 renderRegisteredPeople();
 
-                // Pokud jsme v sekci registrovaných a odregistrujeme, vrátíme se do historie
+                // Pokud jsme v sekci registrovaných a odregistrujeme, je lepší zůstat v historii, aby se prvek ztratil
                 if (window.location.hash.substring(1) === 'registered' && isCurrentlyRegistered) {
-                    updateNavigation('history');
+                    renderRegisteredPeople(); // Opětovné renderování registrovaných po odregistraci
                 }
             } else {
                 showNotification('Chyba: Osoba nebyla nalezena.', 'danger');
@@ -1011,7 +1011,7 @@ ${person.email}
                 showNotification('Registrace zrušena u VŠECH osob.', 'danger');
                 renderHistory();
                 renderRegisteredPeople();
-                updateNavigation('history');
+                // Není nutné přesměrovávat, stačí přerenderovat obě sekce
             }
         }
 
@@ -1104,7 +1104,7 @@ ${person.email}
             }
         }
 
-        // --- KOPÍROVÁNÍ (Nezměněno) ---
+        // --- KOPÍROVÁNÍ ---
 
         function copyPerson(id) {
             const card = document.querySelector(`.identity-card[data-id="${id}"]`);
@@ -1153,7 +1153,7 @@ ${person.email}
                 });
         }
 
-        // --- NAVIGACE A INICIALIZACE (Změněno pro novou sekci) ---
+        // --- NAVIGACE A INICIALIZACE ---
 
         function updateNavigation(targetPage = null) {
             let currentPage = targetPage;
@@ -1191,7 +1191,7 @@ ${person.email}
             }
         }
         
-        // --- STARFIELD INICIALIZACE (Nezměněno) ---
+        // --- STARFIELD INICIALIZACE ---
         function createStars() {
             const starsContainer = document.querySelector('.stars');
             const numStars = 100; 
