@@ -119,14 +119,20 @@
             margin-bottom: 40px;
             position: relative; 
             z-index: 10;
+            
+            /* NOVÉ: ZÁKLAD PRO 3D TRANSFORMACE */
+            perspective: 1000px; 
         }
 
         h1 {
-            /* H1 PONECHÁN NA Italianno */
-            font-family: 'Italianno', cursive; 
+            /* ZMĚNA: NASTAVENÍ FONTU CHETTA VISSTO (zde jako Italianno, pokud Chetta Vissto není dostupný) */
+            font-family: 'Chetta Vissto', 'Italianno', cursive; 
             font-size: 5.5em; 
             color: var(--text-color-primary);
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px var(--primary-accent);
+            
+            /* ODSTRANĚN PŘÍMÝ text-shadow ZDE, APLIKUJE SE PŘES 3D EFEKT NÍŽE */
+            text-shadow: none; 
+            
             margin: 0;
             letter-spacing: 0px; 
             font-weight: 400; 
@@ -134,6 +140,37 @@
             display: inline-block; 
             position: relative;
         }
+        
+        /* NOVÉ: STYL PRO ROTUJÍCÍ 3D TEXT */
+        #rotating-text {
+            display: inline-block;
+            transform-style: preserve-3d; /* Umožní dětem (textu) existovat ve 3D prostoru */
+            animation: spin3D 15s infinite linear; /* Aplikace rotace */
+            
+            /* Simulace 3D hloubky a svícení */
+            text-shadow: 
+                0 0 5px rgba(255, 255, 255, 0.5), /* Jemné vnitřní svícení */
+                1px 1px 0 var(--primary-accent),
+                -1px -1px 0 var(--primary-accent),
+                2px 2px 0 rgba(142, 68, 173, 0.7),
+                -2px -2px 0 rgba(142, 68, 173, 0.7),
+                0 0 40px rgba(142, 68, 173, 0.8); /* Silnější vnější záře */
+        }
+        
+        /* NOVÉ: KEYFRAMES PRO 3D ROTACI */
+        @keyframes spin3D {
+            0% { 
+                transform: rotateX(0deg) rotateY(0deg); 
+            }
+            50% { 
+                transform: rotateX(15deg) rotateY(180deg); 
+            }
+            100% { 
+                transform: rotateX(0deg) rotateY(360deg); 
+            }
+        }
+        /* KONEC NOVÝCH 3D STYLŮ */
+
 
         /* ANIMACE STŘEPŮ KOLEM H1 (Nezměněno) */
         h1::before, h1::after {
@@ -148,7 +185,8 @@
             opacity: 0;
             z-index: -1;
         }
-
+        /* Zbytek CSS pro střepy (před a po) je ponechán */
+        
         h1::before {
             top: -20px;
             left: -10px;
@@ -175,7 +213,7 @@
             100% { opacity: 0; transform: translate(0, 0) rotate(0deg); }
         }
         
-        /* --- H2 ÚPRAVA: VŠECHNA PÍSMENA VELKÁ --- */
+        /* --- H2 ÚPRAVA: VŠECHNA PÍSMENA VELKÁ (Nezměněno) --- */
         h2 {
             /* H2 ZMĚNĚN NA MONTSERRAT */
             font-family: 'Montserrat', sans-serif; 
@@ -198,7 +236,7 @@
             font-size: 1.4em; 
         }
 
-        /* --- H3 ÚPRAVA: VŠECHNA PÍSMENA VELKÁ --- */
+        /* --- H3 ÚPRAVA: VŠECHNA PÍSMENA VELKÁ (Nezměněno) --- */
         h3 {
              /* H3 ZMĚNĚN NA MONTSERRAT */
             font-family: 'Montserrat', sans-serif; 
@@ -218,7 +256,7 @@
             font-size: 1em; 
         }
         
-        /* --- ZBYTEK CSS KÓDU S ÚPRAVOU FONTŮ --- */
+        /* --- ZBYTEK CSS KÓDU (Nezměněno) --- */
         
         input, select, textarea {
              /* ZMĚNĚNO NA MONTSERRAT */
@@ -303,7 +341,7 @@
             min-width: 120px;
         }
 
-        /* --- IDENTITY/PERSON CARDS --- */
+        /* --- IDENTITY/PERSON CARDS (Nezměněno) --- */
         .identity-card {
             margin-top: 20px;
             padding: 20px;
@@ -332,7 +370,7 @@
             align-self: flex-start;
         }
 
-        /* ZMĚNA: FONT PRO DATA/KÓD NA FIRA CODE */
+        /* ZMĚNA: FONT PRO DATA/KÓD NA FIRA CODE (Nezměněno) */
         .identity-line {
             white-space: pre-wrap;
             word-wrap: break-word;
@@ -349,7 +387,7 @@
             overflow-x: auto;
         }
         
-        /* NOVÉ STYLY PRO TLAČÍTKA V KARTÁCH OSOB */
+        /* NOVÉ STYLY PRO TLAČÍTKA V KARTÁCH OSOB (Nezměněno) */
         .copy-btn {
              background-color: var(--primary-accent);
              border-color: var(--primary-accent);
@@ -405,7 +443,7 @@
             margin: 15px 0;
         }
 
-        /* --- NAVIGATION (FIXED BOTTOM) --- */
+        /* --- NAVIGATION (FIXED BOTTOM) (Nezměněno) --- */
         .navigation {
             position: fixed; 
             bottom: 0;
@@ -460,7 +498,7 @@
             margin-bottom: 5px;
         }
         
-        /* --- UTILITY & NOTIFICATIONS --- */
+        /* --- UTILITY & NOTIFICATIONS (Nezměněno) --- */
         .content-section {
             display: none;
             flex-direction: column;
@@ -593,7 +631,7 @@
     <div class="stars"></div> 
     <div class="container">
         <header>
-            <h1>IQOS PRÁCE</h1> 
+            <h1><span id="rotating-text">IQOS PRÁCE</span></h1> 
         </header>
 
         <div class="main-content">
@@ -851,7 +889,7 @@
             return person;
         }
 
-        // --- FORMÁTOVÁNÍ A VÝSTUP (Upraveno) ---
+        // --- FORMÁTOVÁNÍ A VÝSTUP (Nezměněno) ---
         
         function formatPerson(person) {
             return `
