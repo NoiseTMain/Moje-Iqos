@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     
-    <link href="https://fonts.cdnfonts.com/css/hillside-script" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/pretty-dahlia" rel="stylesheet"> 
     
     <style>
         /* --- GLOBAL & LIQUID GLASS VARIABLES --- */
@@ -107,28 +107,42 @@
             box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8), 0 0 20px var(--primary-accent);
         }
 
-        /* --- HEADERS (Skleněný vzhled) --- */
+        /* --- HEADERS --- */
         header {
             width: 100%;
             text-align: center;
             margin-bottom: 40px;
         }
 
+        /* --- POŽADAVEK 1: Nadpis ve fontu Pretty Dahlia a animace --- */
         h1 {
-            /* --- UPRAVENO: Hillside Script jako hlavní font --- */
-            font-family: 'Hillside Script', cursive; 
-            font-size: 3.2em;
+            font-family: 'Pretty Dahlia', sans-serif; 
+            font-size: 4.0em; /* Zvětšeno pro rukopisné písmo */
             color: var(--text-color-primary);
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px var(--primary-accent);
             margin: 0;
-            letter-spacing: 2px; /* Mírně větší mezery */
-            font-weight: 700; /* Výrazný */
+            letter-spacing: 5px; /* Větší mezery pro lepší čitelnost */
+            font-weight: 400; 
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
+            /* Přidání pulzující animace */
+            animation: pulse-glow 3s infinite alternate ease-in-out;
         }
-        h1 i { font-size: 0.8em; color: var(--primary-accent); }
+        /* POŽADAVEK 1: Odebrán font-awesome, protože nebyl požadován a narušoval estetiku rukopisu */
+        
+        @keyframes pulse-glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 25px var(--primary-accent);
+                transform: scale(1.0);
+            }
+            to {
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 40px var(--primary-accent);
+                transform: scale(1.02);
+            }
+        }
+        /* ----------------------------------------------------------- */
 
         h2 {
             font-size: 1.8em;
@@ -233,7 +247,7 @@
             min-width: 120px;
         }
 
-        /* --- IDENTITY/PERSON CARDS --- */
+        /* --- IDENTITY/PERSON CARDS (Zůstávají stejné) --- */
         .identity-card {
             margin-top: 20px;
             padding: 20px;
@@ -301,12 +315,11 @@
 
         /* --- NAVIGATION (FIXED BOTTOM) --- */
         .navigation {
-            /* --- POŽADAVEK 2 FIX: ZAJIŠTĚNÍ FIXNÍ LIŠTY --- */
             position: fixed; 
             bottom: 0;
             left: 0; 
             right: 0;
-            width: 100%; /* Zajišťuje, že lišta vyplní 100% šířky a nebude "ujíždět" */
+            width: 100%; 
             height: 75px; 
             display: flex;
             justify-content: space-around;
@@ -393,6 +406,35 @@
         #history-list > div:hover {
             background: rgba(255, 255, 255, 0.03);
         }
+        
+        /* --- POŽADAVEK 2: Styl pro tlačítko "Registrováno" v historii --- */
+        .btn-registered {
+            width: auto; 
+            padding: 5px 10px; 
+            font-size: 0.8em; 
+            margin-left: 10px;
+            color: var(--success-color);
+            background: transparent;
+            border: 1px solid var(--success-color);
+            border-radius: var(--radius-small);
+            box-shadow: 0 0 8px rgba(39, 174, 96, 0.8); /* Svítící efekt */
+            animation: pulse-border 1.5s infinite alternate;
+            cursor: default; /* Není klikatelné */
+            text-shadow: none;
+            transition: none;
+        }
+        .btn-registered:hover {
+            transform: none;
+            box-shadow: 0 0 12px var(--success-color);
+            background: rgba(39, 174, 96, 0.1);
+            border-color: var(--success-color);
+        }
+
+        @keyframes pulse-border {
+            from { box-shadow: 0 0 5px rgba(39, 174, 96, 0.4); }
+            to { box-shadow: 0 0 15px rgba(39, 174, 96, 1); }
+        }
+        /* ----------------------------------------------------------------- */
 
         #notification-container {
             position: fixed;
@@ -434,7 +476,7 @@
 
         /* Media queries for smaller screens */
         @media (max-width: 600px) {
-            h1 { font-size: 2.2em; gap: 10px; letter-spacing: 1px; }
+            h1 { font-size: 3.0em; gap: 10px; letter-spacing: 3px; }
             h2 { font-size: 1.5em; gap: 8px; }
             .glass-card { padding: 18px; margin-bottom: 20px; }
             .button-group { flex-direction: column; gap: 10px; }
@@ -457,7 +499,7 @@
     <div class="stars"></div> 
     <div class="container">
         <header>
-            <h1><i class="fas fa-briefcase"></i> IQOS PRÁCE</h1>
+            <h1>IQOS PRÁCE</h1>
         </header>
 
         <div class="main-content">
@@ -683,7 +725,9 @@
                 city: city,
                 postalCode: postalCode,
                 gender: isMale ? 'Muž' : 'Žena',
-                timestamp: new Date().toLocaleString('cs-CZ')
+                timestamp: new Date().toLocaleString('cs-CZ'),
+                // Přidáno pole pro simulaci stavu registrace
+                isRegistered: Math.random() < 0.5 // Náhodně true/false
             };
             
             return person;
@@ -701,6 +745,11 @@ ${person.email}
         }
 
         function formatProfile(person) {
+            // Používá person.isRegistered pro zobrazení stavu
+             const registeredStatus = person.isRegistered ? 
+                 '<span style="color: var(--success-color); font-weight: bold;"><i class="fas fa-check-circle"></i> Ano</span>' : 
+                 '<span style="color: var(--danger-color); font-weight: bold;"><i class="fas fa-times-circle"></i> Ne</span>';
+
             return `
                 <div class="profile-detail">
                     <p><strong><i class="fas fa-user"></i> Jméno:</strong> ${person.fullName}</p>
@@ -711,6 +760,7 @@ ${person.email}
                     <p><strong><i class="fas fa-id-card"></i> Rodné Číslo:</strong> ${person.rodneCislo}</p>
                     <p><strong><i class="fas fa-venus-mars"></i> Pohlaví:</strong> ${person.gender}</p>
                     <p><strong><i class="fas fa-map-marker-alt"></i> Bydliště:</strong> ${person.city} (${person.postalCode})</p>
+                    <p><strong><i class="fas fa-registered"></i> Registrovaný:</strong> ${registeredStatus}</p>
                     <p><strong><i class="fas fa-calendar-check"></i> Vytvořeno:</strong> ${person.timestamp}</p>
                 </div>
             `;
@@ -747,7 +797,7 @@ ${person.email}
             });
         }
         
-        // --- FUNKCE GENERACE ---
+        // --- FUNKCE GENERACE (Zůstávají stejné) ---
 
         function generatePeople(isBulk = false, phoneList = []) {
             const outputDiv = document.getElementById('output');
@@ -809,7 +859,7 @@ ${person.email}
             updateNavigation('generator');
         }
         
-        // --- NÁSTROJE: VYHLEDÁVÁNÍ PROFILU ---
+        // --- NÁSTROJE: VYHLEDÁVÁNÍ PROFILU (Zůstávají stejné) ---
 
         function searchPerson() {
             const query = document.getElementById('search-input').value.trim().toLowerCase();
@@ -870,6 +920,7 @@ ${person.email}
             }
         }
         
+        // --- ZMĚNA DLE POŽADAVKU 2: Přidání tlačítka "Registrováno" v historii ---
         function renderHistory() {
             const history = loadHistory();
             const historyList = document.getElementById('history-list');
@@ -880,20 +931,30 @@ ${person.email}
 
             [...history].reverse().forEach((person, index) => {
                 const item = document.createElement('div');
+                
+                // Určení, zda je osoba registrovaná
+                const registeredButton = person.isRegistered ?
+                    `<button class="btn-registered" style="margin-right: 15px;"><i class="fas fa-check"></i> Registrováno</button>` :
+                    ''; // Nic, pokud není registrovaná, nebo jiné tlačítko, pokud chceš
+
                 item.innerHTML = `
-                    <div style="font-size: 1em;">
+                    <div style="font-size: 1em; display: flex; align-items: center;">
                         <strong>#${history.length - index}:</strong> ${person.fullName} 
                         <span style="margin-left: 10px;">(${person.phoneNumber})</span>
                     </div>
-                    <button style="width: auto; padding: 5px 10px; font-size: 0.8em; margin: 0;" 
-                            class="btn-secondary" 
-                            onclick="viewProfile('${person.id}')">
-                        <i class="fas fa-eye"></i> Profil
-                    </button>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        ${registeredButton} 
+                        <button style="width: auto; padding: 5px 10px; font-size: 0.8em; margin: 0;" 
+                                class="btn-secondary" 
+                                onclick="viewProfile('${person.id}')">
+                            <i class="fas fa-eye"></i> Profil
+                        </button>
+                    </div>
                 `;
                 historyList.appendChild(item);
             });
         }
+        // -------------------------------------------------------------------------
         
         function viewProfile(id) {
             const history = loadHistory();
@@ -909,7 +970,7 @@ ${person.email}
             }
         }
 
-        // --- KOPÍROVÁNÍ ---
+        // --- KOPÍROVÁNÍ (Zůstávají stejné) ---
 
         function copyPerson(id) {
             const card = document.querySelector(`.identity-card[data-id="${id}"]`);
@@ -958,7 +1019,7 @@ ${person.email}
                 });
         }
 
-        // --- NAVIGACE A INICIALIZACE ---
+        // --- NAVIGACE A INICIALIZACE (Zůstávají stejné) ---
 
         function updateNavigation(targetPage = null) {
             let currentPage = targetPage;
@@ -994,7 +1055,7 @@ ${person.email}
             }
         }
         
-        // --- STARFIELD INICIALIZACE ---
+        // --- STARFIELD INICIALIZACE (Zůstávají stejné) ---
         function createStars() {
             const starsContainer = document.querySelector('.stars');
             const numStars = 100; 
@@ -1024,3 +1085,4 @@ ${person.email}
     </script>
 </body>
 </html>
+
