@@ -16,27 +16,27 @@
     <style>
         /* --- GLOBAL & LIQUID GLASS VARIABLES --- */
         :root {
-            --bg-dark: #0f0a14; /* Tmavě fialovo-modrá pro Chrome */
-            --bg-medium: #1b0f24;
-            --bg-light: #2c1a3f;
+            --bg-dark: #121212; /* Velmi tmavá šedá */
+            --bg-medium: #1a1a1a;
+            --bg-light: #2c2c2c;
             
-            --glass-bg: rgba(255, 255, 255, 0.03); /* Velmi jemný průhledný podklad */
-            --glass-border: rgba(255, 255, 255, 0.15); /* Jemnější skleněný okraj */
-            --glass-blur: 35px; /* Větší rozostření */
+            --glass-bg: rgba(255, 255, 255, 0.05); /* Velmi jemný průhledný podklad */
+            --glass-border: rgba(255, 255, 255, 0.2); /* Jemnější skleněný okraj */
+            --glass-blur: 35px; /* Větší rozostření pro "tekutější" sklo */
             --glass-shadow: 0 15px 50px rgba(0, 0, 0, 0.7); /* Výraznější stín */
-            --glass-highlight: rgba(255, 255, 255, 0.1); /* Jemný lesk */
+            --glass-highlight: rgba(255, 255, 255, 0.15); /* Jemný lesk */
 
-            --primary-accent: #9b59b6; /* Světlejší fialová */
-            --secondary-accent: #bdc3c7; 
-            --text-color-primary: #ecf0f1; 
-            --text-color-secondary: #bdc3c7; 
+            --primary-accent: #8e44ad; /* Jemná fialová */
+            --secondary-accent: #bdc3c7; /* Stříbrná */
+            --text-color-primary: #ecf0f1; /* Světlá šedá pro hlavní text */
+            --text-color-secondary: #bdc3c7; /* Tmavší stříbrná */
             
-            --success-color: #2ecc71;
-            --danger-color: #e74c3c;
-            --warning-color: #f39c12;
+            --success-color: #27ae60;
+            --danger-color: #c0392b;
+            --warning-color: #d35400;
 
-            --registered-color: #f39c12; 
-            --register-btn-color: #2ecc71; 
+            --registered-color: #f39c12; /* Oranžová pro registrované */
+            --register-btn-color: #2ecc71; /* Světle zelená pro tlačítko "Registrován" */
 
             --radius-large: 25px;
             --radius-small: 12px;
@@ -44,6 +44,7 @@
 
         /* --- BASIC STYLES & FONT --- */
         body {
+            /* ZMĚNA: NASTAVENÍ FONTU MONTSERRAT JAKO PRIMÁRNÍHO */
             font-family: 'Montserrat', 'Segoe UI', 'Roboto', sans-serif; 
             margin: 0;
             padding: 0;
@@ -57,48 +58,38 @@
             position: relative;
         }
 
-        /* ================================================= */
-        /* --- ZMĚNA 1: LIQUID CHROME ANIMAČNÍ POZADÍ --- */
-        /* ================================================= */
-        .liquid-chrome-bg {
-            position: fixed; /* Fixní, aby se pohybovalo s posunem stránky (Paralaxa) */
+        /* --- STARFIELD BACKGROUND (Nezměněno) --- */
+        .stars {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            min-height: 200vh; /* Větší výška pro simulaci pohybu */
+            height: 100%;
             z-index: -1;
             overflow: hidden;
-            
-            /* Velký gradient simulující "tekutý" Chrome */
-            background: radial-gradient(circle at 15% 50%, rgba(155, 89, 182, 0.5) 0%, rgba(15, 10, 20, 0) 25%),
-                        radial-gradient(circle at 85% 60%, rgba(52, 152, 219, 0.5) 0%, rgba(15, 10, 20, 0) 20%),
-                        radial-gradient(circle at 50% 80%, rgba(230, 126, 34, 0.3) 0%, rgba(15, 10, 20, 0) 30%),
-                        linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-medium) 100%);
-            
-            background-size: 400% 400%; /* Roztažení pro animaci */
-            background-attachment: fixed; /* Klíčové pro efekt pohybu při skrolování */
-            animation: liquid-pan 35s ease infinite alternate; /* Pomalejší animace "dýchání" */
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-medium) 100%);
         }
-        
-        /* Starfield odstraněn */
-        .stars { display: none; } 
 
-        @keyframes liquid-pan {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
+        .star {
+            position: absolute;
+            background-color: var(--glass-highlight);
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 5s infinite ease-in-out;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
-        /* ================================================= */
-        /* --- KONEC ZMĚNY 1 --- */
-        /* ================================================= */
 
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 0.8; transform: scale(1); }
+        }
 
-        /* --- CONTAINER & GLASS CARDS (Pouze drobná úprava glass-card) --- */
+        /* --- CONTAINER & GLASS CARDS (Nezměněno) --- */
         .container {
             max-width: 800px;
             width: 100%;
             padding: 20px;
-            padding-bottom: 80px; 
+            padding-bottom: 80px; /* Místo pro fixní lištu */
             flex-grow: 1;
             box-sizing: border-box;
             position: relative;
@@ -115,59 +106,77 @@
             padding: 25px;
             margin-bottom: 30px;
             transition: all 0.4s ease-in-out;
-            
-            /* Zajištění z-indexu pro správné zobrazení blur u tlačítek */
-            position: relative; 
-            z-index: 20; 
         }
         .glass-card:hover {
             border-color: var(--primary-accent);
             box-shadow: 0 15px 60px rgba(0, 0, 0, 0.8), 0 0 20px var(--primary-accent);
         }
 
-        /* --- HEADERS --- (Nezměněno, ponechány Terea boxes) */
+        /* --- HEADERS --- */
         header {
             width: 100%;
             text-align: center;
             margin-bottom: 40px;
             position: relative; 
             z-index: 10;
+            
+            /* ZACHOVÁN PERSPECTIVE PRO LEVITUJÍCÍ BOXES */
             perspective: 1000px; 
         }
 
         h1 {
-            font-family: 'Lamoric Rowen', 'Monoton', cursive; 
+            /* ZMĚNA 1: NASTAVENÍ FONTU NA MONOTON PRO VÝRAZNÝ STYL */
+            font-family: 'Monoton', cursive; 
             font-size: 5.5em; 
             color: var(--text-color-primary);
-            text-shadow: 
-                0 0 5px rgba(255, 255, 255, 0.5), 
-                1px 1px 0 var(--primary-accent),
-                -1px -1px 0 var(--primary-accent),
-                2px 2px 0 rgba(142, 68, 173, 0.7),
-                -2px -2px 0 rgba(142, 68, 173, 0.7),
-                0 0 40px rgba(142, 68, 173, 0.8); 
+            
+            /* ODSTRANĚN PŘÍMÝ text-shadow APLIKUJE SE PŘES 3D EFEKT NÍŽE */
+            text-shadow: none; 
+            
             margin: 0;
             letter-spacing: 0px; 
             font-weight: 400; 
-            text-transform: uppercase; 
+            text-transform: uppercase; /* ZMĚNA: UPPERCASE VÍCE SEDÍ K TÉMATU */
             display: inline-block; 
             position: relative;
         }
         
+        /* ZMĚNA: ÚPRAVA PRO SIMULACI "POSLINTÁNÍ/DISTORZE/GLITCH" */
         #rotating-text {
             display: inline-block;
-            transform-style: preserve-3d;
-            transform: rotateX(10deg) rotateY(0deg) translateZ(0); 
+            transform-style: preserve-3d; 
+            
+            /* ZMĚNA: VÝRAZNÁ ZÁŘE A VRSTVENÍ TEXTU */
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.7), /* Bílá záře */
+                0 0 20px var(--primary-accent), /* Fialová vnitřní záře */
+                0 0 40px rgba(142, 68, 173, 0.9), /* Silnější vnější záře */
+                2px 2px 0 var(--primary-accent), /* Mírný 3D posun */
+                -2px -2px 0 var(--danger-color); /* Kontrastní posun pro glitch efekt */
+            
+            /* Mírná statická 3D transformace pro dojem */
+            transform: rotateX(5deg) rotateY(0deg) translateZ(0); 
+            animation: textGlitch 5s infinite alternate linear; /* NOVÁ GLITCH ANIMACE */
         }
         
-        /* Terea boxy a jejich animace (ponecháno beze změny) */
+        /* NOVÁ GLITCH ANIMACE PRO TEXT */
+        @keyframes textGlitch {
+            0% { transform: translate(0, 0); opacity: 1; }
+            5% { transform: translate(-2px, 3px) skewX(2deg); opacity: 0.95; }
+            10% { transform: translate(4px, -1px) skewX(-3deg); opacity: 1; }
+            15% { transform: translate(-1px, 2px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        /* ZMĚNA 2: TEREA BOXES PONECHÁNY, ALE S VÝRAZNĚJŠÍ ZÁŘÍ */
         .terea-box {
             position: absolute;
-            width: 15px;
+            width: 15px; 
             height: 5px;
             background: linear-gradient(90deg, #9b59b6, #e74c3c); 
             border: 1px solid var(--primary-accent);
-            box-shadow: 0 0 8px var(--primary-accent); 
+            /* ZMĚNA: Větší záření */
+            box-shadow: 0 0 12px var(--primary-accent), 0 0 20px #e74c3c; 
             border-radius: 2px;
             opacity: 0;
             transform-style: preserve-3d;
@@ -183,6 +192,7 @@
             animation-duration: 8s;
             top: 15%;
             left: 80%;
+            box-shadow: 0 0 12px #3498db, 0 0 20px #2ecc71; /* Modro-zelené záření */
         }
 
         .terea-box:nth-child(3) {
@@ -193,6 +203,7 @@
             animation-duration: 12s;
             bottom: 5%;
             left: 10%;
+            box-shadow: 0 0 12px #f1c40f, 0 0 20px #e67e22; /* Žluto-oranžové záření */
         }
 
         .terea-box:nth-child(4) {
@@ -203,6 +214,7 @@
             animation-duration: 9s;
             top: 85%;
             left: 60%;
+            box-shadow: 0 0 12px #ecf0f1, 0 0 20px #bdc3c7; /* Stříbrné záření */
         }
         
         @keyframes fadeInOut {
@@ -219,18 +231,21 @@
             75% { transform: translate3d(25px, 5px, 15px) rotateX(-20deg); }
             100% { transform: translate3d(0, 0, 0) rotateX(0deg); }
         }
+        /* KONEC NOVÝCH TEREA STYLŮ */
 
 
-        /* --- ZBYTEK CSS KÓDU (Jen to, co se mění) --- */
+        /* --- ZBYTEK CSS KÓDU (Ponechán beze změn) --- */
         
         h2 {
+            /* H2 ZMĚNĚN NA MONTSERRAT */
             font-family: 'Montserrat', sans-serif; 
             font-size: 2.0em; 
             font-weight: 500; 
-            text-transform: uppercase; 
+            text-transform: uppercase; /* ZMĚNA: Všechna písmena velká */
             letter-spacing: 0.8px; 
+            
             color: var(--primary-accent);
-            text-shadow: 0 0 10px rgba(155, 89, 182, 0.3); /* Upravená barva */
+            text-shadow: 0 0 10px rgba(142, 68, 173, 0.3); 
             border-bottom: 1px solid var(--glass-border);
             padding-bottom: 10px; 
             margin-bottom: 18px; 
@@ -238,11 +253,35 @@
             align-items: center;
             gap: 8px; 
         }
+        h2 i { 
+            color: var(--text-color-primary); 
+            font-size: 1.4em; 
+        }
 
-        /* ================================================= */
-        /* --- ZMĚNA 2: BLUR PRŮHLEDNÉ PRVKY --- */
-        /* ================================================= */
+        /* --- H3 ÚPRAVA: VŠECHNA PÍSMENA VELKÁ (Nezměněno) --- */
+        h3 {
+             /* H3 ZMĚNĚN NA MONTSERRAT */
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--text-color-primary);
+            font-size: 1.4em; 
+            font-weight: 500; 
+            text-transform: uppercase; /* ZMĚNA: Všechna písmena velká */
+            letter-spacing: 0.5px; 
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px; 
+        }
+        h3 i { 
+            color: var(--primary-accent); 
+            font-size: 1em; 
+        }
+        
+        /* Zbytek CSS (input, button, navigation, media queries) je PONECHÁN BEZE ZMĚN */
+        
         input, select, textarea {
+             /* ZMĚNĚNO NA MONTSERRAT */
             font-family: 'Montserrat', 'Segoe UI', 'Roboto', sans-serif;
             width: 100%;
             padding: 14px;
@@ -250,21 +289,28 @@
             margin-bottom: 20px;
             box-sizing: border-box;
             border: 1px solid var(--glass-border);
-            /* Aplikace blur na pozadí inputu */
-            background: rgba(255, 255, 255, 0.05); /* Mírně zvýšená průhlednost pro lepší čitelnost */
-            backdrop-filter: blur(10px); /* Jemný blur */
-            -webkit-backdrop-filter: blur(10px);
-            /* Konec aplikace blur */
+            background: rgba(255, 255, 255, 0.03);
             color: var(--text-color-primary);
             border-radius: var(--radius-small);
             font-size: 1em;
             transition: all 0.3s ease;
             box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
-            position: relative; /* Zajištění z-indexu */
-            z-index: 30;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5), 0 0 10px rgba(142, 68, 173, 0.5);
+        }
+        label {
+             /* Ponechán na inherit (tedy Montserrat) */
+            font-size: 0.9em;
+            color: var(--text-color-secondary);
+            margin-bottom: 5px;
+            display: block;
         }
 
         button, .btn-full {
+             /* Ponechán na inherit (tedy Montserrat) */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -279,99 +325,45 @@
             cursor: pointer;
             transition: all 0.3s ease;
             
-            /* Aplikace blur na tlačítka (výchozí) */
             background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            /* Konec aplikace blur */
-            
             color: var(--text-color-primary);
             border: 1px solid var(--glass-border);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-            position: relative; /* Zajištění z-indexu */
-            z-index: 30;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 255, 255, 0.2);
+            border-color: var(--primary-accent);
+            background: rgba(255, 255, 255, 0.12);
         }
         
-        /* Přepsání pro barevná tlačítka - zachování blur, změna barvy */
-        .btn-success { background-color: rgba(46, 204, 113, 0.9); border-color: var(--success-color); color: white; }
-        .btn-danger { background-color: rgba(231, 76, 60, 0.9); border-color: var(--danger-color); color: white; }
-        .btn-warning { background-color: rgba(243, 156, 18, 0.9); border-color: var(--warning-color); color: white; }
-        .btn-register { background-color: rgba(46, 204, 113, 0.9); border-color: var(--register-btn-color); color: white; }
-        .btn-register-remove { background-color: rgba(243, 156, 18, 0.9); border-color: var(--registered-color); color: white; }
-        .btn-secondary { background: rgba(255, 255, 255, 0.05); border-color: var(--glass-border); color: var(--text-color-secondary); }
-        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--primary-accent); color: var(--text-color-primary); }
+        .btn-success { background-color: var(--success-color); border-color: var(--success-color); color: white; }
+        .btn-danger { background-color: var(--danger-color); border-color: var(--danger-color); color: white; }
+        .btn-warning { background-color: var(--warning-color); border-color: var(--warning-color); color: white; }
 
-        /* Tlačítka v historii */
-        .history-btn-group button {
-             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        .copy-btn {
-             background-color: rgba(155, 89, 182, 0.9);
-             border-color: var(--primary-accent);
-             color: white;
-        }
-        .remove-btn {
-            background: rgba(26, 26, 26, 0.7); /* Mírně průhledné pozadí */
-            border-color: var(--glass-border);
-            color: var(--text-color-secondary);
-        }
+        .btn-register { background-color: var(--register-btn-color); border-color: var(--register-btn-color); color: white; }
+        .btn-register-remove { background-color: var(--registered-color); border-color: var(--registered-color); color: white; }
 
-        /* Navigace - již měla blur, jen mírně upraveno */
-        .navigation {
-            position: fixed; 
-            bottom: 0;
-            left: 0; 
-            right: 0;
-            width: 100%; 
-            height: 75px; 
+        .btn-secondary { background: var(--glass-bg); border-color: var(--glass-border); color: var(--text-color-secondary); }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--primary-accent); color: var(--text-color-primary); }
+
+        .button-group {
             display: flex;
-            justify-content: space-around;
-            align-items: center;
-            
-            background: rgba(15, 10, 20, 0.85); /* Tmavší fialový podklad */
-            backdrop-filter: blur(20px); /* Větší blur */
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.8);
-            z-index: 1000;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
-        
-        .nav-button:hover {
-            color: var(--text-color-primary);
-            background: rgba(255, 255, 255, 0.08); /* Průhlednější hover */
+        .button-group button {
+            flex: 1;
+            padding: 10px 15px;
+            font-size: 0.9em;
+            margin: 0;
+            min-width: 120px;
         }
-        .nav-button.active {
-            color: var(--primary-accent);
-            text-shadow: 0 0 10px var(--primary-accent), 0 0 5px rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.1); /* Průhlednější active */
-            border-bottom: 3px solid var(--primary-accent);
-        }
-        /* ================================================= */
-        /* --- KONEC ZMĚNY 2 --- */
-        /* ================================================= */
 
-        
-        /* Zbytek CSS je ponechán (h3, identity-card, profile-detail, media queries...) */
-        
-        h3 {
-             font-family: 'Montserrat', sans-serif; 
-            color: var(--text-color-primary);
-            font-size: 1.4em; 
-            font-weight: 500; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px; 
-            margin-top: 0;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 6px; 
-        }
-        h3 i { 
-            color: var(--primary-accent); 
-            font-size: 1em; 
-        }
+        /* --- IDENTITY/PERSON CARDS (Nezměněno) --- */
         .identity-card {
             margin-top: 20px;
             padding: 20px;
@@ -385,8 +377,64 @@
             transform: scale(0.98);
             transition: all 0.3s ease;
         }
+        .identity-card:hover {
+            transform: scale(1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 10px var(--primary-accent);
+        }
 
+        .identity-number {
+             /* Ponechán na inherit (tedy Montserrat) */
+            font-weight: 700;
+            font-size: 1.4em;
+            color: var(--primary-accent);
+            text-shadow: 0 0 10px rgba(142, 68, 173, 0.6);
+            margin-bottom: 12px;
+            align-self: flex-start;
+        }
+
+        /* ZMĚNA: FONT PRO DATA/KÓD NA FIRA CODE (Nezměněno) */
+        .identity-line {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Fira Code', monospace; /* FONT: Použití Fira Code pro moderní data vzhled */
+            font-size: 1.05em; /* ZMĚNA: Mírně zvětšeno */
+            line-height: 1.6; /* ZMĚNA: Větší řádkování pro vzdušnost */
+            color: var(--text-color-primary);
+            background: rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: var(--radius-small);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            margin-top: 0;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+        
+        /* NOVÉ STYLY PRO TLAČÍTKA V KARTÁCH OSOB (Nezměněno) */
+        .copy-btn {
+             background-color: var(--primary-accent);
+             border-color: var(--primary-accent);
+             color: white;
+        }
+        .copy-btn:hover {
+            background-color: #a45ad8; 
+            border-color: #a45ad8;
+        }
+        .remove-btn {
+            background: var(--bg-medium);
+            border-color: var(--glass-border);
+            color: var(--text-color-secondary);
+        }
+        .remove-btn:hover {
+            background: var(--danger-color);
+            border-color: var(--danger-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 15px var(--danger-color);
+        }
+        /* KONEC ZMĚN PRO KARTU OSOBY */
+        
         .profile-detail {
+            /* Ponechán na inherit (tedy Montserrat) */
             background: rgba(255, 255, 255, 0.03);
             padding: 20px;
             border-radius: var(--radius-small);
@@ -395,8 +443,102 @@
             box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
             line-height: 1.6;
         }
+        .profile-detail p {
+             /* Ponechán na inherit (tedy Montserrat) */
+            margin: 8px 0;
+            font-size: 1em;
+            color: var(--text-color-secondary);
+        }
+        .profile-detail strong {
+             /* Ponechán na inherit (tedy Montserrat) */
+            color: var(--text-color-primary);
+            display: inline-block;
+            min-width: 140px; 
+        }
+        .profile-detail i {
+            color: var(--primary-accent);
+            margin-right: 8px;
+        }
+        .profile-detail hr {
+            border: none;
+            border-top: 1px dashed var(--glass-border);
+            margin: 15px 0;
+        }
+
+        /* --- NAVIGATION (FIXED BOTTOM) (Nezměněno) --- */
+        .navigation {
+            position: fixed; 
+            bottom: 0;
+            left: 0; 
+            right: 0;
+            width: 100%; 
+            height: 75px; 
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            
+            background: rgba(18, 18, 18, 0.9); 
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        .nav-button {
+             /* Ponechán na inherit (tedy Montserrat) */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-color-secondary);
+            font-size: 0.85em;
+            width: 20%; 
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            border: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .nav-button:hover {
+            color: var(--text-color-primary);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .nav-button.active {
+            color: var(--primary-accent);
+            text-shadow: 0 0 10px var(--primary-accent), 0 0 5px rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 3px solid var(--primary-accent);
+        }
+        
+        .nav-button i {
+            font-size: 1.8em; 
+            margin-bottom: 5px;
+        }
+        
+        /* --- UTILITY & NOTIFICATIONS (Nezměněno) --- */
+        .content-section {
+            display: none;
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+        }
+
+        .total-count {
+             /* Ponechán na inherit (tedy Montserrat) */
+            font-size: 1.3em;
+            color: var(--text-color-primary);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            margin-bottom: 25px;
+        }
+        .total-count i { color: var(--primary-accent); }
 
         #history-list, #registered-list { 
+             /* Ponechán na inherit (tedy Montserrat) */
             max-height: 450px;
             overflow-y: auto;
             padding: 15px;
@@ -405,18 +547,110 @@
             background: rgba(255, 255, 255, 0.02);
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
         }
+        #history-list > div, #registered-list > div {
+             /* Ponechán na inherit (tedy Montserrat) */
+            padding: 12px;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.01);
+            border-radius: 8px;
+            transition: background 0.2s ease;
+        }
+        #history-list > div:hover, #registered-list > div:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .person-info {
+             /* Ponechán na inherit (tedy Montserrat) */
+            font-size: 1em;
+        }
+
+        .person-info.registered {
+            color: var(--registered-color); 
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(243, 156, 18, 0.5);
+        }
         
+        .history-btn-group {
+            display: flex;
+            gap: 8px;
+        }
+        .history-btn-group button {
+            width: auto; 
+            padding: 5px 10px; 
+            font-size: 0.8em; 
+            margin: 0;
+        }
+
+        #notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        .notification {
+             /* Ponechán na inherit (tedy Montserrat) */
+            padding: 15px 20px;
+            border-radius: var(--radius-small);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            color: var(--text-color-primary);
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+            max-width: 280px;
+        }
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .notification.success i { color: var(--success-color); }
+        .notification.danger i { color: var(--danger-color); }
+        .notification.warning i { color: var(--warning-color); }
+        .notification.info i { color: var(--primary-accent); }
+
+
+        /* Media queries for smaller screens */
         @media (max-width: 600px) {
             h1 { font-size: 3.5em; } 
-            h2 { font-size: 1.8em; } 
+            h2 { font-size: 1.8em; gap: 6px; letter-spacing: 0.5px; padding-bottom: 8px; margin-bottom: 15px; font-weight: 500; text-transform: uppercase;} 
+            h3 { font-size: 1.2em; font-weight: 500; letter-spacing: 0.3px; text-transform: uppercase;} 
+            .glass-card { padding: 18px; margin-bottom: 20px; }
+            .button-group { flex-direction: column; gap: 10px; }
+            .button-group button { width: 100%; }
+            .nav-button i { font-size: 1.5em; }
             .navigation { height: 65px; }
             .container { padding-bottom: 75px; }
+            .profile-detail strong { min-width: 100px; }
+            .history-btn-group { flex-direction: column; gap: 5px; }
+            .history-btn-group button { width: 100%; }
+            .identity-line { font-size: 0.9em; } /* Zmenšení na mobilu */
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
     </style>
 </head>
 <body>
-    <div class="liquid-chrome-bg"></div> 
+    <div class="stars"></div> 
     <div class="container">
         <header>
             <div class="terea-box" style="top: 10%; left: 0%;"></div>
@@ -565,6 +799,7 @@
         const allCities = Object.keys(citiesData);
         const HISTORY_KEY = 'iqosPeopleHistory'; 
 
+        // Zbytek JS kódu (Helper funkce, logika generace, historie, navigace) je PONECHÁN BEZE ZMĚN
         
         const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
         const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -669,9 +904,10 @@
             const person = {
                 id: Date.now() + Math.random(), 
                 fullName: `${firstName} ${lastName}`,
+                birthDate: formattedDate,
                 phoneNumber: phoneBase.replace(/(\d{3})(\d{3})(\d{3})/, '$1$2$3'), 
                 email: generateEmail(firstName, lastName),
-                birthDate: formattedDate,
+                
                 rodneCislo: rodneCislo, 
                 city: city,
                 postalCode: postalCode,
@@ -1085,11 +1321,25 @@ E-mail: ${person.email}
             }
         }
         
-        // --- STARFIELD INICIALIZACE ZRUŠENA --- (Původní kód odstraněn)
-        function createStars() { /* Funkce prázdná, hvězdy jsou pryč */ } 
+        // --- STARFIELD INICIALIZACE (Nezměněno) ---
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const numStars = 100; 
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = star.style.height = `${getRandomInt(1, 3)}px`;
+                star.style.top = `${getRandomInt(0, 100)}%`;
+                star.style.left = `${getRandomInt(0, 100)}%`;
+                star.style.animationDelay = `${getRandomInt(0, 5000) / 1000}s`; 
+                star.style.animationDuration = `${getRandomInt(5, 10)}s`; 
+                starsContainer.appendChild(star);
+            }
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // createStars(); // Původní volání odstraněno
+            createStars(); 
             updateNavigation();
             window.addEventListener('hashchange', () => updateNavigation());
             
